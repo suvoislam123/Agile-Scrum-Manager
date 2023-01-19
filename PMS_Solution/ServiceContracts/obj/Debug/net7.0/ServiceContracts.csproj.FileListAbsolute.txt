@@ -1,0 +1,15 @@
+C:\Users\Shuvo Islam\Desktop\BSSE-final-project\PMS_Solution\ServiceContracts\obj\Debug\net7.0\ServiceContracts.csproj.AssemblyReference.cache
+C:\Users\Shuvo Islam\Desktop\BSSE-final-project\PMS_Solution\ServiceContracts\obj\Debug\net7.0\ServiceContracts.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Shuvo Islam\Desktop\BSSE-final-project\PMS_Solution\ServiceContracts\obj\Debug\net7.0\ServiceContracts.AssemblyInfoInputs.cache
+C:\Users\Shuvo Islam\Desktop\BSSE-final-project\PMS_Solution\ServiceContracts\obj\Debug\net7.0\ServiceContracts.AssemblyInfo.cs
+C:\Users\Shuvo Islam\Desktop\BSSE-final-project\PMS_Solution\ServiceContracts\obj\Debug\net7.0\ServiceContracts.csproj.CoreCompileInputs.cache
+C:\Users\Shuvo Islam\Desktop\BSSE-final-project\PMS_Solution\ServiceContracts\bin\Debug\net7.0\ServiceContracts.deps.json
+C:\Users\Shuvo Islam\Desktop\BSSE-final-project\PMS_Solution\ServiceContracts\bin\Debug\net7.0\ServiceContracts.dll
+C:\Users\Shuvo Islam\Desktop\BSSE-final-project\PMS_Solution\ServiceContracts\bin\Debug\net7.0\ServiceContracts.pdb
+C:\Users\Shuvo Islam\Desktop\BSSE-final-project\PMS_Solution\ServiceContracts\bin\Debug\net7.0\Entities.dll
+C:\Users\Shuvo Islam\Desktop\BSSE-final-project\PMS_Solution\ServiceContracts\bin\Debug\net7.0\Entities.pdb
+C:\Users\Shuvo Islam\Desktop\BSSE-final-project\PMS_Solution\ServiceContracts\obj\Debug\net7.0\ServiceContracts.csproj.CopyComplete
+C:\Users\Shuvo Islam\Desktop\BSSE-final-project\PMS_Solution\ServiceContracts\obj\Debug\net7.0\ServiceContracts.dll
+C:\Users\Shuvo Islam\Desktop\BSSE-final-project\PMS_Solution\ServiceContracts\obj\Debug\net7.0\refint\ServiceContracts.dll
+C:\Users\Shuvo Islam\Desktop\BSSE-final-project\PMS_Solution\ServiceContracts\obj\Debug\net7.0\ServiceContracts.pdb
+C:\Users\Shuvo Islam\Desktop\BSSE-final-project\PMS_Solution\ServiceContracts\obj\Debug\net7.0\ref\ServiceContracts.dll
