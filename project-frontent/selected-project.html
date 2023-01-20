@@ -20,9 +20,32 @@
     <script src="https://kit.fontawesome.com/0d68b24997.js" crossorigin="anonymous"></script>
 
 </head>
-
-<body id="page-top">
-
+<body id="page-top" style="position: relative;">
+    <div class="" style="height: 100%;width: 100%;">
+        <div class="mx-auto w-75">
+            <div class="issue-item-modal position-fixed bg-white p-3" style="z-index:200; height: 500px;width: 1100px;top: 100px;">
+                <div class="d-flex justify-content-between">
+                    <p><small>board1/issu2/<i class="fa-solid fa-link"></i></small></p>
+                    <div class="d-flex">
+                        <button class="btn btn-light mx-1" title=""><i class="fa-solid fa-eye"></i></button>
+                        <button class="btn btn-light mx-1" title=""><i class="fa-solid fa-thumbs-up"></i></button>
+                        <button class="btn btn-light mx-1" title=""><i class="fa-solid fa-share-nodes"></i></button>
+                        <div class="dropdown no-arrow px-2">
+                            <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fa-solid fa-ellipsis-vertical text-dark mt-2 text-medium" aria-hidden="true"></i>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink" style="">
+                                <a class="dropdown-item" href="#">Board Setting</a>
+                                <a class="dropdown-item" href="#">Create Board</a>
+                                <a class="dropdown-item" href="#">Print Card</a>
+                            </div>
+                        </div>
+                        <button class="btn btn-light mx-1" title=""><i class="fa-solid fa-xmark"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     <!-- Page Wrapper -->
     <div id="wrapper">
 
@@ -120,27 +143,30 @@
             <hr class="sidebar-divider">
 
             <!-- Heading -->
-            <div class="sidebar-heading">
+            <div class="sidebar-heading text-center">
                 Selected Project
+            </div>
+            <hr class="sidebar-divider">
+            <div class="sidebar-heading text-center project-name">
+                Garments ERP project
             </div>
 
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
                     aria-expanded="true" aria-controls="collapsePages">
-                    <i class="fas fa-fw fa-folder"></i>
-                    <span>Pages</span>
+                    <i class="fa-regular fa-clipboard"></i>
+                    <span>Boards</span>
                 </a>
                 <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Login Screens:</h6>
-                        <a class="collapse-item" href="login.html">Login</a>
-                        <a class="collapse-item" href="register.html">Register</a>
-                        <a class="collapse-item" href="forgot-password.html">Forgot Password</a>
-                        <div class="collapse-divider"></div>
-                        <h6 class="collapse-header">Other Pages:</h6>
-                        <a class="collapse-item" href="404.html">404 Page</a>
-                        <a class="collapse-item" href="blank.html">Blank Page</a>
+                        <h6 class="collapse-header">Boards</h6>
+                        <a class="collapse-item" href="login.html">Developer Board</a>
+                        <a class="collapse-item" href="register.html">Marketting Board</a>
+                        <a class="collapse-item" href="forgot-password.html">Web Board</a>
+                        <a class="collapse-item text-primary" href="project-board.html">Show More</a>
+                        <div class="collapse-divider"><hr></div>
+                        <a class="collapse-item" href="create-board.html"><i class="fa-solid fa-plus"></i>Create Board</a>
                     </div>
                 </div>
             </li>
@@ -148,15 +174,20 @@
             <!-- Nav Item - Charts -->
             <li class="nav-item">
                 <a class="nav-link" href="charts.html">
-                    <i class="fas fa-fw fa-chart-area"></i>
-                    <span>Charts</span></a>
+                    <i class="fa-solid fa-boxes-packing"></i>
+                    <span>Back Log</span></a>
             </li>
 
             <!-- Nav Item - Tables -->
             <li class="nav-item">
+                <a class="nav-link" href="selected-project.html">
+                    <i class="fa-solid fa-grip"></i>
+                    <span>Active Sprint</span></a>
+            </li>
+            <li class="nav-item">
                 <a class="nav-link" href="tables.html">
-                    <i class="fas fa-fw fa-table"></i>
-                    <span>Tables</span></a>
+                    <i class="fa-regular fa-rectangle-list"></i>
+                    <span>Issues</span></a>
             </li>
 
             <!-- Divider -->
@@ -375,7 +406,258 @@
 
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
-                   
+                    <nav aria-label="breadcrumb" style="background-color: transparent;">
+                        <ol class="breadcrumb">
+                          <li class="breadcrumb-item"><a href="#">Projects</a></li>
+                          <li class="breadcrumb-item"><a href="#">ERP Project 1</a></li>
+                          <li class="breadcrumb-item active" aria-current="page">Developer Board</li>
+                        </ol>
+                      </nav>
+                </div>
+                <div class="sprint-container px-4">
+                    <div class="d-flex justify-content-between flex-wrap">
+                        <h4>First Sprint</h4>
+                        <div class="d-flex align-items-center flex-wrap">
+                            <span><i class="fa-regular fa-clock"></i> 6 days remaining</span>
+                            <a href="#" class="btn btn-light bg-gray-500">
+                                <span class="text">Complete Sprint</span>
+                            </a>
+                            <!--  -->
+                            <div class="dropdown no-arrow px-2">
+                                <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i class="fa-solid fa-share-nodes"></i>
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink" style="width: 400px;">
+                                    <form class="user w-75 mx-auto">
+                                    
+                                        <div class="form-group">
+                                            <!-- tag input -->
+                                            
+                                            <link href="https://unpkg.com/@yaireo/tagify/dist/tagify.css" rel="stylesheet" type="text/css" />
+                                                
+                                            <label for="name">Users</label>
+                                            <br>
+                                            <input name='tags' value='' class="w-100" style="display: block; height: auto;" autofocus>
+                                            <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.0/js/bootstrap.min.js"></script>
+                                            <script src="https://unpkg.com/@yaireo/tagify"></script>
+                                            <script src="https://unpkg.com/@yaireo/tagify@3.1.0/dist/tagify.polyfills.min.js"></script>
+                                            <script>
+                                                // The DOM element you wish to replace with Tagify
+                                            var input = document.querySelector('input[name=tags]');
+
+                                            // initialize Tagify on the above input node reference
+                                            new Tagify(input)
+                                            </script>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="name">Recipient will see your message</label>
+                                            <br>
+                                            <textarea name="" id="" cols="38" rows="4"></textarea>
+                                        </div>
+                                        
+                                        <a href="view-all-project.html" class="btn btn-primary btn-user rounded-0 py-1 px-5">
+                                            Share
+                                        </a>
+                                        
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="dropdown no-arrow px-2" >
+                                <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
+                                    <a class="dropdown-item" href="#">Board Setting</a>
+                                    <a class="dropdown-item" href="#">Create Board</a>
+                                    <a class="dropdown-item" href="#">Print Card</a>
+                                </div>
+                            </div>
+                        </div>
+                       
+                    </div>
+                    <div class="d-flex justify-content-between my-3 flex-wrap">
+                        <div class="d-flex flex-wrap">
+                            <form action="">
+                                <div class="input-group">
+                                    <input type="text" class="form-control bg-light  small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
+                                    <div class="input-group-append">
+                                        <button class="btn btn-primary" type="button">
+                                            <i class="fas fa-search fa-sm"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                            <a href="#" class="btn btn-light bg-gray-500 mx-2">
+                                <span class="text">Only My issue</span>
+                            </a>
+                            <a href="#" class="btn btn-light bg-gray-500 mx-2">
+                                <span class="text">Unassigned</span>
+                            </a>
+                            <a href="#" class="btn btn-light bg-gray-500 mx-2">
+                                <span class="text">Clear</span>
+                            </a>
+                        </div>
+                        <a href="#" class="d-none d-sm-inline-block btn btn-primary shadow-sm"><i class="fa-solid fa-chart-line"></i>Insights</a>
+                    </div>
+                    <style>
+                        .issue-item:hover{
+                            cursor:move;
+                        }
+                    </style>
+                    <div class="row">
+                        <div class="col-4 ">
+                           <div class="p-2 bg-gray-300">TO DO</div>
+                        </div>
+                        <div class="col-4 ">
+                            <div class="p-2 bg-gray-300">IN PROGRESS</div>
+                        </div>
+                        <div class="col-4">
+                            <div class="p-2 bg-gray-300">DONE</div>
+                        </div>
+                        <div class="col-4 p-2 issue-container">
+                            <div class="card shadow mb-4 issue-item draggable" style="display: 1; background-color: wheat;" draggable="true">
+                                <!-- Card Body -->
+                                <div class="card-body" style="position: relative;">
+                                    <div class="dropdown no-arrow" style="position: absolute; top: 5px; right: 5px;">
+                                        <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                                        </a>
+                                        <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink" style="">
+                                            <a class="dropdown-item" href="#"><i class="fa-solid fa-tag"></i>Edit</a>
+                                            <a class="dropdown-item" href="#"><i class="fa-solid fa-trash"></i>Remove</a> 
+                                        </div>
+                                    </div>
+                                    <div class="story-details">
+                                        <p>As a user, I can find important items on the board by using the customisable "Quick Filters" above >> Try clicking the "Only My Issues" Quick Filter above</p>
+                                    </div>
+                                    <div class="d-flex justify-content-between">
+                                        <div class="icons d-flex">
+                                            <i class="fa-solid fa-bug text-danger" title="bug"></i>
+                                            <i class="fa-solid fa-grip-lines mx-2" title="Midium Priority"  style="color: orange;"></i>
+                                        </div>
+                                        <div class="d-flex">
+                                            <small>BoardName</small>
+                                            <img class="img-profile rounded-circle" src="img/undraw_profile.svg" style="height: 20px; width: 20px;">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card shadow mb-4 issue-item draggable" style="display: 1; background-color: wheat;" draggable="true">
+                                <!-- Card Body -->
+                                <div class="card-body" style="position: relative;">
+                                    <div class="dropdown no-arrow" style="position: absolute; top: 5px; right: 5px;">
+                                        <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                                        </a>
+                                        <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink" style="">
+                                            <a class="dropdown-item" href="#"><i class="fa-solid fa-tag"></i>Edit</a>
+                                            <a class="dropdown-item" href="#"><i class="fa-solid fa-trash"></i>Remove</a> 
+                                        </div>
+                                    </div>
+                                    <div class="story-details">
+                                        <p>As a user, I can find important items on the board by using the customisable "Quick Filters" above >> Try clicking the "Only My Issues" Quick Filter above</p>
+                                    </div>
+                                    <div class="d-flex justify-content-between">
+                                        <div class="icons d-flex">
+                                            <i class="fa-solid fa-bug text-danger" title="bug"></i>
+                                            <i class="fa-solid fa-grip-lines mx-2" title="Midium Priority"  style="color: orange;"></i>
+                                        </div>
+                                        <div class="d-flex">
+                                            <small>BoardName</small>
+                                            <img class="img-profile rounded-circle" src="img/undraw_profile.svg" style="height: 20px; width: 20px;">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card shadow mb-4 issue-item draggable" style="display: 1; background-color: wheat;" draggable="true">
+                                <!-- Card Body -->
+                                <div class="card-body" style="position: relative;">
+                                    <div class="dropdown no-arrow" style="position: absolute; top: 5px; right: 5px;">
+                                        <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                                        </a>
+                                        <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink" style="">
+                                            <a class="dropdown-item" href="#"><i class="fa-solid fa-tag"></i>Edit</a>
+                                            <a class="dropdown-item" href="#"><i class="fa-solid fa-trash"></i>Remove</a> 
+                                        </div>
+                                    </div>
+                                    <div class="story-details">
+                                        <p>As a user, I can find important items on the board by using the customisable "Quick Filters" above >> Try clicking the "Only My Issues" Quick Filter above</p>
+                                    </div>
+                                    <div class="d-flex justify-content-between">
+                                        <div class="icons d-flex">
+                                            <i class="fa-solid fa-bug text-danger" title="bug"></i>
+                                            <i class="fa-solid fa-grip-lines mx-2" title="Midium Priority"  style="color: orange;"></i>
+                                        </div>
+                                        <div class="d-flex">
+                                            <small>BoardName</small>
+                                            <img class="img-profile rounded-circle" src="img/undraw_profile.svg" style="height: 20px; width: 20px;">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card shadow mb-4 issue-item draggable" style="display: 1; background-color: wheat;" draggable="true">
+                                <!-- Card Body -->
+                                <div class="card-body" style="position: relative;">
+                                    <div class="dropdown no-arrow" style="position: absolute; top: 5px; right: 5px;">
+                                        <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                                        </a>
+                                        <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink" style="">
+                                            <a class="dropdown-item" href="#"><i class="fa-solid fa-tag"></i>Edit</a>
+                                            <a class="dropdown-item" href="#"><i class="fa-solid fa-trash"></i>Remove</a> 
+                                        </div>
+                                    </div>
+                                    <div class="story-details">
+                                        <p>As a user, I can find important items on the board by using the customisable "Quick Filters" above >> Try clicking the "Only My Issues" Quick Filter above</p>
+                                    </div>
+                                    <div class="d-flex justify-content-between">
+                                        <div class="icons d-flex">
+                                            <i class="fa-solid fa-bug text-danger" title="bug"></i>
+                                            <i class="fa-solid fa-grip-lines mx-2" title="Midium Priority"  style="color: orange;"></i>
+                                        </div>
+                                        <div class="d-flex">
+                                            <small>BoardName</small>
+                                            <img class="img-profile rounded-circle" src="img/undraw_profile.svg" style="height: 20px; width: 20px;">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-4 p-2 issue-container">
+
+                        </div>
+                        <div class="col-4 p-2 issue-container">
+
+                        </div>
+                    </div>
+                    
+                    <script>
+                        const draggables = document.querySelectorAll(".draggable");
+                        const issue_containers  = document.querySelectorAll('.issue-container');
+                        draggables.forEach(draggable=>{
+                            draggable.addEventListener('dragstart',()=>{
+                                console.log("drag start");
+                                draggable.classList.add('dragging'); 
+                            });
+                            draggable.addEventListener('dragend',()=>{
+                                console.log('drag ends');
+                                draggable.classList.remove('dragging');
+                            });
+                        });
+                        issue_containers.forEach(container=>{
+                            container.addEventListener('dragover',(event)=>{
+                                event.preventDefault();
+                                const draggable  = document.querySelector('.dragging');
+                                console.log("drag-over");
+                                container.appendChild(draggable);
+                            });
+                        });
+                        function getDraggableAfterElement(container, y)
+                        {
+                           const draggableElements = [...container.querySelectorAll('draggable:not(.dragging)')];
+                        }
+                    </script>
                 </div>
                 <!-- End Page Content -->
 
