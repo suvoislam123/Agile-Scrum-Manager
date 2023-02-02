@@ -7,7 +7,7 @@ namespace Services
 {
     public class UserService : IUsersService
     {
-        private readonly PMS_DBContext _db;
+        /*private readonly PMS_DBContext _db;
         private readonly IUsersService _usersService;
         public UserService(PMS_DBContext db)
         {
@@ -39,7 +39,7 @@ namespace Services
             List<UserResponse> users = _db.Users.Select(country=>country.ToUserResponse()).ToList();
             return users;
         }
-
+*/
         
     }
 }

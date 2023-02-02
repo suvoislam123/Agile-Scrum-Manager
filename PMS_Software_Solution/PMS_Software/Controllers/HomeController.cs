@@ -22,20 +22,11 @@ namespace PMS_Software.Controllers
         public IActionResult Index()
         {
             
-            List<UserResponse> users = _userService.GetAllUser();
-            ViewBag.Users = users;
+           /* List<UserResponse> users = _userService.GetAllUser();
+            ViewBag.Users = users;*/
             return View();
         }
 
-        public IActionResult Privacy()
-        {
-            return View();
-        }
-
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
-        }
+        
     }
 }

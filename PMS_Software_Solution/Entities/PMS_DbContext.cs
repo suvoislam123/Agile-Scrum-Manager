@@ -1,13 +1,14 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 namespace Entities
 {
-    public class PMS_DBContext : DbContext
+    public class PMS_DBContext : IdentityDbContext
     {
         public PMS_DBContext(DbContextOptions options) : base(options)
         {
 
         }
-        public DbSet<User> Users { get; set; }
+        /*public DbSet<User> Users { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
@@ -22,6 +23,6 @@ namespace Entities
                 UserName = "suvoislam123",
                 UserAddress = "lohajong,Munshigonj"
             });
-        }
+        }*/
     }
 }

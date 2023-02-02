@@ -1,4 +1,5 @@
 using Entities;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using ServiceContracts;
 using Services;
@@ -15,7 +16,8 @@ builder.Services.AddDbContext<PMS_DBContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
 });
 //Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=PMSDatabase;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False
-
+builder.Services.AddIdentity<IdentityUser,IdentityRole>()
+    .AddEntityFrameworkStores<PMS_DBContext>();
 
 var app = builder.Build();
 
@@ -31,7 +33,8 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
-
+app.UseAuthentication();
+app.UseCors();
 app.UseAuthorization();
 
 app.MapControllerRoute(

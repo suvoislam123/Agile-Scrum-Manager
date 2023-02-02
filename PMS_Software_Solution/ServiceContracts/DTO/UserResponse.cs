@@ -1,4 +1,5 @@
-﻿using Entities;
+﻿
+using Entities;
 namespace ServiceContracts.DTO
 {
     public class UserResponse
