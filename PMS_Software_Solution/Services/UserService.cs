@@ -2,44 +2,45 @@
 using ServiceContracts.DTO;
 using Services.Helpers;
 using Entities;
+using Microsoft.AspNetCore.Identity;
+using Entities.Account;
 
 namespace Services
 {
     public class UserService : IUsersService
     {
-        /*private readonly PMS_DBContext _db;
-        private readonly IUsersService _usersService;
-        public UserService(PMS_DBContext db)
+       
+        private readonly UserManager<ApplicationUser> _userManager;
+        private readonly SignInManager<ApplicationUser> _signInManager;
+        public UserService(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager) 
         {
-            _db = db;
-            
+            _userManager = userManager;
+            _signInManager = signInManager;
         }
-        private UserResponse ConvertUserToUserResponse(User user)
+        public async Task<IdentityResult> CreateUserAsync(User user)
         {
-            UserResponse userResponse = user.ToUserResponse();
-            return userResponse;
-
-        }
-        public UserResponse AddUser(UserAddRequest? userAddRequest)
-        {
-            if(userAddRequest == null)
+            var newUser =new ApplicationUser()
             {
-                throw new ArgumentNullException(nameof(userAddRequest));
-            }
-            //Model Validation
-            ValidationHelper.ModelValidation(userAddRequest);
-            User user = userAddRequest.ToUser();
-            user.UserId = Guid.NewGuid();
-            _db.Users.Add(user);
-            _db.SaveChanges();
-            return ConvertUserToUserResponse(user);
+                Email= user.Email,
+                UserName= user.UserName,
+                FirstName = user.FirstName,
+                LastName = user.LastName,
+                DateOfBirth= user.DateOfBirth,
+                UserAddress = user.UserAddress
+                
+
+            };
+            var result = await _userManager.CreateAsync(newUser, user.Password);
+            return result;
         }
-        public List<UserResponse>  GetAllUser()
+        public async Task<SignInResult> PasswordSignInAsync(SignInUser signInUser)
         {
-            List<UserResponse> users = _db.Users.Select(country=>country.ToUserResponse()).ToList();
-            return users;
+           var result = await _signInManager.PasswordSignInAsync(signInUser.UserName, signInUser.Password, signInUser.RememberMe, false);
+           return result;
         }
-*/
-        
+        public async Task SignOutAsync()
+        {
+            await _signInManager.SignOutAsync();
+        }
     }
 }

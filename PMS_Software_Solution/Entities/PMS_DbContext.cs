@@ -1,28 +1,26 @@
-﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using Entities.Account;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 namespace Entities
 {
-    public class PMS_DBContext : IdentityDbContext
+    public class PMS_DBContext : IdentityDbContext<ApplicationUser>
     {
-        public PMS_DBContext(DbContextOptions options) : base(options)
+        public PMS_DBContext(DbContextOptions<PMS_DBContext> options) : base(options)
         {
 
         }
-        /*public DbSet<User> Users { get; set; }
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        protected override void OnModelCreating(ModelBuilder builder)
         {
-            base.OnModelCreating(modelBuilder);
-            modelBuilder.Entity<User>().ToTable("Users");
-            modelBuilder.Entity<User>().HasData(new User()
+            base.OnModelCreating(builder);
+
+            builder.Entity<ApplicationUser>(entity =>
             {
-                UserId = Guid.NewGuid(),
-                FirstName = "Shuvo",
-                LastName = "Islam",
-                Email = "suvoislam753@gmail.com",
-                PhoneNumber = "1234567890",
-                UserName = "suvoislam123",
-                UserAddress = "lohajong,Munshigonj"
+                entity.Property(e => e.FirstName);
+                entity.Property(e => e.LastName);
+                entity.Property(e => e.UserAddress);
+                entity.Property(e => e.DateOfBirth);
+
             });
-        }*/
+        }
     }
 }

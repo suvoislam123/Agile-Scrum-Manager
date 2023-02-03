@@ -1,4 +1,4 @@
-﻿
+﻿/*
 using Entities;
 namespace ServiceContracts.DTO
 {
@@ -35,3 +35,4 @@ namespace ServiceContracts.DTO
         }
     }
 }
+*/

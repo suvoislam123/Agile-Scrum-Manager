@@ -1,9 +1,14 @@
-﻿using ServiceContracts.DTO;
+﻿using Entities;
+using Entities.Account;
+using Microsoft.AspNetCore.Identity;
+using ServiceContracts.DTO;
 namespace ServiceContracts
 {
     public interface IUsersService
     {
-        /*UserResponse AddUser(UserAddRequest? userAddRequest);
-        List<UserResponse> GetAllUser();*/
+        Task<IdentityResult> CreateUserAsync(User user);
+        Task<SignInResult> PasswordSignInAsync(SignInUser signInUser);
+        Task SignOutAsync();
+            
     }
 }

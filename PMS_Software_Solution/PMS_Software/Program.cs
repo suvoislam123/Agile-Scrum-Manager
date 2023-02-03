@@ -1,4 +1,5 @@
 using Entities;
+using Entities.Account;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using ServiceContracts;
@@ -16,8 +17,16 @@ builder.Services.AddDbContext<PMS_DBContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
 });
 //Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=PMSDatabase;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False
-builder.Services.AddIdentity<IdentityUser,IdentityRole>()
+builder.Services.AddIdentity<ApplicationUser,IdentityRole>()
     .AddEntityFrameworkStores<PMS_DBContext>();
+builder.Services.Configure<IdentityOptions>(options =>
+{
+    options.Password.RequiredLength = 4;
+    options.Password.RequireNonAlphanumeric= false;
+    options.Password.RequireLowercase= false;
+    options.Password.RequireUppercase=false;
+});
+
 
 var app = builder.Build();
 
