@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace Entities.Project
 {
-    internal class Project
+    public class Project
     {
+        public string ProjectId { get; set; }
+        public string ProjectName { get; set; }
+        public string ProjectKey { get; set; }
     }
 }
