@@ -9,10 +9,10 @@
       "PMS_Software/1.0.0": {
         "dependencies": {
           "Entities": "1.0.0",
-          "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "7.0.2",
-          "Microsoft.EntityFrameworkCore.Design": "7.0.2",
-          "Microsoft.EntityFrameworkCore.SqlServer": "7.0.2",
-          "Microsoft.VisualStudio.Web.CodeGeneration.Design": "7.0.3",
+          "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "7.0.5",
+          "Microsoft.EntityFrameworkCore.Design": "7.0.5",
+          "Microsoft.EntityFrameworkCore.SqlServer": "7.0.5",
+          "Microsoft.VisualStudio.Web.CodeGeneration.Design": "7.0.6",
           "ServiceContracts": "1.0.0",
           "Services": "1.0.0"
         },
@@ -69,7 +69,7 @@
           "Microsoft.AspNetCore.Http": "2.2.0",
           "Microsoft.AspNetCore.Http.Extensions": "2.2.0",
           "Microsoft.Extensions.Logging.Abstractions": "7.0.0",
-          "Microsoft.Extensions.Options": "7.0.0",
+          "Microsoft.Extensions.Options": "7.0.1",
           "Microsoft.Extensions.WebEncoders": "2.2.0"
         }
       },
@@ -77,7 +77,7 @@
         "dependencies": {
           "Microsoft.AspNetCore.Http.Abstractions": "2.2.0",
           "Microsoft.Extensions.Logging.Abstractions": "7.0.0",
-          "Microsoft.Extensions.Options": "7.0.0"
+          "Microsoft.Extensions.Options": "7.0.1"
         }
       },
       "Microsoft.AspNetCore.Authentication.Cookies/2.2.0": {
@@ -92,33 +92,33 @@
           "Microsoft.AspNetCore.Http.Extensions": "2.2.0"
         }
       },
-      "Microsoft.AspNetCore.Cryptography.Internal/7.0.2": {
+      "Microsoft.AspNetCore.Cryptography.Internal/7.0.5": {
         "runtime": {
           "lib/net7.0/Microsoft.AspNetCore.Cryptography.Internal.dll": {
             "assemblyVersion": "7.0.0.0",
-            "fileVersion": "7.0.222.60606"
+            "fileVersion": "7.0.523.17410"
           }
         }
       },
-      "Microsoft.AspNetCore.Cryptography.KeyDerivation/7.0.2": {
+      "Microsoft.AspNetCore.Cryptography.KeyDerivation/7.0.5": {
         "dependencies": {
-          "Microsoft.AspNetCore.Cryptography.Internal": "7.0.2"
+          "Microsoft.AspNetCore.Cryptography.Internal": "7.0.5"
         },
         "runtime": {
           "lib/net7.0/Microsoft.AspNetCore.Cryptography.KeyDerivation.dll": {
             "assemblyVersion": "7.0.0.0",
-            "fileVersion": "7.0.222.60606"
+            "fileVersion": "7.0.523.17410"
           }
         }
       },
       "Microsoft.AspNetCore.DataProtection/2.2.0": {
         "dependencies": {
-          "Microsoft.AspNetCore.Cryptography.Internal": "7.0.2",
+          "Microsoft.AspNetCore.Cryptography.Internal": "7.0.5",
           "Microsoft.AspNetCore.DataProtection.Abstractions": "2.2.0",
           "Microsoft.AspNetCore.Hosting.Abstractions": "2.2.0",
           "Microsoft.Extensions.DependencyInjection.Abstractions": "7.0.0",
           "Microsoft.Extensions.Logging.Abstractions": "7.0.0",
-          "Microsoft.Extensions.Options": "7.0.0",
+          "Microsoft.Extensions.Options": "7.0.1",
           "Microsoft.Win32.Registry": "5.0.0",
           "System.Security.Cryptography.Xml": "4.5.0",
           "System.Security.Principal.Windows": "5.0.0"
@@ -143,7 +143,7 @@
           "Microsoft.AspNetCore.Http.Abstractions": "2.2.0",
           "Microsoft.AspNetCore.WebUtilities": "2.2.0",
           "Microsoft.Extensions.ObjectPool": "2.2.0",
-          "Microsoft.Extensions.Options": "7.0.0",
+          "Microsoft.Extensions.Options": "7.0.1",
           "Microsoft.Net.Http.Headers": "2.2.0"
         }
       },
@@ -169,20 +169,20 @@
       "Microsoft.AspNetCore.Identity/2.2.0": {
         "dependencies": {
           "Microsoft.AspNetCore.Authentication.Cookies": "2.2.0",
-          "Microsoft.AspNetCore.Cryptography.KeyDerivation": "7.0.2",
+          "Microsoft.AspNetCore.Cryptography.KeyDerivation": "7.0.5",
           "Microsoft.AspNetCore.Hosting.Abstractions": "2.2.0",
-          "Microsoft.Extensions.Identity.Core": "7.0.2"
+          "Microsoft.Extensions.Identity.Core": "7.0.5"
         }
       },
-      "Microsoft.AspNetCore.Identity.EntityFrameworkCore/7.0.2": {
+      "Microsoft.AspNetCore.Identity.EntityFrameworkCore/7.0.5": {
         "dependencies": {
-          "Microsoft.EntityFrameworkCore.Relational": "7.0.2",
-          "Microsoft.Extensions.Identity.Stores": "7.0.2"
+          "Microsoft.EntityFrameworkCore.Relational": "7.0.5",
+          "Microsoft.Extensions.Identity.Stores": "7.0.5"
         },
         "runtime": {
           "lib/net7.0/Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll": {
-            "assemblyVersion": "7.0.2.0",
-            "fileVersion": "7.0.222.60606"
+            "assemblyVersion": "7.0.5.0",
+            "fileVersion": "7.0.523.17410"
           }
         }
       },
@@ -1011,7 +1011,7 @@
           }
         }
       },
-      "Microsoft.DotNet.Scaffolding.Shared/7.0.3": {
+      "Microsoft.DotNet.Scaffolding.Shared/7.0.6": {
         "dependencies": {
           "Microsoft.CodeAnalysis.CSharp.Features": "4.4.0",
           "Microsoft.CodeAnalysis.CSharp.Scripting": "4.4.0",
@@ -1029,70 +1029,70 @@
         },
         "runtime": {
           "lib/net7.0/Microsoft.DotNet.Scaffolding.Shared.dll": {
-            "assemblyVersion": "7.0.3.0",
-            "fileVersion": "7.0.323.7201"
+            "assemblyVersion": "7.0.6.0",
+            "fileVersion": "7.0.623.20602"
           }
         }
       },
-      "Microsoft.EntityFrameworkCore/7.0.2": {
+      "Microsoft.EntityFrameworkCore/7.0.5": {
         "dependencies": {
-          "Microsoft.EntityFrameworkCore.Abstractions": "7.0.2",
-          "Microsoft.EntityFrameworkCore.Analyzers": "7.0.2",
+          "Microsoft.EntityFrameworkCore.Abstractions": "7.0.5",
+          "Microsoft.EntityFrameworkCore.Analyzers": "7.0.5",
           "Microsoft.Extensions.Caching.Memory": "7.0.0",
           "Microsoft.Extensions.DependencyInjection": "7.0.0",
           "Microsoft.Extensions.Logging": "7.0.0"
         },
         "runtime": {
           "lib/net6.0/Microsoft.EntityFrameworkCore.dll": {
-            "assemblyVersion": "7.0.2.0",
-            "fileVersion": "7.0.222.58006"
+            "assemblyVersion": "7.0.5.0",
+            "fileVersion": "7.0.523.16503"
           }
         }
       },
-      "Microsoft.EntityFrameworkCore.Abstractions/7.0.2": {
+      "Microsoft.EntityFrameworkCore.Abstractions/7.0.5": {
         "runtime": {
           "lib/net6.0/Microsoft.EntityFrameworkCore.Abstractions.dll": {
-            "assemblyVersion": "7.0.2.0",
-            "fileVersion": "7.0.222.58006"
+            "assemblyVersion": "7.0.5.0",
+            "fileVersion": "7.0.523.16503"
           }
         }
       },
-      "Microsoft.EntityFrameworkCore.Analyzers/7.0.2": {},
-      "Microsoft.EntityFrameworkCore.Design/7.0.2": {
+      "Microsoft.EntityFrameworkCore.Analyzers/7.0.5": {},
+      "Microsoft.EntityFrameworkCore.Design/7.0.5": {
         "dependencies": {
           "Humanizer.Core": "2.14.1",
-          "Microsoft.EntityFrameworkCore.Relational": "7.0.2",
+          "Microsoft.EntityFrameworkCore.Relational": "7.0.5",
           "Microsoft.Extensions.DependencyModel": "7.0.0",
           "Mono.TextTemplating": "2.2.1"
         },
         "runtime": {
           "lib/net6.0/Microsoft.EntityFrameworkCore.Design.dll": {
-            "assemblyVersion": "7.0.2.0",
-            "fileVersion": "7.0.222.58006"
+            "assemblyVersion": "7.0.5.0",
+            "fileVersion": "7.0.523.16503"
           }
         }
       },
-      "Microsoft.EntityFrameworkCore.Relational/7.0.2": {
+      "Microsoft.EntityFrameworkCore.Relational/7.0.5": {
         "dependencies": {
-          "Microsoft.EntityFrameworkCore": "7.0.2",
+          "Microsoft.EntityFrameworkCore": "7.0.5",
           "Microsoft.Extensions.Configuration.Abstractions": "7.0.0"
         },
         "runtime": {
           "lib/net6.0/Microsoft.EntityFrameworkCore.Relational.dll": {
-            "assemblyVersion": "7.0.2.0",
-            "fileVersion": "7.0.222.58006"
+            "assemblyVersion": "7.0.5.0",
+            "fileVersion": "7.0.523.16503"
           }
         }
       },
-      "Microsoft.EntityFrameworkCore.SqlServer/7.0.2": {
+      "Microsoft.EntityFrameworkCore.SqlServer/7.0.5": {
         "dependencies": {
           "Microsoft.Data.SqlClient": "5.0.1",
-          "Microsoft.EntityFrameworkCore.Relational": "7.0.2"
+          "Microsoft.EntityFrameworkCore.Relational": "7.0.5"
         },
         "runtime": {
           "lib/net6.0/Microsoft.EntityFrameworkCore.SqlServer.dll": {
-            "assemblyVersion": "7.0.2.0",
-            "fileVersion": "7.0.222.58006"
+            "assemblyVersion": "7.0.5.0",
+            "fileVersion": "7.0.523.16503"
           }
         }
       },
@@ -1106,7 +1106,7 @@
           "Microsoft.Extensions.Caching.Abstractions": "7.0.0",
           "Microsoft.Extensions.DependencyInjection.Abstractions": "7.0.0",
           "Microsoft.Extensions.Logging.Abstractions": "7.0.0",
-          "Microsoft.Extensions.Options": "7.0.0",
+          "Microsoft.Extensions.Options": "7.0.1",
           "Microsoft.Extensions.Primitives": "7.0.0"
         }
       },
@@ -1146,29 +1146,29 @@
           "Microsoft.Extensions.Logging.Abstractions": "7.0.0"
         }
       },
-      "Microsoft.Extensions.Identity.Core/7.0.2": {
+      "Microsoft.Extensions.Identity.Core/7.0.5": {
         "dependencies": {
-          "Microsoft.AspNetCore.Cryptography.KeyDerivation": "7.0.2",
+          "Microsoft.AspNetCore.Cryptography.KeyDerivation": "7.0.5",
           "Microsoft.Extensions.Logging": "7.0.0",
-          "Microsoft.Extensions.Options": "7.0.0"
+          "Microsoft.Extensions.Options": "7.0.1"
         },
         "runtime": {
           "lib/net7.0/Microsoft.Extensions.Identity.Core.dll": {
             "assemblyVersion": "7.0.0.0",
-            "fileVersion": "7.0.222.60606"
+            "fileVersion": "7.0.523.17410"
           }
         }
       },
-      "Microsoft.Extensions.Identity.Stores/7.0.2": {
+      "Microsoft.Extensions.Identity.Stores/7.0.5": {
         "dependencies": {
           "Microsoft.Extensions.Caching.Abstractions": "7.0.0",
-          "Microsoft.Extensions.Identity.Core": "7.0.2",
+          "Microsoft.Extensions.Identity.Core": "7.0.5",
           "Microsoft.Extensions.Logging": "7.0.0"
         },
         "runtime": {
           "lib/net7.0/Microsoft.Extensions.Identity.Stores.dll": {
             "assemblyVersion": "7.0.0.0",
-            "fileVersion": "7.0.222.60606"
+            "fileVersion": "7.0.523.17410"
           }
         }
       },
@@ -1177,22 +1177,28 @@
           "Microsoft.Extensions.DependencyInjection": "7.0.0",
           "Microsoft.Extensions.DependencyInjection.Abstractions": "7.0.0",
           "Microsoft.Extensions.Logging.Abstractions": "7.0.0",
-          "Microsoft.Extensions.Options": "7.0.0"
+          "Microsoft.Extensions.Options": "7.0.1"
         }
       },
       "Microsoft.Extensions.Logging.Abstractions/7.0.0": {},
       "Microsoft.Extensions.ObjectPool/2.2.0": {},
-      "Microsoft.Extensions.Options/7.0.0": {
+      "Microsoft.Extensions.Options/7.0.1": {
         "dependencies": {
           "Microsoft.Extensions.DependencyInjection.Abstractions": "7.0.0",
           "Microsoft.Extensions.Primitives": "7.0.0"
+        },
+        "runtime": {
+          "lib/net7.0/Microsoft.Extensions.Options.dll": {
+            "assemblyVersion": "7.0.0.0",
+            "fileVersion": "7.0.323.6910"
+          }
         }
       },
       "Microsoft.Extensions.Primitives/7.0.0": {},
       "Microsoft.Extensions.WebEncoders/2.2.0": {
         "dependencies": {
           "Microsoft.Extensions.DependencyInjection.Abstractions": "7.0.0",
-          "Microsoft.Extensions.Options": "7.0.0",
+          "Microsoft.Extensions.Options": "7.0.1",
           "System.Text.Encodings.Web": "7.0.0"
         }
       },
@@ -1314,10 +1320,10 @@
           }
         }
       },
-      "Microsoft.VisualStudio.Web.CodeGeneration/7.0.3": {
+      "Microsoft.VisualStudio.Web.CodeGeneration/7.0.6": {
         "dependencies": {
           "Microsoft.Extensions.DependencyInjection": "7.0.0",
-          "Microsoft.VisualStudio.Web.CodeGeneration.EntityFrameworkCore": "7.0.3",
+          "Microsoft.VisualStudio.Web.CodeGeneration.EntityFrameworkCore": "7.0.6",
           "NuGet.Packaging": "6.3.1",
           "System.Configuration.ConfigurationManager": "6.0.0",
           "System.Private.Uri": "4.3.2",
@@ -1325,15 +1331,15 @@
         },
         "runtime": {
           "lib/net7.0/Microsoft.VisualStudio.Web.CodeGeneration.dll": {
-            "assemblyVersion": "7.0.3.0",
-            "fileVersion": "7.0.323.7201"
+            "assemblyVersion": "7.0.6.0",
+            "fileVersion": "7.0.623.20602"
           }
         }
       },
-      "Microsoft.VisualStudio.Web.CodeGeneration.Core/7.0.3": {
+      "Microsoft.VisualStudio.Web.CodeGeneration.Core/7.0.6": {
         "dependencies": {
           "Microsoft.Extensions.DependencyInjection": "7.0.0",
-          "Microsoft.VisualStudio.Web.CodeGeneration.Templating": "7.0.3",
+          "Microsoft.VisualStudio.Web.CodeGeneration.Templating": "7.0.6",
           "Newtonsoft.Json": "13.0.1",
           "NuGet.Packaging": "6.3.1",
           "System.Configuration.ConfigurationManager": "6.0.0",
@@ -1342,15 +1348,15 @@
         },
         "runtime": {
           "lib/net7.0/Microsoft.VisualStudio.Web.CodeGeneration.Core.dll": {
-            "assemblyVersion": "7.0.3.0",
-            "fileVersion": "7.0.323.7201"
+            "assemblyVersion": "7.0.6.0",
+            "fileVersion": "7.0.623.20602"
           }
         }
       },
-      "Microsoft.VisualStudio.Web.CodeGeneration.Design/7.0.3": {
+      "Microsoft.VisualStudio.Web.CodeGeneration.Design/7.0.6": {
         "dependencies": {
-          "Microsoft.DotNet.Scaffolding.Shared": "7.0.3",
-          "Microsoft.VisualStudio.Web.CodeGenerators.Mvc": "7.0.3",
+          "Microsoft.DotNet.Scaffolding.Shared": "7.0.6",
+          "Microsoft.VisualStudio.Web.CodeGenerators.Mvc": "7.0.6",
           "NuGet.Packaging": "6.3.1",
           "System.Configuration.ConfigurationManager": "6.0.0",
           "System.Private.Uri": "4.3.2",
@@ -1358,15 +1364,15 @@
         },
         "runtime": {
           "lib/net7.0/dotnet-aspnet-codegenerator-design.dll": {
-            "assemblyVersion": "7.0.3.0",
-            "fileVersion": "7.0.323.7201"
+            "assemblyVersion": "7.0.6.0",
+            "fileVersion": "7.0.623.20602"
           }
         }
       },
-      "Microsoft.VisualStudio.Web.CodeGeneration.EntityFrameworkCore/7.0.3": {
+      "Microsoft.VisualStudio.Web.CodeGeneration.EntityFrameworkCore/7.0.6": {
         "dependencies": {
-          "Microsoft.DotNet.Scaffolding.Shared": "7.0.3",
-          "Microsoft.VisualStudio.Web.CodeGeneration.Core": "7.0.3",
+          "Microsoft.DotNet.Scaffolding.Shared": "7.0.6",
+          "Microsoft.VisualStudio.Web.CodeGeneration.Core": "7.0.6",
           "NuGet.Packaging": "6.3.1",
           "System.Configuration.ConfigurationManager": "6.0.0",
           "System.Private.Uri": "4.3.2",
@@ -1374,17 +1380,17 @@
         },
         "runtime": {
           "lib/net7.0/Microsoft.VisualStudio.Web.CodeGeneration.EntityFrameworkCore.dll": {
-            "assemblyVersion": "7.0.3.0",
-            "fileVersion": "7.0.323.7201"
+            "assemblyVersion": "7.0.6.0",
+            "fileVersion": "7.0.623.20602"
           }
         }
       },
-      "Microsoft.VisualStudio.Web.CodeGeneration.Templating/7.0.3": {
+      "Microsoft.VisualStudio.Web.CodeGeneration.Templating/7.0.6": {
         "dependencies": {
           "Microsoft.AspNetCore.Razor.Language": "6.0.11",
           "Microsoft.CodeAnalysis.CSharp": "4.4.0",
           "Microsoft.CodeAnalysis.Razor": "6.0.11",
-          "Microsoft.VisualStudio.Web.CodeGeneration.Utils": "7.0.3",
+          "Microsoft.VisualStudio.Web.CodeGeneration.Utils": "7.0.6",
           "NuGet.Packaging": "6.3.1",
           "System.Configuration.ConfigurationManager": "6.0.0",
           "System.Private.Uri": "4.3.2",
@@ -1392,16 +1398,16 @@
         },
         "runtime": {
           "lib/net7.0/Microsoft.VisualStudio.Web.CodeGeneration.Templating.dll": {
-            "assemblyVersion": "7.0.3.0",
-            "fileVersion": "7.0.323.7201"
+            "assemblyVersion": "7.0.6.0",
+            "fileVersion": "7.0.623.20602"
           }
         }
       },
-      "Microsoft.VisualStudio.Web.CodeGeneration.Utils/7.0.3": {
+      "Microsoft.VisualStudio.Web.CodeGeneration.Utils/7.0.6": {
         "dependencies": {
           "Microsoft.Build": "17.3.2",
           "Microsoft.CodeAnalysis.CSharp.Workspaces": "4.4.0",
-          "Microsoft.DotNet.Scaffolding.Shared": "7.0.3",
+          "Microsoft.DotNet.Scaffolding.Shared": "7.0.6",
           "Newtonsoft.Json": "13.0.1",
           "NuGet.Packaging": "6.3.1",
           "System.Configuration.ConfigurationManager": "6.0.0",
@@ -1410,15 +1416,15 @@
         },
         "runtime": {
           "lib/net7.0/Microsoft.VisualStudio.Web.CodeGeneration.Utils.dll": {
-            "assemblyVersion": "7.0.3.0",
-            "fileVersion": "7.0.323.7201"
+            "assemblyVersion": "7.0.6.0",
+            "fileVersion": "7.0.623.20602"
           }
         }
       },
-      "Microsoft.VisualStudio.Web.CodeGenerators.Mvc/7.0.3": {
+      "Microsoft.VisualStudio.Web.CodeGenerators.Mvc/7.0.6": {
         "dependencies": {
-          "Microsoft.DotNet.Scaffolding.Shared": "7.0.3",
-          "Microsoft.VisualStudio.Web.CodeGeneration": "7.0.3",
+          "Microsoft.DotNet.Scaffolding.Shared": "7.0.6",
+          "Microsoft.VisualStudio.Web.CodeGeneration": "7.0.6",
           "NuGet.Packaging": "6.3.1",
           "System.Configuration.ConfigurationManager": "6.0.0",
           "System.Private.Uri": "4.3.2",
@@ -1426,8 +1432,8 @@
         },
         "runtime": {
           "lib/net7.0/Microsoft.VisualStudio.Web.CodeGenerators.Mvc.dll": {
-            "assemblyVersion": "7.0.3.0",
-            "fileVersion": "7.0.323.7201"
+            "assemblyVersion": "7.0.6.0",
+            "fileVersion": "7.0.623.20602"
           }
         }
       },
@@ -2462,8 +2468,8 @@
       },
       "Entities/1.0.0": {
         "dependencies": {
-          "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "7.0.2",
-          "Microsoft.EntityFrameworkCore.SqlServer": "7.0.2"
+          "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "7.0.5",
+          "Microsoft.EntityFrameworkCore.SqlServer": "7.0.5"
         },
         "runtime": {
           "Entities.dll": {}
@@ -2544,19 +2550,19 @@
       "path": "microsoft.aspnetcore.authentication.core/2.2.0",
       "hashPath": "microsoft.aspnetcore.authentication.core.2.2.0.nupkg.sha512"
     },
-    "Microsoft.AspNetCore.Cryptography.Internal/7.0.2": {
+    "Microsoft.AspNetCore.Cryptography.Internal/7.0.5": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-Vvg3U7+6AmSTYHBKJc1ksbTVDwDs5C4ShJiS6IK8lTMM25a1fdZIZZ8zIr5qGoRgxI87wXJLNYElMCxJbTXb4A==",
-      "path": "microsoft.aspnetcore.cryptography.internal/7.0.2",
-      "hashPath": "microsoft.aspnetcore.cryptography.internal.7.0.2.nupkg.sha512"
+      "sha512": "sha512-fevCVLxTfSsJEGtxNJlNYYzHhXWN8Uw2+qdi3VGzSoWSv114xTszRuRdGXUEVRmA+fYcQ9aRYqsvfVLtZi+VcQ==",
+      "path": "microsoft.aspnetcore.cryptography.internal/7.0.5",
+      "hashPath": "microsoft.aspnetcore.cryptography.internal.7.0.5.nupkg.sha512"
     },
-    "Microsoft.AspNetCore.Cryptography.KeyDerivation/7.0.2": {
+    "Microsoft.AspNetCore.Cryptography.KeyDerivation/7.0.5": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-h7us9WZM1esC/B2pJNgKzZMjQP+azS2mS/qxJjW63VqMB+OmzYnDz7wqoBS29xiI9g8mvCC6eerzZiHR3zpOeg==",
-      "path": "microsoft.aspnetcore.cryptography.keyderivation/7.0.2",
-      "hashPath": "microsoft.aspnetcore.cryptography.keyderivation.7.0.2.nupkg.sha512"
+      "sha512": "sha512-OZ6lOoh6R+Uow4ZhCGpzT0Ji19ZH5no8/x+i8/I7lbYYJwOC51XxoP5xfI8gyqXJEigkod0j9+ZZ/pAKqoeTsg==",
+      "path": "microsoft.aspnetcore.cryptography.keyderivation/7.0.5",
+      "hashPath": "microsoft.aspnetcore.cryptography.keyderivation.7.0.5.nupkg.sha512"
     },
     "Microsoft.AspNetCore.DataProtection/2.2.0": {
       "type": "package",
@@ -2621,12 +2627,12 @@
       "path": "microsoft.aspnetcore.identity/2.2.0",
       "hashPath": "microsoft.aspnetcore.identity.2.2.0.nupkg.sha512"
     },
-    "Microsoft.AspNetCore.Identity.EntityFrameworkCore/7.0.2": {
+    "Microsoft.AspNetCore.Identity.EntityFrameworkCore/7.0.5": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-8ZzmZFrmlh8maC2u81ByiHyJ1okm0VWapL2uT3eVxjPiemLme1S3fK1cetZSpI9WGDIinJxJfJYrebO+l1FmHg==",
-      "path": "microsoft.aspnetcore.identity.entityframeworkcore/7.0.2",
-      "hashPath": "microsoft.aspnetcore.identity.entityframeworkcore.7.0.2.nupkg.sha512"
+      "sha512": "sha512-HcTFkwn3P+60CXbl+ZSbVvOPrCZZIAKCqfVZRMEmY23MnuIXr0TVIdLojznBtf0KRIXkb6rZKbXhhiLU87dm7A==",
+      "path": "microsoft.aspnetcore.identity.entityframeworkcore/7.0.5",
+      "hashPath": "microsoft.aspnetcore.identity.entityframeworkcore.7.0.5.nupkg.sha512"
     },
     "Microsoft.AspNetCore.Razor.Language/6.0.11": {
       "type": "package",
@@ -2803,54 +2809,54 @@
       "path": "microsoft.diasymreader/1.4.0",
       "hashPath": "microsoft.diasymreader.1.4.0.nupkg.sha512"
     },
-    "Microsoft.DotNet.Scaffolding.Shared/7.0.3": {
+    "Microsoft.DotNet.Scaffolding.Shared/7.0.6": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-gBzpnAVbKy5UrXaU9LO140xMVOVcIT4apqlxaJznkN+wfnPocPOdZUjZPbuDb/nDQv/aCQJKvvc/Iov/d0D/0A==",
-      "path": "microsoft.dotnet.scaffolding.shared/7.0.3",
-      "hashPath": "microsoft.dotnet.scaffolding.shared.7.0.3.nupkg.sha512"
+      "sha512": "sha512-NnDQrnKxZ5HmIY8DGmOhk3fTKeLRwskc7B8pN8E2FE8t14zs98Uh1WFeuChJ/e0BycApCW7sKZs2xWKawXzzaA==",
+      "path": "microsoft.dotnet.scaffolding.shared/7.0.6",
+      "hashPath": "microsoft.dotnet.scaffolding.shared.7.0.6.nupkg.sha512"
     },
-    "Microsoft.EntityFrameworkCore/7.0.2": {
+    "Microsoft.EntityFrameworkCore/7.0.5": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-5QEspjTHk/cgM98AaB12mDXF7jlInlYhG0gxS6X8ZJ2rzmyIAsvYNEwoOUifd/gt5v5HblYClYfZ9YYIEjSkew==",
-      "path": "microsoft.entityframeworkcore/7.0.2",
-      "hashPath": "microsoft.entityframeworkcore.7.0.2.nupkg.sha512"
+      "sha512": "sha512-RXbRLHHWP2Z3pq8qcL5nQ6LPeoOyp8hasM5bd0Te8PiQi3RjWQR4tcbdY5XMqQ+oTO9wA8/RLhZRn/hnxlTDnQ==",
+      "path": "microsoft.entityframeworkcore/7.0.5",
+      "hashPath": "microsoft.entityframeworkcore.7.0.5.nupkg.sha512"
     },
-    "Microsoft.EntityFrameworkCore.Abstractions/7.0.2": {
+    "Microsoft.EntityFrameworkCore.Abstractions/7.0.5": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-nszewdtuQAk2DbhNnGssRCYVxyBhm0DZHJobU8Bc4RGPuybraCv/lovFWPUeZlTT3bQndyV8Ko2NHKSc4qsKCg==",
-      "path": "microsoft.entityframeworkcore.abstractions/7.0.2",
-      "hashPath": "microsoft.entityframeworkcore.abstractions.7.0.2.nupkg.sha512"
+      "sha512": "sha512-iwQso+hFRsEWjhH2WsEQj1D2QE5BlEXiXEt6A3SlYTPRPdZsyTNDeDDEdtxL+H/UJPQgQYY+9SMMRcEiXBmCAA==",
+      "path": "microsoft.entityframeworkcore.abstractions/7.0.5",
+      "hashPath": "microsoft.entityframeworkcore.abstractions.7.0.5.nupkg.sha512"
     },
-    "Microsoft.EntityFrameworkCore.Analyzers/7.0.2": {
+    "Microsoft.EntityFrameworkCore.Analyzers/7.0.5": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-75dDCNXzoQFM86Mk/iY7lQ+XHb2DbpAh53hbAJUlxkL3XUVoCq6rWgO4y1EX7DdyKMF61dsdEKlF4/bmpi4urA==",
-      "path": "microsoft.entityframeworkcore.analyzers/7.0.2",
-      "hashPath": "microsoft.entityframeworkcore.analyzers.7.0.2.nupkg.sha512"
+      "sha512": "sha512-yMLM/aK1MikVqpjxd7PJ1Pjgztd3VAd26ZHxyjxG3RPeM9cHjvS5tCg9kAAayR6eHmBg0ffZsHdT28WfA5tTlA==",
+      "path": "microsoft.entityframeworkcore.analyzers/7.0.5",
+      "hashPath": "microsoft.entityframeworkcore.analyzers.7.0.5.nupkg.sha512"
     },
-    "Microsoft.EntityFrameworkCore.Design/7.0.2": {
+    "Microsoft.EntityFrameworkCore.Design/7.0.5": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-gUUucCoJci8BBxOcU/XuuldUZpCo5Od8lwFEzZ5WywnvDfSmARnXNe97BpjL+JiBhSrnuTxW/wCJjWqPonXXHQ==",
-      "path": "microsoft.entityframeworkcore.design/7.0.2",
-      "hashPath": "microsoft.entityframeworkcore.design.7.0.2.nupkg.sha512"
+      "sha512": "sha512-fzoU+Jk/chkqVOzDjuF+fwdc/6Tyqbp9L7rDORqB6IwHRG7nr+QnFOPdRi3B5kAZldvsvhUt+6Cl5qzeLT7B0Q==",
+      "path": "microsoft.entityframeworkcore.design/7.0.5",
+      "hashPath": "microsoft.entityframeworkcore.design.7.0.5.nupkg.sha512"
     },
-    "Microsoft.EntityFrameworkCore.Relational/7.0.2": {
+    "Microsoft.EntityFrameworkCore.Relational/7.0.5": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-TbTGOdaGtjps3GP7rLWXEXzmP+EXhV8AwPE/ov0QYhs5i5vKZX5ZpVLMnco2MeMtiPgLyxE7DhQT8s1wlu190g==",
-      "path": "microsoft.entityframeworkcore.relational/7.0.2",
-      "hashPath": "microsoft.entityframeworkcore.relational.7.0.2.nupkg.sha512"
+      "sha512": "sha512-u/33DC4S6g2hpMPgBc5Kdnlz//nqHR5c/ovgjtiP/wQ7sOd0EOdygVzUJAAOxCwbtAHDsJXS9Vc3jLFYq0yu8Q==",
+      "path": "microsoft.entityframeworkcore.relational/7.0.5",
+      "hashPath": "microsoft.entityframeworkcore.relational.7.0.5.nupkg.sha512"
     },
-    "Microsoft.EntityFrameworkCore.SqlServer/7.0.2": {
+    "Microsoft.EntityFrameworkCore.SqlServer/7.0.5": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-G2z5rwNUrMe3+lIil1o5LjQWYXen3ErP48kw4OuqQZPH+cAyGrU9UYKPP5HfXEQUiHq5UT+ZqgayJjgh9Q3Umw==",
-      "path": "microsoft.entityframeworkcore.sqlserver/7.0.2",
-      "hashPath": "microsoft.entityframeworkcore.sqlserver.7.0.2.nupkg.sha512"
+      "sha512": "sha512-cUJqCiamT0EvpKNgZEV5fqNv2MyVfKNgOPQfFINqHiIKHOYrS0nTCUJP97+UuG0JIIrP792/PwnuNjbekImtBg==",
+      "path": "microsoft.entityframeworkcore.sqlserver/7.0.5",
+      "hashPath": "microsoft.entityframeworkcore.sqlserver.7.0.5.nupkg.sha512"
     },
     "Microsoft.Extensions.Caching.Abstractions/7.0.0": {
       "type": "package",
@@ -2908,19 +2914,19 @@
       "path": "microsoft.extensions.hosting.abstractions/2.2.0",
       "hashPath": "microsoft.extensions.hosting.abstractions.2.2.0.nupkg.sha512"
     },
-    "Microsoft.Extensions.Identity.Core/7.0.2": {
+    "Microsoft.Extensions.Identity.Core/7.0.5": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-kwHoRqK1KaIXk6BKm4cHum34UtcEDmuG/hFoE9qCoj0J6T0B4Rw4qFVyZtHEbKnS1iUtt/IFjbUlK+gc7bwG5w==",
-      "path": "microsoft.extensions.identity.core/7.0.2",
-      "hashPath": "microsoft.extensions.identity.core.7.0.2.nupkg.sha512"
+      "sha512": "sha512-3fK2nd/3pJaT6jHNhwbSQS19Xxb4D3nsMrj0Vhag/rGk3GwVZusSWbtpnP2Li9Jl6BcJrRP+7M3jCmyVUYloeQ==",
+      "path": "microsoft.extensions.identity.core/7.0.5",
+      "hashPath": "microsoft.extensions.identity.core.7.0.5.nupkg.sha512"
     },
-    "Microsoft.Extensions.Identity.Stores/7.0.2": {
+    "Microsoft.Extensions.Identity.Stores/7.0.5": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-Lj4oNve2NTf4JLseH4bDvLvApcB3iYkv2m7EMHBQ7iD34o5qPJRfOYCaOew2eRimpVjAKMVd0wjrRgLuxVswPA==",
-      "path": "microsoft.extensions.identity.stores/7.0.2",
-      "hashPath": "microsoft.extensions.identity.stores.7.0.2.nupkg.sha512"
+      "sha512": "sha512-IRLvTWiZ9lnkMrj6f3dh+NAOpnhUhMAPTmEOC6dzhXbVvX36dUElIQe6EzNsl9T93tMtgXgnrOAkj/UPutzZWQ==",
+      "path": "microsoft.extensions.identity.stores/7.0.5",
+      "hashPath": "microsoft.extensions.identity.stores.7.0.5.nupkg.sha512"
     },
     "Microsoft.Extensions.Logging/7.0.0": {
       "type": "package",
@@ -2943,12 +2949,12 @@
       "path": "microsoft.extensions.objectpool/2.2.0",
       "hashPath": "microsoft.extensions.objectpool.2.2.0.nupkg.sha512"
     },
-    "Microsoft.Extensions.Options/7.0.0": {
+    "Microsoft.Extensions.Options/7.0.1": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-lP1yBnTTU42cKpMozuafbvNtQ7QcBjr/CcK3bYOGEMH55Fjt+iecXjT6chR7vbgCMqy3PG3aNQSZgo/EuY/9qQ==",
-      "path": "microsoft.extensions.options/7.0.0",
-      "hashPath": "microsoft.extensions.options.7.0.0.nupkg.sha512"
+      "sha512": "sha512-pZRDYdN1FpepOIfHU62QoBQ6zdAoTvnjxFfqAzEd9Jhb2dfhA5i6jeTdgGgcgTWFRC7oT0+3XrbQu4LjvgX1Nw==",
+      "path": "microsoft.extensions.options/7.0.1",
+      "hashPath": "microsoft.extensions.options.7.0.1.nupkg.sha512"
     },
     "Microsoft.Extensions.Primitives/7.0.0": {
       "type": "package",
@@ -3055,54 +3061,54 @@
       "path": "microsoft.sqlserver.server/1.0.0",
       "hashPath": "microsoft.sqlserver.server.1.0.0.nupkg.sha512"
     },
-    "Microsoft.VisualStudio.Web.CodeGeneration/7.0.3": {
+    "Microsoft.VisualStudio.Web.CodeGeneration/7.0.6": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-ujT0TpZSPB5bMk4MfoHfdcOiPUsSfie/Tmv5/4qOExdt3nVg3pMyUcbbZX/uA/Mx6JS9CrnIO6dgwBd+2x3+hw==",
-      "path": "microsoft.visualstudio.web.codegeneration/7.0.3",
-      "hashPath": "microsoft.visualstudio.web.codegeneration.7.0.3.nupkg.sha512"
+      "sha512": "sha512-8AYOPpyu4fThYrEmOCE0m+c8heZRiD7ihiUFHU4yA12ERl9RCxtRhPmE/W+UfFFA4XWyf7AVauGTxNmIAB6WsQ==",
+      "path": "microsoft.visualstudio.web.codegeneration/7.0.6",
+      "hashPath": "microsoft.visualstudio.web.codegeneration.7.0.6.nupkg.sha512"
     },
-    "Microsoft.VisualStudio.Web.CodeGeneration.Core/7.0.3": {
+    "Microsoft.VisualStudio.Web.CodeGeneration.Core/7.0.6": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-k4zYMGB3tjdzG1QnJrAXd08bqyc4kz7B4wXIr+7rpJiBBoOurLtDxvwPdo5Hod3d1PaKXTRFqa6/Il+5A5OFoA==",
-      "path": "microsoft.visualstudio.web.codegeneration.core/7.0.3",
-      "hashPath": "microsoft.visualstudio.web.codegeneration.core.7.0.3.nupkg.sha512"
+      "sha512": "sha512-Qo/2QBIug/9RiH+/QIlgU1d87IxCxAqNq7YGtRD3wenljdn/Co6S/f1BCPnBo/T/Y7zPhk6OiLQnfjS0D8ggeA==",
+      "path": "microsoft.visualstudio.web.codegeneration.core/7.0.6",
+      "hashPath": "microsoft.visualstudio.web.codegeneration.core.7.0.6.nupkg.sha512"
     },
-    "Microsoft.VisualStudio.Web.CodeGeneration.Design/7.0.3": {
+    "Microsoft.VisualStudio.Web.CodeGeneration.Design/7.0.6": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-xiXuMTZFwZ0efmfUCbK4bABMip+bENVS6B7vgkGd7wNeOg8+p7b0b2vt8YZIMTyQvlH7Qo+HzNhZRHsLNvlILw==",
-      "path": "microsoft.visualstudio.web.codegeneration.design/7.0.3",
-      "hashPath": "microsoft.visualstudio.web.codegeneration.design.7.0.3.nupkg.sha512"
+      "sha512": "sha512-op0j3gAIAWa5L6zRzKBKPP6I6O0ld+sbYnU5LXytkI6sE6nYzCzlPf7cvAEeW5fE9Pu2RYgz4plQHhR2gKF3wQ==",
+      "path": "microsoft.visualstudio.web.codegeneration.design/7.0.6",
+      "hashPath": "microsoft.visualstudio.web.codegeneration.design.7.0.6.nupkg.sha512"
     },
-    "Microsoft.VisualStudio.Web.CodeGeneration.EntityFrameworkCore/7.0.3": {
+    "Microsoft.VisualStudio.Web.CodeGeneration.EntityFrameworkCore/7.0.6": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-eXP3aXJJhT098bEWvKrq7tDRoYxQ/jjV8l5Gd8nJysS5e9GDFbZBZVZ38mtUeoGyp8kMK8CH9VGopdVd4r4D/w==",
-      "path": "microsoft.visualstudio.web.codegeneration.entityframeworkcore/7.0.3",
-      "hashPath": "microsoft.visualstudio.web.codegeneration.entityframeworkcore.7.0.3.nupkg.sha512"
+      "sha512": "sha512-u7zHcIyqzEiRQOg9eUaBzWU5hLuy0sljXB5t4+CmLTh8sXWIubxplHPqmL0GMpMYAK71oZtFEzkujKLxoxDKhQ==",
+      "path": "microsoft.visualstudio.web.codegeneration.entityframeworkcore/7.0.6",
+      "hashPath": "microsoft.visualstudio.web.codegeneration.entityframeworkcore.7.0.6.nupkg.sha512"
     },
-    "Microsoft.VisualStudio.Web.CodeGeneration.Templating/7.0.3": {
+    "Microsoft.VisualStudio.Web.CodeGeneration.Templating/7.0.6": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-NAyHvG6waTANvz802Sum2DHdhwqs4RPLBzAoDtr1mtqmQhPCO3+1wTzd8656CwfrlhdFIPX4f5CJzk9wB8TrWA==",
-      "path": "microsoft.visualstudio.web.codegeneration.templating/7.0.3",
-      "hashPath": "microsoft.visualstudio.web.codegeneration.templating.7.0.3.nupkg.sha512"
+      "sha512": "sha512-mlQulA2tq4DI5Zbh+mjmPfzabiXodY57lbBU3tgSRfXyUHN/IwPi6x2GeWcmiiWXDdAaWXS5/DrzavMddRdIhQ==",
+      "path": "microsoft.visualstudio.web.codegeneration.templating/7.0.6",
+      "hashPath": "microsoft.visualstudio.web.codegeneration.templating.7.0.6.nupkg.sha512"
     },
-    "Microsoft.VisualStudio.Web.CodeGeneration.Utils/7.0.3": {
+    "Microsoft.VisualStudio.Web.CodeGeneration.Utils/7.0.6": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-k5tUg2czYXMVepqMaFv649WV4W4JDzvpRsa2z5HVFJzgTE50h+vptHtF6sOy5cjKbHk5eyS4JXx0sKZ126ajTw==",
-      "path": "microsoft.visualstudio.web.codegeneration.utils/7.0.3",
-      "hashPath": "microsoft.visualstudio.web.codegeneration.utils.7.0.3.nupkg.sha512"
+      "sha512": "sha512-DwX53kj5ehBoCN040L6WfYi8bT+6pyD8eWl2FeZfH6cJTU+sf2TE3ofePZZBLNDhuExC7oQs6/HkpU4sI49Fjg==",
+      "path": "microsoft.visualstudio.web.codegeneration.utils/7.0.6",
+      "hashPath": "microsoft.visualstudio.web.codegeneration.utils.7.0.6.nupkg.sha512"
     },
-    "Microsoft.VisualStudio.Web.CodeGenerators.Mvc/7.0.3": {
+    "Microsoft.VisualStudio.Web.CodeGenerators.Mvc/7.0.6": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-yrO2eLmcrfaPAzVsgrKFjuEdKQluD2wMdOjUwnw7SjkUDSje0hX/MRJAWp6ZLce1r78qqJ3RE58Sts38PTnn8g==",
-      "path": "microsoft.visualstudio.web.codegenerators.mvc/7.0.3",
-      "hashPath": "microsoft.visualstudio.web.codegenerators.mvc.7.0.3.nupkg.sha512"
+      "sha512": "sha512-0HwwFZHfiaOwaVooeCnTHL6to8i/T8ucMJHhVfuAQp17g7aYkfEKiR7UHD5yu7w6GDgAwiW9twej0/Yzkgd9wQ==",
+      "path": "microsoft.visualstudio.web.codegenerators.mvc/7.0.6",
+      "hashPath": "microsoft.visualstudio.web.codegenerators.mvc.7.0.6.nupkg.sha512"
     },
     "Microsoft.Win32.Primitives/4.3.0": {
       "type": "package",

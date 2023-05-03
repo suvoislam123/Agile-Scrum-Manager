@@ -1,20 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Shuvo Islam\\Desktop\\BSSE-final-project\\PMS_Software_Solution\\PMS_Software\\PMS_Software.csproj": {}
+    "C:\\Users\\Shuvo Islam\\Desktop\\code\\BSSE-final-project\\PMS_Software_Solution\\PMS_Software\\PMS_Software.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Shuvo Islam\\Desktop\\BSSE-final-project\\PMS_Software_Solution\\Entities\\Entities.csproj": {
+    "C:\\Users\\Shuvo Islam\\Desktop\\code\\BSSE-final-project\\PMS_Software_Solution\\Entities\\Entities.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Shuvo Islam\\Desktop\\BSSE-final-project\\PMS_Software_Solution\\Entities\\Entities.csproj",
+        "projectUniqueName": "C:\\Users\\Shuvo Islam\\Desktop\\code\\BSSE-final-project\\PMS_Software_Solution\\Entities\\Entities.csproj",
         "projectName": "Entities",
-        "projectPath": "C:\\Users\\Shuvo Islam\\Desktop\\BSSE-final-project\\PMS_Software_Solution\\Entities\\Entities.csproj",
+        "projectPath": "C:\\Users\\Shuvo Islam\\Desktop\\code\\BSSE-final-project\\PMS_Software_Solution\\Entities\\Entities.csproj",
         "packagesPath": "C:\\Users\\Shuvo Islam\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Shuvo Islam\\Desktop\\BSSE-final-project\\PMS_Software_Solution\\Entities\\obj\\",
+        "outputPath": "C:\\Users\\Shuvo Islam\\Desktop\\code\\BSSE-final-project\\PMS_Software_Solution\\Entities\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
           "C:\\Users\\Shuvo Islam\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -22,6 +26,7 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -42,17 +47,11 @@
           "dependencies": {
             "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
               "target": "Package",
-              "version": "[7.0.2, )"
+              "version": "[7.0.5, )"
             },
             "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",
-              "version": "[7.0.2, )"
-            },
-            "Microsoft.EntityFrameworkCore.Tools": {
-              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
-              "suppressParent": "All",
-              "target": "Package",
-              "version": "[7.0.2, )"
+              "version": "[7.0.5, )"
             }
           },
           "imports": [
@@ -71,21 +70,25 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.101\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.203\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\Shuvo Islam\\Desktop\\BSSE-final-project\\PMS_Software_Solution\\PMS_Software\\PMS_Software.csproj": {
+    "C:\\Users\\Shuvo Islam\\Desktop\\code\\BSSE-final-project\\PMS_Software_Solution\\PMS_Software\\PMS_Software.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Shuvo Islam\\Desktop\\BSSE-final-project\\PMS_Software_Solution\\PMS_Software\\PMS_Software.csproj",
+        "projectUniqueName": "C:\\Users\\Shuvo Islam\\Desktop\\code\\BSSE-final-project\\PMS_Software_Solution\\PMS_Software\\PMS_Software.csproj",
         "projectName": "PMS_Software",
-        "projectPath": "C:\\Users\\Shuvo Islam\\Desktop\\BSSE-final-project\\PMS_Software_Solution\\PMS_Software\\PMS_Software.csproj",
+        "projectPath": "C:\\Users\\Shuvo Islam\\Desktop\\code\\BSSE-final-project\\PMS_Software_Solution\\PMS_Software\\PMS_Software.csproj",
         "packagesPath": "C:\\Users\\Shuvo Islam\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Shuvo Islam\\Desktop\\BSSE-final-project\\PMS_Software_Solution\\PMS_Software\\obj\\",
+        "outputPath": "C:\\Users\\Shuvo Islam\\Desktop\\code\\BSSE-final-project\\PMS_Software_Solution\\PMS_Software\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
           "C:\\Users\\Shuvo Islam\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -93,20 +96,21 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net7.0": {
             "targetAlias": "net7.0",
             "projectReferences": {
-              "C:\\Users\\Shuvo Islam\\Desktop\\BSSE-final-project\\PMS_Software_Solution\\Entities\\Entities.csproj": {
-                "projectPath": "C:\\Users\\Shuvo Islam\\Desktop\\BSSE-final-project\\PMS_Software_Solution\\Entities\\Entities.csproj"
+              "C:\\Users\\Shuvo Islam\\Desktop\\code\\BSSE-final-project\\PMS_Software_Solution\\Entities\\Entities.csproj": {
+                "projectPath": "C:\\Users\\Shuvo Islam\\Desktop\\code\\BSSE-final-project\\PMS_Software_Solution\\Entities\\Entities.csproj"
               },
-              "C:\\Users\\Shuvo Islam\\Desktop\\BSSE-final-project\\PMS_Software_Solution\\ServiceContracts\\ServiceContracts.csproj": {
-                "projectPath": "C:\\Users\\Shuvo Islam\\Desktop\\BSSE-final-project\\PMS_Software_Solution\\ServiceContracts\\ServiceContracts.csproj"
+              "C:\\Users\\Shuvo Islam\\Desktop\\code\\BSSE-final-project\\PMS_Software_Solution\\ServiceContracts\\ServiceContracts.csproj": {
+                "projectPath": "C:\\Users\\Shuvo Islam\\Desktop\\code\\BSSE-final-project\\PMS_Software_Solution\\ServiceContracts\\ServiceContracts.csproj"
               },
-              "C:\\Users\\Shuvo Islam\\Desktop\\BSSE-final-project\\PMS_Software_Solution\\Services\\Services.csproj": {
-                "projectPath": "C:\\Users\\Shuvo Islam\\Desktop\\BSSE-final-project\\PMS_Software_Solution\\Services\\Services.csproj"
+              "C:\\Users\\Shuvo Islam\\Desktop\\code\\BSSE-final-project\\PMS_Software_Solution\\Services\\Services.csproj": {
+                "projectPath": "C:\\Users\\Shuvo Islam\\Desktop\\code\\BSSE-final-project\\PMS_Software_Solution\\Services\\Services.csproj"
               }
             }
           }
@@ -123,21 +127,21 @@
           "dependencies": {
             "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
               "target": "Package",
-              "version": "[7.0.2, )"
+              "version": "[7.0.5, )"
             },
             "Microsoft.EntityFrameworkCore.Design": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
               "target": "Package",
-              "version": "[7.0.2, )"
+              "version": "[7.0.5, )"
             },
             "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",
-              "version": "[7.0.2, )"
+              "version": "[7.0.5, )"
             },
             "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
               "target": "Package",
-              "version": "[7.0.3, )"
+              "version": "[7.0.6, )"
             }
           },
           "imports": [
@@ -159,21 +163,25 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.101\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.203\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\Shuvo Islam\\Desktop\\BSSE-final-project\\PMS_Software_Solution\\ServiceContracts\\ServiceContracts.csproj": {
+    "C:\\Users\\Shuvo Islam\\Desktop\\code\\BSSE-final-project\\PMS_Software_Solution\\ServiceContracts\\ServiceContracts.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Shuvo Islam\\Desktop\\BSSE-final-project\\PMS_Software_Solution\\ServiceContracts\\ServiceContracts.csproj",
+        "projectUniqueName": "C:\\Users\\Shuvo Islam\\Desktop\\code\\BSSE-final-project\\PMS_Software_Solution\\ServiceContracts\\ServiceContracts.csproj",
         "projectName": "ServiceContracts",
-        "projectPath": "C:\\Users\\Shuvo Islam\\Desktop\\BSSE-final-project\\PMS_Software_Solution\\ServiceContracts\\ServiceContracts.csproj",
+        "projectPath": "C:\\Users\\Shuvo Islam\\Desktop\\code\\BSSE-final-project\\PMS_Software_Solution\\ServiceContracts\\ServiceContracts.csproj",
         "packagesPath": "C:\\Users\\Shuvo Islam\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Shuvo Islam\\Desktop\\BSSE-final-project\\PMS_Software_Solution\\ServiceContracts\\obj\\",
+        "outputPath": "C:\\Users\\Shuvo Islam\\Desktop\\code\\BSSE-final-project\\PMS_Software_Solution\\ServiceContracts\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
           "C:\\Users\\Shuvo Islam\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -181,14 +189,15 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net7.0": {
             "targetAlias": "net7.0",
             "projectReferences": {
-              "C:\\Users\\Shuvo Islam\\Desktop\\BSSE-final-project\\PMS_Software_Solution\\Entities\\Entities.csproj": {
-                "projectPath": "C:\\Users\\Shuvo Islam\\Desktop\\BSSE-final-project\\PMS_Software_Solution\\Entities\\Entities.csproj"
+              "C:\\Users\\Shuvo Islam\\Desktop\\code\\BSSE-final-project\\PMS_Software_Solution\\Entities\\Entities.csproj": {
+                "projectPath": "C:\\Users\\Shuvo Islam\\Desktop\\code\\BSSE-final-project\\PMS_Software_Solution\\Entities\\Entities.csproj"
               }
             }
           }
@@ -218,21 +227,25 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.101\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.203\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\Shuvo Islam\\Desktop\\BSSE-final-project\\PMS_Software_Solution\\Services\\Services.csproj": {
+    "C:\\Users\\Shuvo Islam\\Desktop\\code\\BSSE-final-project\\PMS_Software_Solution\\Services\\Services.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Shuvo Islam\\Desktop\\BSSE-final-project\\PMS_Software_Solution\\Services\\Services.csproj",
+        "projectUniqueName": "C:\\Users\\Shuvo Islam\\Desktop\\code\\BSSE-final-project\\PMS_Software_Solution\\Services\\Services.csproj",
         "projectName": "Services",
-        "projectPath": "C:\\Users\\Shuvo Islam\\Desktop\\BSSE-final-project\\PMS_Software_Solution\\Services\\Services.csproj",
+        "projectPath": "C:\\Users\\Shuvo Islam\\Desktop\\code\\BSSE-final-project\\PMS_Software_Solution\\Services\\Services.csproj",
         "packagesPath": "C:\\Users\\Shuvo Islam\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Shuvo Islam\\Desktop\\BSSE-final-project\\PMS_Software_Solution\\Services\\obj\\",
+        "outputPath": "C:\\Users\\Shuvo Islam\\Desktop\\code\\BSSE-final-project\\PMS_Software_Solution\\Services\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
           "C:\\Users\\Shuvo Islam\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -240,17 +253,18 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net7.0": {
             "targetAlias": "net7.0",
             "projectReferences": {
-              "C:\\Users\\Shuvo Islam\\Desktop\\BSSE-final-project\\PMS_Software_Solution\\Entities\\Entities.csproj": {
-                "projectPath": "C:\\Users\\Shuvo Islam\\Desktop\\BSSE-final-project\\PMS_Software_Solution\\Entities\\Entities.csproj"
+              "C:\\Users\\Shuvo Islam\\Desktop\\code\\BSSE-final-project\\PMS_Software_Solution\\Entities\\Entities.csproj": {
+                "projectPath": "C:\\Users\\Shuvo Islam\\Desktop\\code\\BSSE-final-project\\PMS_Software_Solution\\Entities\\Entities.csproj"
               },
-              "C:\\Users\\Shuvo Islam\\Desktop\\BSSE-final-project\\PMS_Software_Solution\\ServiceContracts\\ServiceContracts.csproj": {
-                "projectPath": "C:\\Users\\Shuvo Islam\\Desktop\\BSSE-final-project\\PMS_Software_Solution\\ServiceContracts\\ServiceContracts.csproj"
+              "C:\\Users\\Shuvo Islam\\Desktop\\code\\BSSE-final-project\\PMS_Software_Solution\\ServiceContracts\\ServiceContracts.csproj": {
+                "projectPath": "C:\\Users\\Shuvo Islam\\Desktop\\code\\BSSE-final-project\\PMS_Software_Solution\\ServiceContracts\\ServiceContracts.csproj"
               }
             }
           }
@@ -286,7 +300,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.101\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.203\\RuntimeIdentifierGraph.json"
         }
       }
     }

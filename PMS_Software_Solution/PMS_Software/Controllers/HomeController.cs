@@ -1,4 +1,5 @@
 ﻿using Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using PMS_Software.Models;
 using ServiceContracts;
@@ -7,6 +8,7 @@ using System.Diagnostics;
 
 namespace PMS_Software.Controllers
 {
+    
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;

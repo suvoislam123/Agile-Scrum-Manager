@@ -36,7 +36,7 @@ namespace PMS_Software.Controllers
             }
             return View();
         }
-        [Route("/login")]
+        
         public IActionResult Login()
         {
             return View();
@@ -60,6 +60,10 @@ namespace PMS_Software.Controllers
         {
             await _userService.SignOutAsync();
             return RedirectToAction("Login", "Account");
+        }
+        public async Task<IActionResult> Profile()
+        {
+            return View();
         }
     }
 }
