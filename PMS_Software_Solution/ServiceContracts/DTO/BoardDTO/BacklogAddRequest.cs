@@ -31,9 +31,22 @@ namespace ServiceContracts.DTO.BoardDTO
                 Id = Guid.NewGuid(),
                 Name = Name,
                 Description = Description,
+                IssueTye= IssueType,
                 State = State,
                 Priority = Priority,
                 SprintId= SprintId.HasValue ? SprintId.Value : Guid.Empty
+            };
+        }
+        public TempIssue ToTempIssue()
+        {
+            return new TempIssue()
+            {
+                Id = Guid.NewGuid(),
+                Name = Name,
+                Description = Description,
+                State = State,
+                Priority = Priority,
+                BoardId = BoardId.HasValue ? BoardId.Value : Guid.Empty
             };
         }
     }

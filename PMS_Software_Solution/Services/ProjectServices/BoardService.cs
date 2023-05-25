@@ -27,6 +27,19 @@ namespace Services.ProjectServices
         public async Task<Board> AddBoardAsync(BoardAddRequest boardAddRequest, ClaimsPrincipal user)
         {
             Board board = boardAddRequest.ToBoard();
+            Sprint sprint1 = new Sprint()
+            {
+                Id = Guid.NewGuid(),
+                Name = "Sprint1",
+                Description = "This is primary Description",
+                BoardId = board.Id,
+            };
+            board.Sprints = new List<Sprint>() { sprint1 };
+            board.Backlog = new Backlog()
+            {
+                Id = Guid.NewGuid(),
+                boardId = board.Id
+            };
             board.ProjectLead = user.Identity.Name;
             await _pMS_DBContext.Boards.AddAsync(board);
             await _pMS_DBContext.SaveChangesAsync();
@@ -52,6 +65,15 @@ namespace Services.ProjectServices
                 }
             }
 
+        }
+        public async Task AddTempIssueAtBoard(Guid boardId, TempIssue tempIssue)
+        {
+            var board =await  _pMS_DBContext.Boards.FirstOrDefaultAsync(b => b.Id == boardId);
+            if(board != null)
+            {
+                _pMS_DBContext.TempIssues.Add(tempIssue);
+                await _pMS_DBContext.SaveChangesAsync();
+            }
         }
 
         /*public Task<Board> AddBoardAsync(BoardAddRequest boardAddRequest, ClaimsPrincipal user)
@@ -86,5 +108,18 @@ namespace Services.ProjectServices
             var issues = sprintWithIssues.Issues;
             return issues.ToList();
         }
+
+        public async Task<Issue> DeleteIssueByIssueId(Guid Id)
+        {
+            var issue = await _pMS_DBContext.Issues.FirstOrDefaultAsync(i=>i.Id==Id);
+            if(issue != null)
+            {
+                _pMS_DBContext.Issues.Remove(issue);
+                await _pMS_DBContext.SaveChangesAsync();
+            }
+            return issue;
+        }
+
+        
     }
 }

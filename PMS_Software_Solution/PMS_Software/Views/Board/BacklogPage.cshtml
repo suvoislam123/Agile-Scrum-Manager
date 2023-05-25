@@ -7,6 +7,235 @@
     var board = boards.FirstOrDefault(b => b.Id == boardId);
     var sprints = (ICollection<Sprint>)ViewData["sprints"];
 }
+<div class="w-75 d-none" id="issue-settings-container">
+    <div class="issue-item-modal position-fixed bg-white p-3" style="z-index:1000;top: 100px; height: 500px;width: 1100px; ">
+        <div class="d-flex justify-content-between">
+            <p><small>board1/issu2/<i class="fa-solid fa-link"></i></small></p>
+            <div class="d-flex">
+                <button class="btn btn-light mx-1" title=""><i class="fa-solid fa-eye"></i></button>
+                <button class="btn btn-light mx-1" title=""><i class="fa-solid fa-thumbs-up"></i></button>
+                <button class="btn btn-light mx-1" title=""><i class="fa-solid fa-share-nodes"></i></button>
+                <div class="dropdown no-arrow px-2">
+                    <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="fa-solid fa-ellipsis-vertical text-dark mt-2 text-medium" aria-hidden="true"></i>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink" style="">
+                        <a class="dropdown-item" href="#">Board Setting</a>
+                        <a class="dropdown-item" href="#">Create Board</a>
+                        <a class="dropdown-item" href="#">Print Card</a>
+                    </div>
+                </div>
+                <button class="btn btn-light mx-1" id="close-btn-issue-modal" onclick="closeModal('issue-modal-container')" title=""><i class="fa-solid fa-xmark"></i></button>
+            </div>
+        </div>
+        <div class="row mt-2">
+            <div class="col-8">
+                <div style="overflow-y: scroll; height:400px;">
+                    <h3 class="text-justify">When the last task is done, the story can be automatically closed &gt;&gt; Drag this task to "Done" too</h3>
+                    <div class="d-flex">
+
+                        <div>
+                            <label class="btn btn-light" for="issue-attachment"><i class="fa-solid fa-paperclip"></i>Attachment</label>
+                            <input type="file" id="issue-attachment" class="d-none">
+                        </div>
+                        <div class="dropdown show">
+                            <a class="btn btn-light mx-1" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fa-solid fa-link"></i>Linke issue
+                            </a>
+
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                <a class="dropdown-item" href="#"><i class="fa-regular fa-copy"></i>Copy issue Link</a>
+                                <a class="dropdown-item" href="#"><i class="fa-solid fa-globe"></i>Add Web Link</a>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <h5>Description</h5>
+                        <p class="text-justify d-none" id="issue-item-description" style="">This is description of  selected issue. Here issue full description should be added. For clear explanation it is cery important to add description. Sometime issue title becomes not clear enough this time issue description become time saver for not starting to investigate the issue from scratch</p>
+                        <div id="issue-item-description-edite">
+                            <div class="form-group">
+                                <textarea name="" id="" cols="72" rows="4" style="outline: none;"></textarea>
+                            </div>
+                            <a href="#" id="issue-item-description-save-btn" class="btn btn-primary btn-user rounded-0 py-1 px-3">
+                                Save
+                            </a>
+                            <a href="#" class="btn btn-light btn-user rounded-0 py-1 px-3">
+                                Cancel
+                            </a>
+                        </div>
+                    </div>
+                    <script>
+                        const description = document.getElementById('issue-item-description');
+                        const saveBtn = document.getElementById('issue-item-description-save-btn');
+                        const editeContainer = document.getElementById('issue-item-description-edite');
+                        description.addEventListener('click', () => {
+                            description.classList.add('d-none');
+                            editeContainer.classList.remove('d-none');
+                        });
+                        saveBtn.addEventListener('click', () => {
+                            description.classList.remove('d-none');
+                            editeContainer.classList.add('d-none');
+                        })
+                        
+                    </script>
+                    <div class="d-flex justify-content-between ">
+                        <h5>Attachment <sup>3</sup></h5>
+                        <div>
+                            <div class="d-flex">
+
+                                <div>
+                                    <label for="issue-file-input" style="cursor: pointer;"><i class="fa-solid fa-plus"></i></label>
+                                    <input id="issue-file-input" type="file" class="d-none">
+                                </div>
+                                <div class="dropdown no-arrow mx-4">
+                                    <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400" aria-hidden="true"></i>
+                                    </a>
+                                    <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
+                                        <a class="dropdown-item" href="#">Download All</a>
+                                        <a class="dropdown-item" href="#">Delete All</a>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <style>
+                        .file-card-body:hover {
+                            transition: all 0.3s ease 0s;
+                            background-color: black !important;
+                            opacity: .4;
+                        }
+                    </style>
+                    <div class="attachments d-flex flex-wrap">
+                        <div class="card m-2" style="width:160px;">
+                            <div class="bg-light position-relative file-card-body" style="width: 100%; height: 70px;">
+                                <div class="position-absolute" style="top: 5px; right: 3px;">
+                                    <a class="bg-light" style="color:black; padding:3px 10px;" href="#"><i class="fa-solid fa-download"></i></a>
+                                    <a class="bg-light" style="color:black; padding:3px 10px;" href="#"><i class="fa-solid fa-trash"></i></a>
+                                </div>
+                            </div>
+                            <div class="px-2" style="background-color: aliceblue; height: 27px;">
+                                <span>issue1.docs</span>
+                            </div>
+                        </div>
+                        <div class="card m-2" style="width:160px;">
+                            <div class="bg-light position-relative file-card-body" style="width: 100%; height: 70px;">
+                                <div class="position-absolute" style="top: 5px; right: 3px;">
+                                    <a class="bg-light" style="color:black; padding:3px 10px;" href="#"><i class="fa-solid fa-download"></i></a>
+                                    <a class="bg-light" style="color:black; padding:3px 10px;" href="#"><i class="fa-solid fa-trash"></i></a>
+                                </div>
+                            </div>
+                            <div class="px-2" style="background-color: aliceblue; height: 27px;">
+                                <span>issue1.docs</span>
+                            </div>
+                        </div>
+                        <div class="card m-2" style="width:160px;">
+                            <div class="bg-light position-relative file-card-body" style="width: 100%; height: 70px;">
+                                <div class="position-absolute" style="top: 5px; right: 3px;">
+                                    <a class="bg-light" style="color:black; padding:3px 10px;" href="#"><i class="fa-solid fa-download"></i></a>
+                                    <a class="bg-light" style="color:black; padding:3px 10px;" href="#"><i class="fa-solid fa-trash"></i></a>
+                                </div>
+                            </div>
+                            <div class="px-2" style="background-color: aliceblue; height: 27px;">
+                                <span>issue1.docs</span>
+                            </div>
+                        </div>
+                    </div>
+                    <h5>Activity</h5>
+                    <div class="d-flex">
+                        <button class="btn btn-light m-2">All</button>
+                        <button class="btn btn-light m-2">Comments</button>
+                        <button class="btn btn-light m-2">History</button>
+
+                    </div>
+                    <div class="d-flex">
+                        <img class="img-profile rounded-circle" height="30px" src="img/undraw_profile.svg">
+                        <div>
+                            <div class="d-flex mx-2">
+                                <a href="profile.html" style="text-decoration: none;">Shuvo Islam</a> <small class="mt-1 mx-2">21 hours ago</small>
+                            </div>
+                            <div class="mx-2">
+                                <input name="c1" type="text" value="I have completed this issue almost 70%" style="outline: 0px;" class="border-0" id="c1">
+                                <br>
+                                <label for="c1" class="text-primary ">Edite</label>
+                                <a href="#">Delete</a>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="d-flex">
+                        <img class="img-profile rounded-circle" height="30px" src="img/undraw_profile.svg">
+                        <div>
+                            <div class="d-flex mx-2">
+                                <a href="profile.html" style="text-decoration: none;">Mahin Khan</a> <small class="mt-1 mx-2">November 8, 2022 at 9:55 PM</small>
+                            </div>
+                            <div class="mx-2">
+                                <input name="c2" type="text" value="I have completed this issue almost 70%" style="outline: 0px;" class="border-0" id="c2">
+                                <br>
+                                <label for="c2" class="text-primary ">Edite</label>
+                                <a href="#">Delete</a>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-4">
+                <button class="btn btn-light w-100" type="button" data-toggle="collapse" data-target="#collapseButtonExample" aria-expanded="true" aria-controls="myCollapseExample">
+                    <div class="d-flex justify-content-between">
+                        <span>Details</span>
+                        <span><i class="fa-solid fa-chevron-down"></i></span>
+                    </div>
+                </button>
+                <div class="collapse show" id="collapseButtonExample" style="">
+                    <div class="card card-body">
+                        <label for="">Assinee/Assign To</label>
+                        <select class="form-select form-select-sm" aria-label="form-select-sm example" name="" id="">
+                            <option value="shuvo Islam">Shuvo Islam</option>
+                            <option value="shuvo Islam">Shawon Islam</option>
+                            <option value="shuvo Islam">Naem Khan</option>
+                            <option value="shuvo Islam">Israfil Bebari</option>
+                            <option value="shuvo Islam">Faysal Ahmed</option>
+                        </select>
+                        <label for="">Label</label>
+                        <select class="form-select form-select-sm" aria-label="form-select-sm example" name="" id="">
+                            <option value="shuvo Islam">Label 1</option>
+                            <option value="shuvo Islam">Label 2</option>
+                            <option value="shuvo Islam">Label3</option>
+
+                        </select>
+                        <label for="">Story Point</label>
+                        <select class="form-select form-select-sm" aria-label="form-select-sm example" name="" id="">
+                            <option value="shuvo Islam">1</option>
+                            <option value="shuvo Islam">2</option>
+                            <option value="shuvo Islam">3</option>
+                            <option value="shuvo Islam">4</option>
+                            <option value="shuvo Islam">5</option>
+                            <option value="shuvo Islam">6</option>
+
+                        </select>
+                        <label for="">Priority</label>
+                        <select class="form-select form-select-sm" aria-label="form-select-sm example" name="" id="">
+                            <option value="shuvo Islam">High</option>
+                            <option value="shuvo Islam">Low</option>
+                            <option value="shuvo Islam">Medium</option>
+                        </select>
+                        <label for="">Sprint</label>
+                        <select class="form-select form-select-sm" aria-label="form-select-sm example" name="" id="">
+                            <option value="shuvo Islam">Sprint-1</option>
+                            <option selected="" value="shuvo Islam">Sprint-2(Active)</option>
+                            <option value="shuvo Islam">Sprint-2</option>
+                            <option value="shuvo Islam">Sprint-1</option>
+                            <option value="shuvo Islam">Sprint-1</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 <div class="container-fluid">
     <div class="sprints-container">
         @foreach(var sprint in sprints)
@@ -17,10 +246,14 @@
                         ^
                     </div>
                     <div class="w-100 d-flex justify-content-between">
+                        @{
+                            var issues = await _boardService.GetIssuesBySprintId(sprint.Id);
+                            var total_issue = issues.Count;
+                        }
                         <div>
                             <div class="d-flex align-items-center">
                                 <h5 class="text-bold" style="color: black;">@sprint.Name</h5>
-                                <small class="ml-3"> issues</small>
+                                <small class="ml-3">@total_issue issues</small>
                             </div>
                             <div>
                                 <small>12/Jan/23 6:12 PM•26/Jan/23 6:32 PM</small>
@@ -47,11 +280,11 @@
                 <div class="issue-container mb-4">
                     @foreach(var issue in await _boardService.GetIssuesBySprintId(sprint.Id))
                     {
-                        <div class="rounded d-flex align-items-center " style="background-color: rgb(248, 245, 90); padding: 8px;">
+                        <div class="rounded d-flex align-items-center mt-2" style="background-color:  rgb(248, 245, 90); padding: 8px;">
                             <div class="mr-3">
                                 <i class="fa-solid fa-briefcase"></i>
                             </div>
-                            <p id="story-description" title="@issue.Description" style="width: 60%;">@issue.Description</p>
+                            <p class="issue-item" id="story-description" title="@issue.Description" style="width: 60%;">@issue.Description</p>
                             <script>
                                 var element = document.getElementById("story-description");
                                 element.style.whiteSpace = "nowrap";
@@ -62,6 +295,16 @@
                                 <div>@board.Name</div>
                                 <i class="fa-solid fa-briefcase ml-2"></i>
                                 <span class="bg-gray-500 rounded-pill px-2 ml-2">1</span>
+                            </div>
+                            <div class="dropdown no-arrow px-2 show">
+                                <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                    <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400" aria-hidden="true"></i>
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink" x-placement="bottom-end" style="position: absolute; transform: translate3d(-135px, 22px, 0px); top: 0px; left: 0px; will-change: transform;">
+                                    <a class="dropdown-item issue-item" issueId="@issue.Id" href="#">Edite issue</a>
+                                    <a class="dropdown-item issue-delete-btn" href="#" issue-id="@issue.Id">Delete Issue</a>
+                                    
+                                </div>
                             </div>
                         </div>
                     }
@@ -104,3 +347,40 @@
         </div>
     </div>
 </div>
+<script>
+    const issue_settings_container = document.getElementById('issue-settings-container');
+    const issue_items= document.querySelectorAll('.issue-item');
+    issue_items.forEach(issue_item=>{
+        issue_item.addEventListener('click',()=>{
+            issue_settings_container.classList.remove('d-none');
+            issue_settings_container.classList.add('d-block');
+        })
+    });
+    const close_btn_issue_modal = document.getElementById('close-btn-issue-modal');
+    close_btn_issue_modal.addEventListener('click', () => {
+        issue_settings_container.classList.add('d-none');
+        issue_settings_container.classList.remove('d-block');
+    });
+    //Issue Deleting Api Calling
+    const issue_delete_btns = document.querySelectorAll('.issue-delete-btn');
+    console.log(issue_delete_btns);
+    issue_delete_btns.forEach((btn)=>{
+        btn.addEventListener('click',(e)=>{
+            const issue_id = btn.getAttribute('issue-id');
+            fetch(`/Issue/Delete/${issue_id}`, {
+                method: 'DELETE'
+            })
+            .then(response => {
+                if (response.ok) {
+                    window.location.reload();
+                } else {
+                    console.error('Error deleting issue');
+                }
+            })
+            .catch(error => {
+                console.error('Error deleting issue', error);
+            });
+        })
+    });
+
+</script>

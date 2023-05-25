@@ -21,7 +21,7 @@
             <small>New Bug In</small>
             <small class="ml-2">
                 <select  asp-for="SprintId">
-                    <option value="Bug">Backlog</option>
+                    <option value="Bug" selected>Backlog</option>
                     @foreach (var sprint in sprints)
                     {
                         <option value="@sprint.Id">@sprint.Name</option>

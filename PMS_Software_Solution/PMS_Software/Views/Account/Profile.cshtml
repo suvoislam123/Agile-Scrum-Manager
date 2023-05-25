@@ -1,4 +1,9 @@
-﻿<style>
+﻿@using ServiceContracts;
+@inject IUsersService _userService;
+@{
+    var user = await _userService.GetUserByUserName(User.Identity.Name);
+}
+<style>
     .profile-value-input input {
         border: none;
     }
@@ -33,10 +38,10 @@
                             <div class="profile-value-input position-relative mt-3" id="job-title">
                                 <div class="d-flex align-items-center">
                                     <i class="fa-solid fa-briefcase"></i>
-                                    <input type="text" placeholder="Your Job Title" style="flex-grow: 100; margin-left: 5px;">
+                                    <input field="JobTitle" type="text" placeholder="Your Job Title" value="@user.JobTitle" style="flex-grow: 100; margin-left: 5px;">
                                 </div>
                                 <div class="position-absolute input-field-control d-none" style="z-index: 100;bottom: -120%; right: 0;">
-                                    <button class="px-2" style="background-color: rgb(170, 200, 200);color: rgb(78, 72, 72);border: none;box-shadow: rgba(0, 0, 0, 0.2) 0px 12px 28px 0px, rgba(0, 0, 0, 0.1) 0px 2px 4px 0px, rgba(255, 255, 255, 0.05) 0px 0px 0px 1px inset;"><i class="fa-solid fa-check"></i></button>
+                                    <button class="px-2 input-save-btn" style="background-color: rgb(170, 200, 200);color: rgb(78, 72, 72);border: none;box-shadow: rgba(0, 0, 0, 0.2) 0px 12px 28px 0px, rgba(0, 0, 0, 0.1) 0px 2px 4px 0px, rgba(255, 255, 255, 0.05) 0px 0px 0px 1px inset;"><i class="fa-solid fa-check"></i></button>
                                     <button class="px-2" style="background-color: rgb(249, 96, 131);color: rgb(78, 72, 72);border: none;box-shadow: rgba(0, 0, 0, 0.2) 0px 12px 28px 0px, rgba(0, 0, 0, 0.1) 0px 2px 4px 0px, rgba(255, 255, 255, 0.05) 0px 0px 0px 1px inset;"><i class="fa-solid fa-xmark"></i></button>
 
                                 </div>
@@ -44,10 +49,10 @@
                             <div class="profile-value-input position-relative mt-3" id="job-title">
                                 <div class="d-flex align-items-center">
                                     <i class="fa-solid fa-sitemap"></i>
-                                    <input type="text" placeholder="Your Department" style="flex-grow: 100; margin-left: 5px;">
+                                    <input field="Department" type="text" placeholder="Your Department" value="@user.Department" style="flex-grow: 100; margin-left: 5px;">
                                 </div>
                                 <div class="position-absolute input-field-control d-none" style="z-index: 100;bottom: -120%; right: 0;">
-                                    <button class="px-2" style="background-color: rgb(170, 200, 200);color: rgb(78, 72, 72);border: none;box-shadow: rgba(0, 0, 0, 0.2) 0px 12px 28px 0px, rgba(0, 0, 0, 0.1) 0px 2px 4px 0px, rgba(255, 255, 255, 0.05) 0px 0px 0px 1px inset;"><i class="fa-solid fa-check"></i></button>
+                                    <button class="px-2 input-save-btn" style="background-color: rgb(170, 200, 200);color: rgb(78, 72, 72);border: none;box-shadow: rgba(0, 0, 0, 0.2) 0px 12px 28px 0px, rgba(0, 0, 0, 0.1) 0px 2px 4px 0px, rgba(255, 255, 255, 0.05) 0px 0px 0px 1px inset;"><i class="fa-solid fa-check"></i></button>
                                     <button class="px-2" style="background-color: rgb(249, 96, 131);color: rgb(78, 72, 72);border: none;box-shadow: rgba(0, 0, 0, 0.2) 0px 12px 28px 0px, rgba(0, 0, 0, 0.1) 0px 2px 4px 0px, rgba(255, 255, 255, 0.05) 0px 0px 0px 1px inset;"><i class="fa-solid fa-xmark"></i></button>
 
                                 </div>
@@ -55,10 +60,10 @@
                             <div class="profile-value-input position-relative mt-3" id="job-title">
                                 <div class="d-flex align-items-center">
                                     <i class="fa-solid fa-building"></i>
-                                    <input type="text" placeholder="Your Organization" style="flex-grow: 100; margin-left: 5px;">
+                                    <input field="Organization" type="text" placeholder="Your Organization" value="@user.Organization" style="flex-grow: 100; margin-left: 5px;">
                                 </div>
                                 <div class="position-absolute input-field-control d-none" style="z-index: 100;bottom: -120%; right: 0;">
-                                    <button class="px-2" style="background-color: rgb(170, 200, 200);color: rgb(78, 72, 72);border: none;box-shadow: rgba(0, 0, 0, 0.2) 0px 12px 28px 0px, rgba(0, 0, 0, 0.1) 0px 2px 4px 0px, rgba(255, 255, 255, 0.05) 0px 0px 0px 1px inset;"><i class="fa-solid fa-check"></i></button>
+                                    <button class="px-2 input-save-btn" style="background-color: rgb(170, 200, 200);color: rgb(78, 72, 72);border: none;box-shadow: rgba(0, 0, 0, 0.2) 0px 12px 28px 0px, rgba(0, 0, 0, 0.1) 0px 2px 4px 0px, rgba(255, 255, 255, 0.05) 0px 0px 0px 1px inset;"><i class="fa-solid fa-check"></i></button>
                                     <button class="px-2" style="background-color: rgb(249, 96, 131);color: rgb(78, 72, 72);border: none;box-shadow: rgba(0, 0, 0, 0.2) 0px 12px 28px 0px, rgba(0, 0, 0, 0.1) 0px 2px 4px 0px, rgba(255, 255, 255, 0.05) 0px 0px 0px 1px inset;"><i class="fa-solid fa-xmark"></i></button>
 
                                 </div>
@@ -66,10 +71,10 @@
                             <div class="profile-value-input position-relative mt-3" id="job-title">
                                 <div class="d-flex align-items-center">
                                     <i class="fa-solid fa-location-dot"></i>
-                                    <input type="text" placeholder="Location" style="flex-grow: 100; margin-left: 5px;">
+                                    <input type="text" placeholder="Location" value="" style="flex-grow: 100;  margin-left: 5px;">
                                 </div>
                                 <div class="position-absolute input-field-control d-none" style="z-index: 100;bottom: -120%; right: 0;">
-                                    <button class="px-2" style="background-color: rgb(170, 200, 200);color: rgb(78, 72, 72);border: none;box-shadow: rgba(0, 0, 0, 0.2) 0px 12px 28px 0px, rgba(0, 0, 0, 0.1) 0px 2px 4px 0px, rgba(255, 255, 255, 0.05) 0px 0px 0px 1px inset;"><i class="fa-solid fa-check"></i></button>
+                                    <button class="px-2 input-save-btn" style="background-color: rgb(170, 200, 200);color: rgb(78, 72, 72);border: none;box-shadow: rgba(0, 0, 0, 0.2) 0px 12px 28px 0px, rgba(0, 0, 0, 0.1) 0px 2px 4px 0px, rgba(255, 255, 255, 0.05) 0px 0px 0px 1px inset;"><i class="fa-solid fa-check"></i></button>
                                     <button class="px-2" style="background-color: rgb(249, 96, 131);color: rgb(78, 72, 72);border: none;box-shadow: rgba(0, 0, 0, 0.2) 0px 12px 28px 0px, rgba(0, 0, 0, 0.1) 0px 2px 4px 0px, rgba(255, 255, 255, 0.05) 0px 0px 0px 1px inset;"><i class="fa-solid fa-xmark"></i></button>
 
                                 </div>
@@ -113,18 +118,60 @@
 
 </div>
 <script>
+    function updateProfie(field,value)
+    {
+        fetch(`/Account/Update/${field}/${value}`, {
+            method: 'PATCH',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ field, value })
+        })
+            .then(response => {
+                if (response.ok) {
+                    window.location.reload();
+                    console.log('Update successful');
+                } else {
+                    // Update failed
+                    console.error('Update failed');
+                }
+            })
+            .catch(error => {
+                // Error occurred during the request
+                console.error('Error:', error);
+            });
+    }
     const inputs = document.querySelectorAll(".profile-value-input input");
     inputs.forEach(input=>{
         const fieldControl = input.parentNode.nextSibling.nextSibling;
+        const input_save_btns = document.querySelectorAll('.input-save-btn');
         input.addEventListener('focus',()=>{
             const classValue = fieldControl.getAttribute("class");
             const newValue = classValue.replace("d-none","d-block");
             fieldControl.setAttribute("class", newValue);
+         
+        });
+        input.addEventListener("keyup", function (event) {
+            if (event.key === "Enter" || event.keyCode === 13) {
+                const field = input.getAttribute('field');
+                const value = input.value;
+                updateProfie(field,value);
+                console.log("Enter key was pressed");
+            }
         });
         input.addEventListener('blur',()=>{
             const classValue = fieldControl.getAttribute("class");
             const newValue = classValue.replace("d-block","d-none");
             fieldControl.setAttribute("class", newValue);
         });
-    })
+    });
+    
+    console.log(input_save_btns);
+    input_save_btns.forEach((btn)=>{
+        btn.addEventListener('click',()=>{
+            console.log("Hello")
+        })
+    });
+    
+
 </script>

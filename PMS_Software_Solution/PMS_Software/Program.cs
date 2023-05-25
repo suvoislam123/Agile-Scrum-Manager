@@ -47,9 +47,13 @@ app.UseRouting();
 app.UseAuthentication();
 app.UseCors();
 app.UseAuthorization();
-
+app.UseStatusCodePagesWithRedirects("/NotFound");
+app.MapControllerRoute(
+    name: "NotFound",
+    pattern: "/NotFound",
+    defaults: new { controller = "Error", action = "NotFound" }
+);
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
-
 app.Run();

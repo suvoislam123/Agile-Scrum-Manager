@@ -9,6 +9,7 @@ namespace ServiceContracts
         Task<IdentityResult> CreateUserAsync(User user);
         Task<SignInResult> PasswordSignInAsync(SignInUser signInUser);
         Task SignOutAsync();
+        Task<ApplicationUser> GetUserByUserName(string userName);
             
     }
 }

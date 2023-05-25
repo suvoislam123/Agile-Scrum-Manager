@@ -13,8 +13,8 @@ namespace Entities.ProjectEntities
         public string? Description { get; set; }
         public string? State { get; set; }
         public string? Priority { get; set; }
-        public Guid BacklogId { get; set; }
-        public Backlog Backlog { get; set; }
+        public Guid BoardId { get; set; }
+        public Board Board { get; set; }
        
     }
 }

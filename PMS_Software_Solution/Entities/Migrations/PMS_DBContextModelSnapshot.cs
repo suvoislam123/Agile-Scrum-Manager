@@ -200,7 +200,7 @@ namespace Entities.Migrations
                     b.HasIndex("boardId")
                         .IsUnique();
 
-                    b.ToTable("Backlogs");
+                    b.ToTable("Backlog");
                 });
 
             modelBuilder.Entity("Entities.ProjectEntities.Board", b =>
@@ -270,6 +270,9 @@ namespace Entities.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("IssueTye")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
@@ -369,7 +372,10 @@ namespace Entities.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("BacklogId")
+                    b.Property<Guid?>("BacklogId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("BoardId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Description")
@@ -387,6 +393,8 @@ namespace Entities.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("BacklogId");
+
+                    b.HasIndex("BoardId");
 
                     b.ToTable("TempIssues");
                 });
@@ -664,13 +672,17 @@ namespace Entities.Migrations
 
             modelBuilder.Entity("Entities.ProjectEntities.TempIssue", b =>
                 {
-                    b.HasOne("Entities.ProjectEntities.Backlog", "Backlog")
+                    b.HasOne("Entities.ProjectEntities.Backlog", null)
                         .WithMany("TempIssues")
-                        .HasForeignKey("BacklogId")
+                        .HasForeignKey("BacklogId");
+
+                    b.HasOne("Entities.ProjectEntities.Board", "Board")
+                        .WithMany("TempIssues")
+                        .HasForeignKey("BoardId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Backlog");
+                    b.Navigation("Board");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -742,6 +754,8 @@ namespace Entities.Migrations
                         .IsRequired();
 
                     b.Navigation("Sprints");
+
+                    b.Navigation("TempIssues");
                 });
 
             modelBuilder.Entity("Entities.ProjectEntities.Issue", b =>

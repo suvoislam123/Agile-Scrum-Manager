@@ -19,7 +19,7 @@ namespace Entities
         public DbSet<ApplicationUserTeam>  ApplicationUserTeams { get; set; }
         public DbSet<Board> Boards { get; set; }
         public DbSet<TempIssue> TempIssues { get; set; }
-        public DbSet<Backlog> Backlogs { get; set; }
+        //public DbSet<Backlog> Backlogs { get; set; }
         public DbSet<Sprint> Sprints { get; set; }
         public DbSet<Issue> Issues { get; set; }
         public DbSet<Comment> Comments { get; set; }
@@ -63,10 +63,15 @@ namespace Entities
                 .WithOne(b=>b.Board)
                 .HasForeignKey<Backlog>(k => k.boardId);
             //Backlog to Tempissues one to many relation
+            /* builder.Entity<TempIssue>()
+                 .HasOne(b => b.Backlog)
+                 .WithMany(i => i.TempIssues)
+                 .HasForeignKey(b => b.BacklogId); */
+            //Board To Temp Issue one to many relation
             builder.Entity<TempIssue>()
-                .HasOne(b => b.Backlog)
-                .WithMany(i => i.TempIssues)
-                .HasForeignKey(b => b.BacklogId);  
+                 .HasOne(b => b.Board)
+                 .WithMany(t => t.TempIssues)
+                 .HasForeignKey(b => b.BoardId);
             //Board to Sprint One to Many Relation
             builder.Entity<Sprint>()
                 .HasOne(b => b.Board)

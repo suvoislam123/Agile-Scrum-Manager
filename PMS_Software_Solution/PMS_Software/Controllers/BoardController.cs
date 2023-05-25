@@ -64,20 +64,31 @@ namespace PMS_Software.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateBacklog(BacklogAddRequest backlogAddRequest)
         {
-            if (ModelState.IsValid)
+
+            if (backlogAddRequest.SprintId.ToString() != "Backlog" && backlogAddRequest.SprintId != null)
             {
-                if (backlogAddRequest.SprintId.ToString() != "Backlog")
-                {
-                    var issue = backlogAddRequest.ToIssue();
-                    await _boardService.AddIssueAtSprint((Guid)backlogAddRequest.SprintId, issue);
-                    return RedirectToAction("BacklogPage", "Board", new { projectId = backlogAddRequest.ProjectId, boardId = backlogAddRequest.BoardId });
-                }
-                
+                var issue = backlogAddRequest.ToIssue();
+                await _boardService.AddIssueAtSprint((Guid)backlogAddRequest.SprintId, issue);
+                return RedirectToAction("BacklogPage", "Board", new { projectId = backlogAddRequest.ProjectId, boardId = backlogAddRequest.BoardId });
+            }
+            else
+            {
+                var tempIssue = backlogAddRequest.ToTempIssue();
+                await _boardService.AddTempIssueAtBoard((Guid)backlogAddRequest.BoardId, tempIssue);
+
             }
             return RedirectToAction("BacklogPage", "Board", new { projectId = backlogAddRequest.ProjectId, boardId = backlogAddRequest.BoardId });
            
         }
-        
+        [HttpDelete]
+        [Route("/Issue/Delete/{Id}")]
+        public async Task<IActionResult> DeleteIssueAsync(Guid Id)
+        {
+            var issue = await _boardService.DeleteIssueByIssueId(Id);
+            if (issue != null)
+                return Ok();
+            return NotFound();
+        }
 
     }
 }

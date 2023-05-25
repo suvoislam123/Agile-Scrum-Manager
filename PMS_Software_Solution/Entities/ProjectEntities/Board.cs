@@ -18,5 +18,6 @@ namespace Entities.ProjectEntities
         public Backlog Backlog { get; set; }
 
         public ICollection<Sprint> Sprints { get; set; }
+        public ICollection<TempIssue> TempIssues { get; set; }
     }
 }
