@@ -13,5 +13,11 @@ namespace ServiceContracts
     {
         Project AddProjectAsync(ProjectAddRequest? projectAddRequest, ClaimsPrincipal user);
         // List<ProjectResponse> GetAllProjectByOwnerUserName(string UserName);
+        Task<List<ProjectResponse>> GetProjectsByWoner(ClaimsPrincipal user);
+        Task<ProjectResponse> DeleteProjectAsync(Guid id);
+        Task<ProjectResponse> GetProjectByIdAsync(Guid id);
+        Task<ProjectResponse> UpdateProjectByIdAsync(ProjectUpdateRequest projectUpdateRequest);
+        Task<Project> LaunchProject(Guid projectId);
+
     }
 }

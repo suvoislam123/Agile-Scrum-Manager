@@ -38,7 +38,7 @@
                                 <div class="text-center">
                                     <h1 class="h4 text-gray-900 mb-4">Welcome Back!</h1>
                                 </div>
-                                <form class="user" asp-action="SignUp">
+                                <form class="user" asp-controller="Account" asp-action="SignUp">
                                     <div asp-validation-summary="ModelOnly" class="text-danger">
 
                                     </div>
@@ -103,7 +103,7 @@
                                 </form>
                                 <hr>
                                 <div class="text-center">
-                                    <a class="small" href="forgot-password.html">Forgot Password?</a>
+                                    <a class="small" asp-controller="Account" asp-action="ForgetPassword">Forgot Password?</a>
                                 </div>
                                 <div class="text-center">
                                     <a class="small" asp-action="Login" asp-controller="Account">Login Your Account</a>

@@ -16,6 +16,10 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = C:\Users\Shuvo Islam\Desktop\code\BSSE-final-project\PMS_Software_Solution\PMS_Software
 build_property._RazorSourceGeneratorDebug = 
 
+[C:/Users/Shuvo Islam/Desktop/code/BSSE-final-project/PMS_Software_Solution/PMS_Software/Views/Account/ForgetPassword.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxGb3JnZXRQYXNzd29yZC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/Shuvo Islam/Desktop/code/BSSE-final-project/PMS_Software_Solution/PMS_Software/Views/Account/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
@@ -32,6 +36,18 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxTaWduVXAuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/Shuvo Islam/Desktop/code/BSSE-final-project/PMS_Software_Solution/PMS_Software/Views/Board/BacklogPage.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQm9hcmRcQmFja2xvZ1BhZ2UuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Shuvo Islam/Desktop/code/BSSE-final-project/PMS_Software_Solution/PMS_Software/Views/Board/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQm9hcmRcQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Shuvo Islam/Desktop/code/BSSE-final-project/PMS_Software_Solution/PMS_Software/Views/Board/IssueAddFormInBacklog.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQm9hcmRcSXNzdWVBZGRGb3JtSW5CYWNrbG9nLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/Shuvo Islam/Desktop/code/BSSE-final-project/PMS_Software_Solution/PMS_Software/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
@@ -44,8 +60,20 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvamVjdFxDcmVhdGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/Shuvo Islam/Desktop/code/BSSE-final-project/PMS_Software_Solution/PMS_Software/Views/Project/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvamVjdFxFZGl0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/Shuvo Islam/Desktop/code/BSSE-final-project/PMS_Software_Solution/PMS_Software/Views/Project/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvamVjdFxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Shuvo Islam/Desktop/code/BSSE-final-project/PMS_Software_Solution/PMS_Software/Views/Project/LaunchProjectPage.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvamVjdFxMYXVuY2hQcm9qZWN0UGFnZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Shuvo Islam/Desktop/code/BSSE-final-project/PMS_Software_Solution/PMS_Software/Views/Shared/Components/RecentBoards/RecentBoardList.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXENvbXBvbmVudHNcUmVjZW50Qm9hcmRzXFJlY2VudEJvYXJkTGlzdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/Shuvo Islam/Desktop/code/BSSE-final-project/PMS_Software_Solution/PMS_Software/Views/Shared/Error.cshtml]

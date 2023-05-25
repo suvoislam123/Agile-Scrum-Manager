@@ -1,14 +1,16 @@
 {
   "version": 2,
-  "dgSpecHash": "aMCyoq1qhDeWJTeogf/lFQYzwVx4lmoRcxqXcdxJIGrrdALb6ixcWB8CERApNJrVukCRAt/JAp61pz7mCPpGhQ==",
+  "dgSpecHash": "PPOEef5gftC+WKpkHQns5L/+d4//qBN0VB8Bz+R6tY0ldPoCISWzXyqukTwdK+azE9vcc+DA3OOjJL7k+Ej0uA==",
   "success": true,
   "projectFilePath": "C:\\Users\\Shuvo Islam\\Desktop\\code\\BSSE-final-project\\PMS_Software_Solution\\ServiceContracts\\ServiceContracts.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Shuvo Islam\\.nuget\\packages\\azure.core\\1.24.0\\azure.core.1.24.0.nupkg.sha512",
     "C:\\Users\\Shuvo Islam\\.nuget\\packages\\azure.identity\\1.6.0\\azure.identity.1.6.0.nupkg.sha512",
+    "C:\\Users\\Shuvo Islam\\.nuget\\packages\\microsoft.aspnetcore.authorization\\7.0.5\\microsoft.aspnetcore.authorization.7.0.5.nupkg.sha512",
     "C:\\Users\\Shuvo Islam\\.nuget\\packages\\microsoft.aspnetcore.cryptography.internal\\7.0.5\\microsoft.aspnetcore.cryptography.internal.7.0.5.nupkg.sha512",
     "C:\\Users\\Shuvo Islam\\.nuget\\packages\\microsoft.aspnetcore.cryptography.keyderivation\\7.0.5\\microsoft.aspnetcore.cryptography.keyderivation.7.0.5.nupkg.sha512",
     "C:\\Users\\Shuvo Islam\\.nuget\\packages\\microsoft.aspnetcore.identity.entityframeworkcore\\7.0.5\\microsoft.aspnetcore.identity.entityframeworkcore.7.0.5.nupkg.sha512",
+    "C:\\Users\\Shuvo Islam\\.nuget\\packages\\microsoft.aspnetcore.metadata\\7.0.5\\microsoft.aspnetcore.metadata.7.0.5.nupkg.sha512",
     "C:\\Users\\Shuvo Islam\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\1.1.1\\microsoft.bcl.asyncinterfaces.1.1.1.nupkg.sha512",
     "C:\\Users\\Shuvo Islam\\.nuget\\packages\\microsoft.csharp\\4.5.0\\microsoft.csharp.4.5.0.nupkg.sha512",
     "C:\\Users\\Shuvo Islam\\.nuget\\packages\\microsoft.data.sqlclient\\5.0.1\\microsoft.data.sqlclient.5.0.1.nupkg.sha512",

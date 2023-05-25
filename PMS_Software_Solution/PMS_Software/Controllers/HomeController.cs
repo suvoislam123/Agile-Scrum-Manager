@@ -8,6 +8,7 @@ using System.Diagnostics;
 
 namespace PMS_Software.Controllers
 {
+    [Authorize]
     
     public class HomeController : Controller
     {

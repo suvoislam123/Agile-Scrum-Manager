@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Entities.Migrations
 {
     /// <inheritdoc />
-    public partial class MyMigration : Migration
+    public partial class Initial : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -30,6 +30,15 @@ namespace Entities.Migrations
                 columns: table => new
                 {
                     Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    FirstName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    LastName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    DateOfBirth = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    UserAddress = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    JobTitle = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    JobDescription = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    JobStatus = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Department = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Organization = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     UserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     NormalizedUserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     Email = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
@@ -55,15 +64,31 @@ namespace Entities.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    ProjectName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ProjectName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ProjectKey = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Catagory = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    DefaultAssignee = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    ProjectWoner = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    Catagory = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    DefaultAssignee = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ProjectWoner = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    LastVisitedTime = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    ProjectLead = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Projects", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "UserTeams",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Title = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_UserTeams", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -173,7 +198,7 @@ namespace Entities.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "applicationUserProjects",
+                name: "ApplicationUserProjects",
                 columns: table => new
                 {
                     ApplicationUserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
@@ -181,15 +206,15 @@ namespace Entities.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_applicationUserProjects", x => new { x.ProjectId, x.ApplicationUserId });
+                    table.PrimaryKey("PK_ApplicationUserProjects", x => new { x.ProjectId, x.ApplicationUserId });
                     table.ForeignKey(
-                        name: "FK_applicationUserProjects_AspNetUsers_ApplicationUserId",
+                        name: "FK_ApplicationUserProjects_AspNetUsers_ApplicationUserId",
                         column: x => x.ApplicationUserId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_applicationUserProjects_Projects_ProjectId",
+                        name: "FK_ApplicationUserProjects_Projects_ProjectId",
                         column: x => x.ProjectId,
                         principalTable: "Projects",
                         principalColumn: "Id",
@@ -204,6 +229,7 @@ namespace Entities.Migrations
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     ProjectLead = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    LastVistedTime = table.Column<DateTime>(type: "datetime2", nullable: true),
                     ProjectId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
                 },
                 constraints: table =>
@@ -218,31 +244,184 @@ namespace Entities.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Sprint",
+                name: "ApplicationUserTeams",
+                columns: table => new
+                {
+                    ApplicationUserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    UserTeamId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ApplicationUserTeams", x => new { x.ApplicationUserId, x.UserTeamId });
+                    table.ForeignKey(
+                        name: "FK_ApplicationUserTeams_AspNetUsers_ApplicationUserId",
+                        column: x => x.ApplicationUserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_ApplicationUserTeams_UserTeams_UserTeamId",
+                        column: x => x.UserTeamId,
+                        principalTable: "UserTeams",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Backlogs",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    boardId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Backlogs", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Backlogs_Boards_boardId",
+                        column: x => x.boardId,
+                        principalTable: "Boards",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Sprints",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    IsActive = table.Column<bool>(type: "bit", nullable: false),
                     StartDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     EndDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     BoardId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Sprint", x => x.Id);
+                    table.PrimaryKey("PK_Sprints", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Sprint_Boards_BoardId",
+                        name: "FK_Sprints_Boards_BoardId",
                         column: x => x.BoardId,
                         principalTable: "Boards",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "TempIssues",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    State = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Priority = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    BacklogId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_TempIssues", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_TempIssues_Backlogs_BacklogId",
+                        column: x => x.BacklogId,
+                        principalTable: "Backlogs",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Issues",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    State = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Priority = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    SprintId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Issues", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Issues_Sprints_SprintId",
+                        column: x => x.SprintId,
+                        principalTable: "Sprints",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "AttachedFiles",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Path = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    FileType = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    IssueId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AttachedFiles", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_AttachedFiles_Issues_IssueId",
+                        column: x => x.IssueId,
+                        principalTable: "Issues",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "AttachedLinks",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Url = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    IssueId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AttachedLinks", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_AttachedLinks_Issues_IssueId",
+                        column: x => x.IssueId,
+                        principalTable: "Issues",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Comments",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    UpdatedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    IssueId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    CommentedBy = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Comments", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Comments_Issues_IssueId",
+                        column: x => x.IssueId,
+                        principalTable: "Issues",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
             migrationBuilder.CreateIndex(
-                name: "IX_applicationUserProjects_ApplicationUserId",
-                table: "applicationUserProjects",
+                name: "IX_ApplicationUserProjects_ApplicationUserId",
+                table: "ApplicationUserProjects",
                 column: "ApplicationUserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ApplicationUserTeams_UserTeamId",
+                table: "ApplicationUserTeams",
+                column: "UserTeamId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
@@ -284,21 +463,55 @@ namespace Entities.Migrations
                 filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
+                name: "IX_AttachedFiles_IssueId",
+                table: "AttachedFiles",
+                column: "IssueId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_AttachedLinks_IssueId",
+                table: "AttachedLinks",
+                column: "IssueId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Backlogs_boardId",
+                table: "Backlogs",
+                column: "boardId",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Boards_ProjectId",
                 table: "Boards",
                 column: "ProjectId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Sprint_BoardId",
-                table: "Sprint",
+                name: "IX_Comments_IssueId",
+                table: "Comments",
+                column: "IssueId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Issues_SprintId",
+                table: "Issues",
+                column: "SprintId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Sprints_BoardId",
+                table: "Sprints",
                 column: "BoardId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_TempIssues_BacklogId",
+                table: "TempIssues",
+                column: "BacklogId");
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "applicationUserProjects");
+                name: "ApplicationUserProjects");
+
+            migrationBuilder.DropTable(
+                name: "ApplicationUserTeams");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoleClaims");
@@ -316,13 +529,34 @@ namespace Entities.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "Sprint");
+                name: "AttachedFiles");
+
+            migrationBuilder.DropTable(
+                name: "AttachedLinks");
+
+            migrationBuilder.DropTable(
+                name: "Comments");
+
+            migrationBuilder.DropTable(
+                name: "TempIssues");
+
+            migrationBuilder.DropTable(
+                name: "UserTeams");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
+
+            migrationBuilder.DropTable(
+                name: "Issues");
+
+            migrationBuilder.DropTable(
+                name: "Backlogs");
+
+            migrationBuilder.DropTable(
+                name: "Sprints");
 
             migrationBuilder.DropTable(
                 name: "Boards");

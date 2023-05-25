@@ -6,7 +6,12 @@ using System.Threading.Tasks;
 
 namespace Entities.ProjectEntities
 {
-    internal class AttachedLink
+    public  class AttachedLink
     {
+        public Guid Id { get; set; }
+        public string Url { get; set; }
+        public Guid IssueId { get; set; }
+        public Issue Issue { get; set; }
+
     }
 }

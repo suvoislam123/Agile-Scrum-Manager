@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace ServiceContracts.Enums
 {
-    internal class IssueStateOptions
+    public enum IssueStateOptions
     {
+       ToDo,Doing,InReview,Done
     }
 }

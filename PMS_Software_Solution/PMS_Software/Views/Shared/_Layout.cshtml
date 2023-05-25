@@ -1,6 +1,11 @@
 ﻿@using Entities.Account;
+@using Entities.ProjectEntities;
 @*services*@
 @inject Microsoft.AspNetCore.Identity.SignInManager<ApplicationUser> _signInManager
+@{
+    IEnumerable<Board> boards = ViewData["boards"] as IEnumerable<Board>;
+    
+}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -30,7 +35,7 @@
         <ul class="navbar-nav bg-gray-900 sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" asp-controller="Home" asp-action="Index">
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fa-solid fa-list-check"></i>
                 </div>
@@ -76,8 +81,8 @@
                                 </div>
                             </div>
                         </a>
-                        <a class="collapse-item" href="view-all-project.html">View All Project</a>
-                        <a class="collapse-item" href="create-project.html"><i class="fa-solid fa-plus"></i>Create Project</a>
+                        <a class="collapse-item" asp-controller="Project" asp-action="Index">View All Project</a>
+                        <a class="collapse-item" asp-controller="Project" asp-action="Create"><i class="fa-solid fa-plus"></i>Create Project</a>
                     </div>
                 </div>
             </li>
@@ -129,28 +134,31 @@
             </div>
 
             <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
-                   aria-expanded="true" aria-controls="collapsePages">
-                    <i class="fa-regular fa-clipboard"></i>
-                    <span>Boards</span>
-                </a>
-                <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Boards</h6>
-                        <a class="collapse-item" href="login.html">Developer Board</a>
-                        <a class="collapse-item" href="register.html">Marketting Board</a>
-                        <a class="collapse-item" href="forgot-password.html">Web Board</a>
-                        <a class="collapse-item text-primary" href="project-board.html">Show More</a>
-                        <div class="collapse-divider"><hr></div>
-                        <a class="collapse-item" href="create-board.html"><i class="fa-solid fa-plus"></i>Create Board</a>
+            @if(boards!=null)
+            {
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
+                       aria-expanded="true" aria-controls="collapsePages">
+                        <i class="fa-regular fa-clipboard"></i>
+                        <span>Boards</span>
+                    </a>
+                    <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                        <div class="bg-white py-2 collapse-inner rounded">
+                            <h6 class="collapse-header">Boards</h6>
+                            @foreach(var board in boards)
+                            {
+                                <a class="collapse-item" href="@Url.Action("BacklogPage","Board",new{projectId=board.ProjectId,boardId=board.Id})">@board.Name</a>
+                            }
+                            <div class="collapse-divider"><hr></div>
+                            <a class="collapse-item" href="@Url.Action("Create","Board", new{projectId=boards.FirstOrDefault().ProjectId})"><i class="fa-solid fa-plus"></i>Create Board</a>
+                        </div>
                     </div>
-                </div>
-            </li>
+                </li>
+            }
 
             <!-- Nav Item - Charts -->
             <li class="nav-item">
-                <a class="nav-link" href="charts.html">
+                <a class="nav-link" href="">
                     <i class="fa-solid fa-boxes-packing"></i>
                     <span>Back Log</span>
                 </a>
@@ -174,9 +182,9 @@
             <hr class="sidebar-divider d-none d-md-block">
             <!-- create button -->
             <div>
-                <button href="#" id="issue-create-btn" class="issue-create-btn btn btn-primary btn-icon-split d-block w-75 mx-auto my-3">
+                <a asp-controller="Project" asp-action="Create" id="issue-create-btn" class="issue-create-btn btn btn-primary btn-icon-split d-block w-75 mx-auto my-3">
                     <span class="text">Create</span>
-                </button>
+                </a>
             </div>
             <!-- Sidebar Toggler (Sidebar) -->
             <div class="text-center d-none d-md-inline">

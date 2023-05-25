@@ -571,3 +571,5 @@ C:\Users\Shuvo Islam\Desktop\code\BSSE-final-project\PMS_Software_Solution\PMS_S
 C:\Users\Shuvo Islam\Desktop\code\BSSE-final-project\PMS_Software_Solution\PMS_Software\obj\Debug\net7.0\PMS_Software.genruntimeconfig.cache
 C:\Users\Shuvo Islam\Desktop\code\BSSE-final-project\PMS_Software_Solution\PMS_Software\obj\Debug\net7.0\ref\PMS_Software.dll
 C:\Users\Shuvo Islam\Desktop\code\BSSE-final-project\PMS_Software_Solution\PMS_Software\bin\Debug\net7.0\Microsoft.Extensions.Options.dll
+C:\Users\Shuvo Islam\Desktop\code\BSSE-final-project\PMS_Software_Solution\PMS_Software\bin\Debug\net7.0\Microsoft.AspNetCore.Authorization.dll
+C:\Users\Shuvo Islam\Desktop\code\BSSE-final-project\PMS_Software_Solution\PMS_Software\bin\Debug\net7.0\Microsoft.AspNetCore.Metadata.dll

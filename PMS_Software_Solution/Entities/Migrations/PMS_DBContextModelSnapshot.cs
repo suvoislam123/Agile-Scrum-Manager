@@ -34,12 +34,33 @@ namespace Entities.Migrations
                         .IsConcurrencyToken()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<DateTime?>("DateOfBirth")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Department")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Email")
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
 
                     b.Property<bool>("EmailConfirmed")
                         .HasColumnType("bit");
+
+                    b.Property<string>("FirstName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("JobDescription")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("JobStatus")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("JobTitle")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("LastName")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("LockoutEnabled")
                         .HasColumnType("bit");
@@ -55,6 +76,9 @@ namespace Entities.Migrations
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
 
+                    b.Property<string>("Organization")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("PasswordHash")
                         .HasColumnType("nvarchar(max)");
 
@@ -69,6 +93,9 @@ namespace Entities.Migrations
 
                     b.Property<bool>("TwoFactorEnabled")
                         .HasColumnType("bit");
+
+                    b.Property<string>("UserAddress")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("UserName")
                         .HasMaxLength(256)
@@ -99,7 +126,81 @@ namespace Entities.Migrations
 
                     b.HasIndex("ApplicationUserId");
 
-                    b.ToTable("applicationUserProjects");
+                    b.ToTable("ApplicationUserProjects");
+                });
+
+            modelBuilder.Entity("Entities.JoinTables.ApplicationUserTeam", b =>
+                {
+                    b.Property<string>("ApplicationUserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<Guid>("UserTeamId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("ApplicationUserId", "UserTeamId");
+
+                    b.HasIndex("UserTeamId");
+
+                    b.ToTable("ApplicationUserTeams");
+                });
+
+            modelBuilder.Entity("Entities.ProjectEntities.AttachedFile", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("FileType")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid>("IssueId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Path")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("IssueId");
+
+                    b.ToTable("AttachedFiles");
+                });
+
+            modelBuilder.Entity("Entities.ProjectEntities.AttachedLink", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("IssueId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Url")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("IssueId");
+
+                    b.ToTable("AttachedLinks");
+                });
+
+            modelBuilder.Entity("Entities.ProjectEntities.Backlog", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("boardId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("boardId")
+                        .IsUnique();
+
+                    b.ToTable("Backlogs");
                 });
 
             modelBuilder.Entity("Entities.ProjectEntities.Board", b =>
@@ -111,6 +212,9 @@ namespace Entities.Migrations
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("LastVistedTime")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -130,6 +234,69 @@ namespace Entities.Migrations
                     b.ToTable("Boards");
                 });
 
+            modelBuilder.Entity("Entities.ProjectEntities.Comment", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("CommentedBy")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid>("IssueId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime?>("UpdatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("IssueId");
+
+                    b.ToTable("Comments");
+                });
+
+            modelBuilder.Entity("Entities.ProjectEntities.Issue", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Priority")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid>("SprintId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("State")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<byte[]>("Timestamp")
+                        .IsConcurrencyToken()
+                        .IsRequired()
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasColumnType("rowversion");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("SprintId");
+
+                    b.ToTable("Issues");
+                });
+
             modelBuilder.Entity("Entities.ProjectEntities.Project", b =>
                 {
                     b.Property<Guid>("Id")
@@ -137,19 +304,22 @@ namespace Entities.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Catagory")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("DefaultAssignee")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("LastVisitedTime")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("ProjectKey")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("ProjectLead")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("ProjectName")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ProjectWoner")
@@ -176,6 +346,9 @@ namespace Entities.Migrations
                     b.Property<DateTime>("EndDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -187,7 +360,58 @@ namespace Entities.Migrations
 
                     b.HasIndex("BoardId");
 
-                    b.ToTable("Sprint");
+                    b.ToTable("Sprints");
+                });
+
+            modelBuilder.Entity("Entities.ProjectEntities.TempIssue", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("BacklogId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Priority")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("State")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("BacklogId");
+
+                    b.ToTable("TempIssues");
+                });
+
+            modelBuilder.Entity("Entities.Team.UserTeam", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("UserTeams");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -342,6 +566,58 @@ namespace Entities.Migrations
                     b.Navigation("Project");
                 });
 
+            modelBuilder.Entity("Entities.JoinTables.ApplicationUserTeam", b =>
+                {
+                    b.HasOne("Entities.Account.ApplicationUser", "ApplicationUser")
+                        .WithMany("ApplicationUserTeams")
+                        .HasForeignKey("ApplicationUserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Entities.Team.UserTeam", "UserTeam")
+                        .WithMany("ApplicationUserTeams")
+                        .HasForeignKey("UserTeamId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("ApplicationUser");
+
+                    b.Navigation("UserTeam");
+                });
+
+            modelBuilder.Entity("Entities.ProjectEntities.AttachedFile", b =>
+                {
+                    b.HasOne("Entities.ProjectEntities.Issue", "Issue")
+                        .WithMany("AttachedFiles")
+                        .HasForeignKey("IssueId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Issue");
+                });
+
+            modelBuilder.Entity("Entities.ProjectEntities.AttachedLink", b =>
+                {
+                    b.HasOne("Entities.ProjectEntities.Issue", "Issue")
+                        .WithMany("AttachedLinks")
+                        .HasForeignKey("IssueId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Issue");
+                });
+
+            modelBuilder.Entity("Entities.ProjectEntities.Backlog", b =>
+                {
+                    b.HasOne("Entities.ProjectEntities.Board", "Board")
+                        .WithOne("Backlog")
+                        .HasForeignKey("Entities.ProjectEntities.Backlog", "boardId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Board");
+                });
+
             modelBuilder.Entity("Entities.ProjectEntities.Board", b =>
                 {
                     b.HasOne("Entities.ProjectEntities.Project", "Project")
@@ -353,6 +629,28 @@ namespace Entities.Migrations
                     b.Navigation("Project");
                 });
 
+            modelBuilder.Entity("Entities.ProjectEntities.Comment", b =>
+                {
+                    b.HasOne("Entities.ProjectEntities.Issue", "Issue")
+                        .WithMany("Comments")
+                        .HasForeignKey("IssueId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Issue");
+                });
+
+            modelBuilder.Entity("Entities.ProjectEntities.Issue", b =>
+                {
+                    b.HasOne("Entities.ProjectEntities.Sprint", "Sprint")
+                        .WithMany("Issues")
+                        .HasForeignKey("SprintId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Sprint");
+                });
+
             modelBuilder.Entity("Entities.ProjectEntities.Sprint", b =>
                 {
                     b.HasOne("Entities.ProjectEntities.Board", "Board")
@@ -362,6 +660,17 @@ namespace Entities.Migrations
                         .IsRequired();
 
                     b.Navigation("Board");
+                });
+
+            modelBuilder.Entity("Entities.ProjectEntities.TempIssue", b =>
+                {
+                    b.HasOne("Entities.ProjectEntities.Backlog", "Backlog")
+                        .WithMany("TempIssues")
+                        .HasForeignKey("BacklogId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Backlog");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -418,11 +727,30 @@ namespace Entities.Migrations
             modelBuilder.Entity("Entities.Account.ApplicationUser", b =>
                 {
                     b.Navigation("ApplicationUserProjects");
+
+                    b.Navigation("ApplicationUserTeams");
+                });
+
+            modelBuilder.Entity("Entities.ProjectEntities.Backlog", b =>
+                {
+                    b.Navigation("TempIssues");
                 });
 
             modelBuilder.Entity("Entities.ProjectEntities.Board", b =>
                 {
+                    b.Navigation("Backlog")
+                        .IsRequired();
+
                     b.Navigation("Sprints");
+                });
+
+            modelBuilder.Entity("Entities.ProjectEntities.Issue", b =>
+                {
+                    b.Navigation("AttachedFiles");
+
+                    b.Navigation("AttachedLinks");
+
+                    b.Navigation("Comments");
                 });
 
             modelBuilder.Entity("Entities.ProjectEntities.Project", b =>
@@ -430,6 +758,16 @@ namespace Entities.Migrations
                     b.Navigation("ApplicationUserProjects");
 
                     b.Navigation("Boards");
+                });
+
+            modelBuilder.Entity("Entities.ProjectEntities.Sprint", b =>
+                {
+                    b.Navigation("Issues");
+                });
+
+            modelBuilder.Entity("Entities.Team.UserTeam", b =>
+                {
+                    b.Navigation("ApplicationUserTeams");
                 });
 #pragma warning restore 612, 618
         }

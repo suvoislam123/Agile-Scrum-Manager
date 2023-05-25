@@ -1,0 +1,106 @@
+﻿@using Entities.ProjectEntities;
+@using ServiceContracts;
+@inject IBoardService _boardService;
+@{
+    IEnumerable<Board> boards = ViewData["boards"] as IEnumerable<Board>;
+    var boardId = (Guid)ViewData["boardId"];
+    var board = boards.FirstOrDefault(b => b.Id == boardId);
+    var sprints = (ICollection<Sprint>)ViewData["sprints"];
+}
+<div class="container-fluid">
+    <div class="sprints-container">
+        @foreach(var sprint in sprints)
+        {
+            <div class="sprint-container">
+                <div class="d-flex">
+                    <div class="sprint-toggle-icon">
+                        ^
+                    </div>
+                    <div class="w-100 d-flex justify-content-between">
+                        <div>
+                            <div class="d-flex align-items-center">
+                                <h5 class="text-bold" style="color: black;">@sprint.Name</h5>
+                                <small class="ml-3"> issues</small>
+                            </div>
+                            <div>
+                                <small>12/Jan/23 6:12 PM•26/Jan/23 6:32 PM</small>
+                            </div>
+                        </div>
+
+                        <div class="d-flex align-items-center text-white">
+                            <span class="bg-gray-500 rounded-pill px-2 ml-2">1</span>
+                            <span class="bg-success rounded-pill  px-2 ml-2">1</span>
+                            <span class="bg-primary rounded-pill px-2 ml-2">1</span>
+                            <div class="dropdown no-arrow px-2 show">
+                                <a class="dropdown-toggle" href="" role="button" id="dropdownMenuLink2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                    <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400" aria-hidden="true"></i>
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink" x-placement="bottom-end" style="position: absolute; transform: translate3d(-135px, 22px, 0px); top: 0px; left: 0px; will-change: transform;">
+                                    <a class="dropdown-item" href="#">Edit Sprint</a>
+                                    <a class="dropdown-item" href="#">Delete Sprint</a>
+                                    <a class="dropdown-item" href="#">Generate Report</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="issue-container mb-4">
+                    @foreach(var issue in await _boardService.GetIssuesBySprintId(sprint.Id))
+                    {
+                        <div class="rounded d-flex align-items-center " style="background-color: rgb(248, 245, 90); padding: 8px;">
+                            <div class="mr-3">
+                                <i class="fa-solid fa-briefcase"></i>
+                            </div>
+                            <p id="story-description" title="@issue.Description" style="width: 60%;">@issue.Description</p>
+                            <script>
+                                var element = document.getElementById("story-description");
+                                element.style.whiteSpace = "nowrap";
+                                element.style.overflow = "hidden";
+                                element.style.textOverflow = "ellipsis";
+                            </script>
+                            <div class="ml-2 d-flex align-items-center mx-auto">
+                                <div>@board.Name</div>
+                                <i class="fa-solid fa-briefcase ml-2"></i>
+                                <span class="bg-gray-500 rounded-pill px-2 ml-2">1</span>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        }
+    </div>
+    <div class="backlog-container mb-5">
+        <div class="d-flex justify-content-between">
+            <div class="d-flex align-items-center">
+                <h3>Backlog</h3>
+                <small>1 issuses</small>
+            </div>
+            <div class="d-flex align-items-center">
+                <a href="#" class="btn btn-light bg-gray-500">
+                    <span class="text">Create Sprint</span>
+                </a>
+                <div class="dropdown no-arrow px-2 show">
+                    <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                        <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400" aria-hidden="true"></i>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink" x-placement="bottom-end" style="position: absolute; transform: translate3d(-135px, 22px, 0px); top: 0px; left: 0px; will-change: transform;">
+                        <a class="dropdown-item" href="#">Board Setting</a>
+                        <a class="dropdown-item" href="#">Create Board</a>
+                        <a class="dropdown-item" href="#">Print Card</a>
+                    </div> 
+                </div>
+            </div>
+        </div>
+        <div class="issues-container" style="border: 1px dotted gray">
+            <p class="text-center">This is container. Drag issu here to create</p>
+        </div>
+        <div class="issue-creating-container">
+            <div class="create-button-container">
+                <p class=""> + create</p>
+            </div>
+            <div class="issue-create-container">
+                @await Html.PartialAsync("IssueAddFormInBacklog")
+            </div>
+        </div>
+    </div>
+</div>

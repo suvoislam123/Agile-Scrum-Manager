@@ -8,7 +8,5 @@ namespace Entities.JoinTables
         public ApplicationUser ApplicationUser { get; set; }
         public Guid ProjectId { get; set; }
         public Project Project { get; set; }
-
-
     }
 }

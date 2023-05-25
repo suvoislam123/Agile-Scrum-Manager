@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace ServiceContracts.Enums
 {
-    internal class IssuePriorityOptions
+    public enum IssuePriorityOptions
     {
+        Low,Medium,High
     }
 }

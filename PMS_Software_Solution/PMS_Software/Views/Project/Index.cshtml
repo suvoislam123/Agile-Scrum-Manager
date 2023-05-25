@@ -1,4 +1,27 @@
-﻿<!-- all project table start  -->
+﻿@using PMS_Software.ViewModels;
+@model ProjectViewModel
+
+@*DELETE MODAL STARTS HERE*@
+<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Are you sure want to logout?</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body text-danger">If You are Sure to delete  then click Delete</div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                <a class="btn btn-primary" id="project-delete-button" data-dismiss="modal">Delete</a>
+            </div>
+        </div>
+    </div>
+</div>
+@*DELETE MODAL ENDS HERE*@
+<!-- all project table start  -->
 <div class="card shadow mb-4">
     <div class="card-header py-3">
         <h6 class="m-0 font-weight-bold text-primary">All project</h6>
@@ -16,396 +39,96 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>
-                            <div class="d-flex align-items-center">
-                                <img src="https://i.ibb.co/341SyT0/Fgfe627-Vs-AAJ9n-Q.jpg"
-                                     alt=""
-                                     style="width: 45px; height: 45px"
-                                     class="rounded-circle" />
-                                <div class="">
-                                    <a href="selected-project.html" style="text-decoration:underline;margin-left:10px;">SpceX</a>
-                                </div>
-                            </div>
-                        </td>
-                        <td>
-                            <p class="fw-normal mb-1">PK123</p>
-                        </td>
-                        <td>
-                            <span class="badge badge-success rounded-pill d-inline">Scrum</span>
-                        </td>
-                        <td>
-                            <div class="d-flex align-items-center">
-                                <img src="https://mdbootstrap.com/img/new/avatars/8.jpg"
-                                     alt=""
-                                     style="width: 45px; height: 45px"
-                                     class="rounded-circle" />
-                                <div class="ms-3">
-                                    <p class="fw-bold mb-1">John Doe</p>
-                                    <p class="text-muted mb-0">john.doe@gmail.com</p>
-                                </div>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="dropdown no-arrow">
-                                <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-                                </a>
-                                <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink" style="">
-                                    <a class="dropdown-item" href="project-setting.html">Project Setting</a>
-                                    <a class="dropdown-item" href="#">Move to Trash</a>
 
+                    @foreach(var project in Model.ProjectsAsWoner)
+                    {
+                        <tr>
+                            <td>
+                                <div class="d-flex align-items-center">
+                                    <img src="https://i.ibb.co/341SyT0/Fgfe627-Vs-AAJ9n-Q.jpg"
+                                         alt=""
+                                         style="width: 45px; height: 45px"
+                                         class="rounded-circle" />
+                                    <div class="">
+                                        <a href="@Url.Action("LaunchProjectPage","Project",new{projectId=project.Id})" style="text-decoration:underline;margin-left:10px;">@project.ProjectName</a>
+                                    </div>
                                 </div>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div class="d-flex align-items-center">
-                                <img src="https://i.ibb.co/341SyT0/Fgfe627-Vs-AAJ9n-Q.jpg"
-                                     alt=""
-                                     style="width: 45px; height: 45px"
-                                     class="rounded-circle" />
-                                <div class="">
-                                    <a href="selected-project-with-review.html" style="text-decoration:underline;margin-left:10px;">SpceX</a>
-                                </div>
-                            </div>
-                        </td>
-                        <td>
-                            <p class="fw-normal mb-1">PK123</p>
-                        </td>
-                        <td>
-                            <span class="badge badge-success rounded-pill d-inline">Scrum</span>
-                        </td>
-                        <td>
-                            <div class="d-flex align-items-center">
-                                <img src="https://mdbootstrap.com/img/new/avatars/8.jpg"
-                                     alt=""
-                                     style="width: 45px; height: 45px"
-                                     class="rounded-circle" />
-                                <div class="ms-3">
-                                    <p class="fw-bold mb-1">John Doe</p>
-                                    <p class="text-muted mb-0">john.doe@gmail.com</p>
-                                </div>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="dropdown no-arrow">
-                                <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-                                </a>
-                                <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink" style="">
-                                    <a class="dropdown-item" href="project-setting.html">Project Setting</a>
-                                    <a class="dropdown-item" href="#">Move to Trash</a>
+                            </td>
+                            <td>
+                                <p class="fw-normal mb-1">@project.ProjectKey</p>
+                            </td>
+                            <td>
+                                <span class="badge badge-success rounded-pill d-inline">@project.Catagory</span>
+                            </td>
+                            <td>
+                                @if(project.ProjectLead!=null)
+                                {
+                                    <div class="d-flex align-items-center">
+                                        <img src="https://mdbootstrap.com/img/new/avatars/8.jpg"
+                                             alt=""
+                                             style="width: 45px; height: 45px"
+                                             class="rounded-circle" />
+                                        <div class="ms-3">
+                                            <p class="fw-bold mb-1">@project.ProjectWoner</p>
+                                            <p class="text-muted mb-0">john.doe@gmail.com</p>
+                                        </div>
+                                    </div>
+                                }
+                                else
+                                {
+                                    <p>Me</p>
+                                }
+                            </td>
+                            <td>
+                                <div class="dropdown no-arrow">
+                                    <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                                    </a>
+                                    <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink" style="">
+                                        <a class="dropdown-item" asp-controller="Project" asp-action="Edit" asp-route-id="@project.Id">Project Setting</a>
+                                        <a class="dropdown-item delete-button" href="#" project-id="@project.Id" data-toggle="modal" data-target="#deleteModal">Move to Trash</a>
 
+                                    </div>
                                 </div>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div class="d-flex align-items-center">
-                                <img src="https://i.ibb.co/341SyT0/Fgfe627-Vs-AAJ9n-Q.jpg"
-                                     alt=""
-                                     style="width: 45px; height: 45px"
-                                     class="rounded-circle" />
-                                <div class="">
-                                    <a href="selected-project.html" style="text-decoration:underline;margin-left:10px;">SpceX</a>
-                                </div>
-                            </div>
-                        </td>
-                        <td>
-                            <p class="fw-normal mb-1">PK123</p>
-                        </td>
-                        <td>
-                            <span class="badge badge-success rounded-pill d-inline">Scrum</span>
-                        </td>
-                        <td>
-                            <div class="d-flex align-items-center">
-                                <img src="https://mdbootstrap.com/img/new/avatars/8.jpg"
-                                     alt=""
-                                     style="width: 45px; height: 45px"
-                                     class="rounded-circle" />
-                                <div class="ms-3">
-                                    <p class="fw-bold mb-1">John Doe</p>
-                                    <p class="text-muted mb-0">john.doe@gmail.com</p>
-                                </div>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="dropdown no-arrow">
-                                <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-                                </a>
-                                <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink" style="">
-                                    <a class="dropdown-item" href="project-setting.html">Project Setting</a>
-                                    <a class="dropdown-item" href="#">Move to Trash</a>
+                            </td>
+                        </tr>
+                    }
 
-                                </div>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div class="d-flex align-items-center">
-                                <img src="https://i.ibb.co/341SyT0/Fgfe627-Vs-AAJ9n-Q.jpg"
-                                     alt=""
-                                     style="width: 45px; height: 45px"
-                                     class="rounded-circle" />
-                                <div class="">
-                                    <a href="selected-project.html" style="text-decoration:underline;margin-left:10px;">SpceX</a>
-                                </div>
-                            </div>
-                        </td>
-                        <td>
-                            <p class="fw-normal mb-1">PK123</p>
-                        </td>
-                        <td>
-                            <span class="badge badge-success rounded-pill d-inline">Scrum</span>
-                        </td>
-                        <td>
-                            <div class="d-flex align-items-center">
-                                <img src="https://mdbootstrap.com/img/new/avatars/8.jpg"
-                                     alt=""
-                                     style="width: 45px; height: 45px"
-                                     class="rounded-circle" />
-                                <div class="ms-3">
-                                    <p class="fw-bold mb-1">John Doe</p>
-                                    <p class="text-muted mb-0">john.doe@gmail.com</p>
-                                </div>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="dropdown no-arrow">
-                                <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-                                </a>
-                                <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink" style="">
-                                    <a class="dropdown-item" href="project-setting.html">Project Setting</a>
-                                    <a class="dropdown-item" href="#">Move to Trash</a>
-
-                                </div>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div class="d-flex align-items-center">
-                                <img src="https://i.ibb.co/341SyT0/Fgfe627-Vs-AAJ9n-Q.jpg"
-                                     alt=""
-                                     style="width: 45px; height: 45px"
-                                     class="rounded-circle" />
-                                <div class="">
-                                    <a href="selected-project.html" style="text-decoration:underline;margin-left:10px;">SpceX</a>
-                                </div>
-                            </div>
-                        </td>
-                        <td>
-                            <p class="fw-normal mb-1">PK123</p>
-                        </td>
-                        <td>
-                            <span class="badge badge-success rounded-pill d-inline">Scrum</span>
-                        </td>
-                        <td>
-                            <div class="d-flex align-items-center">
-                                <img src="https://mdbootstrap.com/img/new/avatars/8.jpg"
-                                     alt=""
-                                     style="width: 45px; height: 45px"
-                                     class="rounded-circle" />
-                                <div class="ms-3">
-                                    <p class="fw-bold mb-1">John Doe</p>
-                                    <p class="text-muted mb-0">john.doe@gmail.com</p>
-                                </div>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="dropdown no-arrow">
-                                <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-                                </a>
-                                <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink" style="">
-                                    <a class="dropdown-item" href="project-setting.html">Project Setting</a>
-                                    <a class="dropdown-item" href="#">Move to Trash</a>
-
-                                </div>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div class="d-flex align-items-center">
-                                <img src="https://i.ibb.co/341SyT0/Fgfe627-Vs-AAJ9n-Q.jpg"
-                                     alt=""
-                                     style="width: 45px; height: 45px"
-                                     class="rounded-circle" />
-                                <div class="">
-                                    <a href="selected-project.html" style="text-decoration:underline;margin-left:10px;">SpceX</a>
-                                </div>
-                            </div>
-                        </td>
-                        <td>
-                            <p class="fw-normal mb-1">PK123</p>
-                        </td>
-                        <td>
-                            <span class="badge badge-success rounded-pill d-inline">Scrum</span>
-                        </td>
-                        <td>
-                            <div class="d-flex align-items-center">
-                                <img src="https://mdbootstrap.com/img/new/avatars/8.jpg"
-                                     alt=""
-                                     style="width: 45px; height: 45px"
-                                     class="rounded-circle" />
-                                <div class="ms-3">
-                                    <p class="fw-bold mb-1">John Doe</p>
-                                    <p class="text-muted mb-0">john.doe@gmail.com</p>
-                                </div>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="dropdown no-arrow">
-                                <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-                                </a>
-                                <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink" style="">
-                                    <a class="dropdown-item" href="project-setting.html">Project Setting</a>
-                                    <a class="dropdown-item" href="#">Move to Trash</a>
-
-                                </div>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div class="d-flex align-items-center">
-                                <img src="https://i.ibb.co/341SyT0/Fgfe627-Vs-AAJ9n-Q.jpg"
-                                     alt=""
-                                     style="width: 45px; height: 45px"
-                                     class="rounded-circle" />
-                                <div class="">
-                                    <a href="selected-project.html" style="text-decoration:underline;margin-left:10px;">SpceX</a>
-                                </div>
-                            </div>
-                        </td>
-                        <td>
-                            <p class="fw-normal mb-1">PK123</p>
-                        </td>
-                        <td>
-                            <span class="badge badge-success rounded-pill d-inline">Scrum</span>
-                        </td>
-                        <td>
-                            <div class="d-flex align-items-center">
-                                <img src="https://mdbootstrap.com/img/new/avatars/8.jpg"
-                                     alt=""
-                                     style="width: 45px; height: 45px"
-                                     class="rounded-circle" />
-                                <div class="ms-3">
-                                    <p class="fw-bold mb-1">John Doe</p>
-                                    <p class="text-muted mb-0">john.doe@gmail.com</p>
-                                </div>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="dropdown no-arrow">
-                                <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-                                </a>
-                                <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink" style="">
-                                    <a class="dropdown-item" href="project-setting.html">Project Setting</a>
-                                    <a class="dropdown-item" href="#">Move to Trash</a>
-
-                                </div>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div class="d-flex align-items-center">
-                                <img src="https://i.ibb.co/341SyT0/Fgfe627-Vs-AAJ9n-Q.jpg"
-                                     alt=""
-                                     style="width: 45px; height: 45px"
-                                     class="rounded-circle" />
-                                <div class="">
-                                    <a href="selected-project.html" style="text-decoration:underline;margin-left:10px;">SpceX</a>
-                                </div>
-                            </div>
-                        </td>
-                        <td>
-                            <p class="fw-normal mb-1">PK123</p>
-                        </td>
-                        <td>
-                            <span class="badge badge-success rounded-pill d-inline">Scrum</span>
-                        </td>
-                        <td>
-                            <div class="d-flex align-items-center">
-                                <img src="https://mdbootstrap.com/img/new/avatars/8.jpg"
-                                     alt=""
-                                     style="width: 45px; height: 45px"
-                                     class="rounded-circle" />
-                                <div class="ms-3">
-                                    <p class="fw-bold mb-1">John Doe</p>
-                                    <p class="text-muted mb-0">john.doe@gmail.com</p>
-                                </div>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="dropdown no-arrow">
-                                <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-                                </a>
-                                <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink" style="">
-                                    <a class="dropdown-item" href="project-setting.html">Project Setting</a>
-                                    <a class="dropdown-item" href="#">Move to Trash</a>
-
-                                </div>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div class="d-flex align-items-center">
-                                <img src="https://i.ibb.co/341SyT0/Fgfe627-Vs-AAJ9n-Q.jpg"
-                                     alt=""
-                                     style="width: 45px; height: 45px"
-                                     class="rounded-circle" />
-                                <div class="">
-                                    <a href="selected-project.html" style="text-decoration:underline;margin-left:10px;">SpceX</a>
-                                </div>
-                            </div>
-                        </td>
-                        <td>
-                            <p class="fw-normal mb-1">PK123</p>
-                        </td>
-                        <td>
-                            <span class="badge badge-success rounded-pill d-inline">Scrum</span>
-                        </td>
-                        <td>
-                            <div class="d-flex align-items-center">
-                                <img src="https://mdbootstrap.com/img/new/avatars/8.jpg"
-                                     alt=""
-                                     style="width: 45px; height: 45px"
-                                     class="rounded-circle" />
-                                <div class="ms-3">
-                                    <p class="fw-bold mb-1">John Doe</p>
-                                    <p class="text-muted mb-0">john.doe@gmail.com</p>
-                                </div>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="dropdown no-arrow">
-                                <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-                                </a>
-                                <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink" style="">
-                                    <a class="dropdown-item" href="project-setting.html">Project Setting</a>
-                                    <a class="dropdown-item" href="#">Move to Trash</a>
-
-                                </div>
-                            </div>
-                        </td>
-                    </tr>
                 </tbody>
             </table>
         </div>
     </div>
 </div>
 <!-- all project table end  -->
+@*script for deleting a project*@
+<script>
+    globalId = 0;
+    let buttons = document.querySelectorAll('.delete-button');
+    buttons.forEach(button => {
+        button.addEventListener('click', () => {
+            globalId = button.getAttribute('project-id').toString();
+        });
+    })
+    const deleteButton = document.getElementById('project-delete-button');
+    deleteButton.addEventListener('click', () => {
+        deleteProjectById(globalId);
+    });
+    function deleteProjectById(id) {
+        fetch(`/Project/Delete?id=${id}`, {
+            method: 'DELETE'
+        })
+            .then(response => {
+                if (response.ok) {
+                    window.location.reload();
+                } else {
+                    console.error('Error deleting project');
+                }
+            })
+            .catch(error => {
+                console.error('Error deleting project', error);
+            });
+
+    }
+
+</script>
+@*deleting script ends*@
