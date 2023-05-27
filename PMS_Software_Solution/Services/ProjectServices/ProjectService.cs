@@ -86,7 +86,6 @@ namespace Services.ProjectServices
         public async Task<ProjectResponse> UpdateProjectByIdAsync( ProjectUpdateRequest projectUpdateRequest)
         {
             Project project = await _db.Projects.SingleOrDefaultAsync(c=>c.Id==projectUpdateRequest.Id);
-            project.ProjectKey = projectUpdateRequest.ProjectKey;
             project.ProjectLead=projectUpdateRequest.ProjectLead;
            // project.ProjectWoner=projectUpdateRequest.ProjectWoner;
             project.ProjectName=projectUpdateRequest.ProjectName;

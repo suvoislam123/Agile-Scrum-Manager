@@ -1,9 +1,11 @@
 ﻿using Entities.Account;
 using Entities.JoinTables;
 using Entities.ProjectEntities;
-using Entities.Team;
+using Entities.TeamEntities;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using System.Reflection.Emit;
+
 namespace Entities
 {
     public class PMS_DBContext : IdentityDbContext<ApplicationUser>
@@ -14,9 +16,10 @@ namespace Entities
         }
         public DbSet<Project> Projects { get; set; }
         public DbSet<ApplicationUser> ApplicationUsers { get; set; }
-        public DbSet<UserTeam> UserTeams { get;set; } 
+        public DbSet<TeamUser> TeamUsers { get; set; }
+        public DbSet<Team> Teams { get; set; }
         public DbSet<ApplicationUserProject> ApplicationUserProjects { get; set; }
-        public DbSet<ApplicationUserTeam>  ApplicationUserTeams { get; set; }
+        
         public DbSet<Board> Boards { get; set; }
         public DbSet<TempIssue> TempIssues { get; set; }
         //public DbSet<Backlog> Backlogs { get; set; }
@@ -25,6 +28,7 @@ namespace Entities
         public DbSet<Comment> Comments { get; set; }
         public DbSet<AttachedFile> AttachedFiles { get; set; }
         public DbSet<AttachedLink> AttachedLinks { get; set; }
+
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
@@ -40,16 +44,26 @@ namespace Entities
                 .WithMany(u => u.ApplicationUserProjects)
                 .HasForeignKey(a => a.ApplicationUserId);
             //User To Team Many to Many realtion
-            builder.Entity<ApplicationUserTeam>()
-                .HasKey(at => new {at.ApplicationUserId,at.UserTeamId});
-            builder.Entity<ApplicationUserTeam>()
-                .HasOne(a => a.UserTeam)
-                .WithMany(u => u.ApplicationUserTeams)
-                .HasForeignKey(a => a.UserTeamId);
-            builder.Entity<ApplicationUserTeam>()
-                .HasOne(a => a.ApplicationUser)
-                .WithMany(u => u.ApplicationUserTeams)
-                .HasForeignKey(a => a.ApplicationUserId);
+            builder.Entity<Team>()
+            .HasMany(t => t.Users)
+            .WithMany(u => u.Teams)
+            .UsingEntity<TeamUser>(
+                j => j
+                    .HasOne(tu => tu.User)
+                    .WithMany()
+                    .HasForeignKey(tu => tu.UserId)
+                    .OnDelete(DeleteBehavior.Cascade),
+                j => j
+                    .HasOne(tu => tu.Team)
+                    .WithMany()
+                    .HasForeignKey(tu => tu.TeamId)
+                    .OnDelete(DeleteBehavior.Cascade),
+                j =>
+                {
+                    j.HasKey(tu => new { tu.UserId, tu.TeamId });
+                    j.HasIndex(tu => new { tu.TeamId, tu.UserId }).IsUnique();
+                }
+            );
 
             //Projects to Board Many to One relationship
             builder.Entity<Board>()
@@ -62,12 +76,7 @@ namespace Entities
                 .HasOne(b=>b.Backlog)
                 .WithOne(b=>b.Board)
                 .HasForeignKey<Backlog>(k => k.boardId);
-            //Backlog to Tempissues one to many relation
-            /* builder.Entity<TempIssue>()
-                 .HasOne(b => b.Backlog)
-                 .WithMany(i => i.TempIssues)
-                 .HasForeignKey(b => b.BacklogId); */
-            //Board To Temp Issue one to many relation
+           
             builder.Entity<TempIssue>()
                  .HasOne(b => b.Board)
                  .WithMany(t => t.TempIssues)

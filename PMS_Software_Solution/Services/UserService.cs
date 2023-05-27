@@ -5,6 +5,7 @@ using Entities;
 using Microsoft.AspNetCore.Identity;
 using Entities.Account;
 using Microsoft.EntityFrameworkCore;
+using Entities.TeamEntities;
 
 namespace Services
 {
@@ -37,6 +38,24 @@ namespace Services
             return result;
         }
 
+        public async Task<List<ApplicationUser>> GetApplicationUsersByTeamId(int teamId)
+        {
+            var users = await _pMS_DBcontext.Teams
+                    .Where(t => t.Id == teamId)
+                    .SelectMany(t => t.Users)
+                    .ToListAsync();
+
+            return users;
+        }
+
+        public async Task<List<Team>> GetTeamsByUserId(string userId)
+        {
+            var teams = await _pMS_DBcontext.Teams
+            .Where(t => t.Users.Any(u => u.Id == userId))
+            .ToListAsync();
+            return teams;
+        }
+
         public async Task<ApplicationUser> GetUserByUserName(string userName)
         {
             var user = await _pMS_DBcontext.ApplicationUsers.FirstOrDefaultAsync(user => user.UserName == userName);
@@ -52,5 +71,6 @@ namespace Services
         {
             await _signInManager.SignOutAsync();
         }
+
     }
 }

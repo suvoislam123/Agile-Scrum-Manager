@@ -1,0 +1,65 @@
+﻿@using PMS_Software.ViewModels;
+@model CreateTeamViewModel
+<h2>Create Team</h2>
+<form  asp-controller="Team" asp-action="Create" method="post">
+    <input type="hidden" asp-for="AdminUserName" value="@User.Identity.Name" />
+    <div class="form-group">
+        <label for="Name">Team Name</label>
+        <input type="text" class="form-control" id="Name" name="Name" required>
+    </div>
+    <div class="form-group">
+        <label for="SelectedUserIds">Users</label>
+        <select  multiple class="form-control" asp-for="SelectedUserIds" id="SelectedUserIds" name="SelectedUserIds"></select>
+    </div>
+    <div class="form-group">
+        <label for="UserSearch">Search Users</label>
+        <input type="text" class="form-control" id="UserSearch" onchange="searchUsers()" />
+        <div id="suggestedUsersContainer"></div>
+    </div>
+    <button type="submit" class="btn btn-primary">Create</button>
+</form>
+
+@section scripts {
+    <script>
+        function searchUsers() {
+            var input = document.getElementById('UserSearch');
+            var container = document.getElementById('suggestedUsersContainer');
+            container.innerHTML = '';
+
+            var inputValue = input.value.trim();
+            if (inputValue.length > 0) {
+                fetch('/Team/SearchUsers?searchTerm=' + inputValue)
+                    .then(response => response.json())
+                    .then(data => {
+                        data.forEach(user => {
+                            var link = document.createElement('a');
+                            link.href = '#';
+                            link.textContent = user.text;
+                            link.onclick = function () { addUser(user.value, user.text); };
+
+                            var div = document.createElement('div');
+                            div.appendChild(link);
+                            container.appendChild(div);
+                        });
+                    });
+            }
+        }
+
+        function addUser(userId, userName) {
+            var select = document.getElementById('SelectedUserIds');
+
+            // Check if the user is already selected
+            var optionExists = Array.from(select.options).some(option => option.value === userId);
+            if (!optionExists) {
+                var option = document.createElement('option');
+                option.value = userId;
+                option.selected=true;
+                option.textContent = userName;
+                select.appendChild(option);
+            }
+
+            document.getElementById('UserSearch').value = '';
+            document.getElementById('suggestedUsersContainer').innerHTML = '';
+        }
+    </script>
+}

@@ -13,6 +13,7 @@ namespace Entities.ProjectEntities
         public string? Description { get; set; }
         public string? State { get; set; }
         public string? Priority { get; set; }
+        public string? IssueType { get; set; }
         public Guid BoardId { get; set; }
         public Board Board { get; set; }
        

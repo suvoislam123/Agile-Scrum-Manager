@@ -3,6 +3,7 @@ using Entities.ProjectEntities;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
+using Entities.TeamEntities;
 
 namespace Entities.Account
 {
@@ -20,6 +21,6 @@ namespace Entities.Account
         public string? Department { get; set; }
         public string? Organization { get; set; }
         public ICollection<ApplicationUserProject>? ApplicationUserProjects { get; set;}
-        public ICollection<ApplicationUserTeam>? ApplicationUserTeams { get; set; }
+        public ICollection<Team> Teams { get; set; }
     }
 }

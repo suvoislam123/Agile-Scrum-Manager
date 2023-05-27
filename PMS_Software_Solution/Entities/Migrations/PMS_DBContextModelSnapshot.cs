@@ -129,21 +129,6 @@ namespace Entities.Migrations
                     b.ToTable("ApplicationUserProjects");
                 });
 
-            modelBuilder.Entity("Entities.JoinTables.ApplicationUserTeam", b =>
-                {
-                    b.Property<string>("ApplicationUserId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<Guid>("UserTeamId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasKey("ApplicationUserId", "UserTeamId");
-
-                    b.HasIndex("UserTeamId");
-
-                    b.ToTable("ApplicationUserTeams");
-                });
-
             modelBuilder.Entity("Entities.ProjectEntities.AttachedFile", b =>
                 {
                     b.Property<Guid>("Id")
@@ -381,6 +366,9 @@ namespace Entities.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("IssueType")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
@@ -399,27 +387,43 @@ namespace Entities.Migrations
                     b.ToTable("TempIssues");
                 });
 
-            modelBuilder.Entity("Entities.Team.UserTeam", b =>
+            modelBuilder.Entity("Entities.TeamEntities.Team", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("int");
 
-                    b.Property<string>("Description")
-                        .IsRequired()
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("AdminUserName")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Title")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int?>("TotalUsers")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
-                    b.ToTable("UserTeams");
+                    b.ToTable("Teams");
+                });
+
+            modelBuilder.Entity("Entities.TeamEntities.TeamUser", b =>
+                {
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<int>("TeamId")
+                        .HasColumnType("int");
+
+                    b.HasKey("UserId", "TeamId");
+
+                    b.HasIndex("TeamId", "UserId")
+                        .IsUnique();
+
+                    b.ToTable("TeamUsers");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -574,25 +578,6 @@ namespace Entities.Migrations
                     b.Navigation("Project");
                 });
 
-            modelBuilder.Entity("Entities.JoinTables.ApplicationUserTeam", b =>
-                {
-                    b.HasOne("Entities.Account.ApplicationUser", "ApplicationUser")
-                        .WithMany("ApplicationUserTeams")
-                        .HasForeignKey("ApplicationUserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Entities.Team.UserTeam", "UserTeam")
-                        .WithMany("ApplicationUserTeams")
-                        .HasForeignKey("UserTeamId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("ApplicationUser");
-
-                    b.Navigation("UserTeam");
-                });
-
             modelBuilder.Entity("Entities.ProjectEntities.AttachedFile", b =>
                 {
                     b.HasOne("Entities.ProjectEntities.Issue", "Issue")
@@ -685,6 +670,25 @@ namespace Entities.Migrations
                     b.Navigation("Board");
                 });
 
+            modelBuilder.Entity("Entities.TeamEntities.TeamUser", b =>
+                {
+                    b.HasOne("Entities.TeamEntities.Team", "Team")
+                        .WithMany()
+                        .HasForeignKey("TeamId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Entities.Account.ApplicationUser", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Team");
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
@@ -739,8 +743,6 @@ namespace Entities.Migrations
             modelBuilder.Entity("Entities.Account.ApplicationUser", b =>
                 {
                     b.Navigation("ApplicationUserProjects");
-
-                    b.Navigation("ApplicationUserTeams");
                 });
 
             modelBuilder.Entity("Entities.ProjectEntities.Backlog", b =>
@@ -777,11 +779,6 @@ namespace Entities.Migrations
             modelBuilder.Entity("Entities.ProjectEntities.Sprint", b =>
                 {
                     b.Navigation("Issues");
-                });
-
-            modelBuilder.Entity("Entities.Team.UserTeam", b =>
-                {
-                    b.Navigation("ApplicationUserTeams");
                 });
 #pragma warning restore 612, 618
         }

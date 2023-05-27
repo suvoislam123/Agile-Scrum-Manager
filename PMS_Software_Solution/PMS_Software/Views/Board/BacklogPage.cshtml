@@ -6,6 +6,7 @@
     var boardId = (Guid)ViewData["boardId"];
     var board = boards.FirstOrDefault(b => b.Id == boardId);
     var sprints = (ICollection<Sprint>)ViewData["sprints"];
+    var tempIssues = await _boardService.GetTempIssuesByBoardId(boardId);
 }
 <div class="w-75 d-none" id="issue-settings-container">
     <div class="issue-item-modal position-fixed bg-white p-3" style="z-index:1000;top: 100px; height: 500px;width: 1100px; ">
@@ -280,9 +281,33 @@
                 <div class="issue-container mb-4">
                     @foreach(var issue in await _boardService.GetIssuesBySprintId(sprint.Id))
                     {
-                        <div class="rounded d-flex align-items-center mt-2" style="background-color:  rgb(248, 245, 90); padding: 8px;">
+                        string color = "";
+                        @if (issue.IssueTye == "Bug")
+                        {
+                            color = "#de9792";
+                        }
+                        else if (issue.IssueTye == "Issue")
+                        {
+                            color = "blue";
+                        }
+                        else
+                        {
+                            color = "green";
+                        }
+                        <div class="rounded d-flex align-items-center mt-2" style="background-color:  @color; padding: 8px;">
                             <div class="mr-3">
-                                <i class="fa-solid fa-briefcase"></i>
+                                @if (issue.IssueTye=="Bug")
+                                {
+                                    <i class="fa-solid fa-bug"></i>
+                                }
+                                else if (issue.IssueTye == "Issue")
+                                {
+                                    <i class="fa-solid fa-paste"></i>
+                                }
+                                else
+                                {
+                                    <i class="fa-solid fa-code-compare"></i>
+                                }
                             </div>
                             <p class="issue-item" id="story-description" title="@issue.Description" style="width: 60%;">@issue.Description</p>
                             <script>
@@ -335,7 +360,36 @@
             </div>
         </div>
         <div class="issues-container" style="border: 1px dotted gray">
-            <p class="text-center">This is container. Drag issu here to create</p>
+            @foreach(var tempIssue in tempIssues)
+            {
+                <div class="rounded d-flex align-items-center mt-2" style="background-color:  rgb(248, 245, 90); padding: 8px;">
+                    <div class="mr-3">
+                        <i class="fa-solid fa-briefcase"></i>
+                    </div>
+                    <p class="issue-item" id="story-description" title="@tempIssue.Description" style="width: 60%;">@tempIssue.Description</p>
+                    <script>
+                        var element = document.getElementById("story-description");
+                        element.style.whiteSpace = "nowrap";
+                        element.style.overflow = "hidden";
+                        element.style.textOverflow = "ellipsis";
+                    </script>
+                    <div class="ml-2 d-flex align-items-center mx-auto">
+                        <div>@board.Name</div>
+                        <i class="fa-solid fa-briefcase ml-2"></i>
+                        <span class="bg-gray-500 rounded-pill px-2 ml-2">1</span>
+                    </div>
+                    <div class="dropdown no-arrow px-2 show">
+                        <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                            <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400" aria-hidden="true"></i>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink" x-placement="bottom-end" style="position: absolute; transform: translate3d(-135px, 22px, 0px); top: 0px; left: 0px; will-change: transform;">
+                            <a class="dropdown-item issue-item" issueId="@tempIssue.Id" href="#">Edite issue</a>
+                            <a class="dropdown-item issue-delete-btn" href="#" issue-id="@tempIssue.Id">Delete Issue</a>
+
+                        </div>
+                    </div>
+                </div>
+            }
         </div>
         <div class="issue-creating-container">
             <div class="create-button-container">
@@ -344,6 +398,7 @@
             <div class="issue-create-container">
                 @await Html.PartialAsync("IssueAddFormInBacklog")
             </div>
+            @await Html.PartialAsync("AddIssuesFromExcel")
         </div>
     </div>
 </div>

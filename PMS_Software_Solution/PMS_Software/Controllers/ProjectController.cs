@@ -88,6 +88,8 @@ namespace PMS_Software.Controllers
         [Route("/projects/{projectId}/board/{boardId?}")]
         public async Task<IActionResult> LaunchProjectPage(Guid projectId,Guid boardId )
         {
+
+            
             ViewData["project"] = await _projectService.LaunchProject(projectId);
             var boards = await _boardService.GetBoardsByProjectId(projectId);
             ViewData["boards"] = boards;

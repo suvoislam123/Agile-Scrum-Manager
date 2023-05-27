@@ -1,5 +1,6 @@
 ﻿using Entities;
 using Entities.Account;
+using Entities.TeamEntities;
 using Microsoft.AspNetCore.Identity;
 using ServiceContracts.DTO;
 namespace ServiceContracts
@@ -10,6 +11,8 @@ namespace ServiceContracts
         Task<SignInResult> PasswordSignInAsync(SignInUser signInUser);
         Task SignOutAsync();
         Task<ApplicationUser> GetUserByUserName(string userName);
+        Task<List<Team>> GetTeamsByUserId(string userId);
+        Task<List<ApplicationUser>> GetApplicationUsersByTeamId(int teamId);
             
     }
 }

@@ -3,6 +3,7 @@ using Entities.ProjectEntities;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Build.Evaluation;
 using Microsoft.CodeAnalysis;
+using OfficeOpenXml;
 using ServiceContracts;
 using ServiceContracts.DTO.BoardDTO;
 using Services.ProjectServices;
@@ -11,13 +12,6 @@ namespace PMS_Software.Controllers
 {
     public class BoardController : Controller
     {
-
-        /*private readonly BoardService _boardService;
-        public BoardController(BoardService boardService)
-        { 
-            _boardService = boardService;
-            
-        }*/
         private readonly IBoardService _boardService;
         private readonly IProjectService _projectService;
         public BoardController(IBoardService boardService, IProjectService projectService)
@@ -88,6 +82,68 @@ namespace PMS_Software.Controllers
             if (issue != null)
                 return Ok();
             return NotFound();
+        }
+        public async Task<IActionResult> UploadIssuesFromExcel(AddIssuesByExeleRequest addIssuesByExeleRequest)
+        {
+            var projectId = ViewData["projectId"];
+
+
+            if (addIssuesByExeleRequest.ExcelFile !=null && addIssuesByExeleRequest.ExcelFile.Length > 0)
+            {
+                using(var stream =  new MemoryStream())
+                {
+                    addIssuesByExeleRequest.ExcelFile.CopyTo(stream);
+                    using(var package= new ExcelPackage(stream))
+                    {
+                        ExcelWorksheet worksheet = package.Workbook.Worksheets[0];
+                        List<Issue> issues = new List<Issue>();
+                        List<TempIssue> tempIssues = new List<TempIssue>();
+                        int rowCount = worksheet.Dimension.Rows;
+                        if (addIssuesByExeleRequest.SelectedSprintId=="Backlog")
+                        {
+                            for (int row = 2; row <= rowCount; row++)
+                            {
+                                tempIssues.Add(new TempIssue()
+                                {
+                                    Description = worksheet.Cells[row, 1].Value.ToString(),
+                                    State = worksheet.Cells[row, 2].Value.ToString(),
+                                    Priority = worksheet.Cells[row, 3].Value.ToString(),
+                                    IssueType = worksheet.Cells[row, 4].Value.ToString(),
+                                    BoardId = Guid.Parse(addIssuesByExeleRequest.BoardId)
+                                });
+                            }
+                           List<TempIssue> result = await _boardService.AddtempIssues(tempIssues);
+                           if(result!=null)
+                            {
+                                return RedirectToAction("BacklogPage", "Board", new { projectId = projectId, boardId = addIssuesByExeleRequest.BoardId });
+                            }
+                        }
+                        else
+                        {
+                            for (int row = 2; row <= rowCount; row++)
+                            {
+                                issues.Add(new Issue()
+                                {
+                                    Description = worksheet.Cells[row, 1].Value.ToString(),
+                                    State = worksheet.Cells[row, 2].Value.ToString(),
+                                    Priority = worksheet.Cells[row, 3].Value.ToString(),
+                                    IssueTye = worksheet.Cells[row, 4].Value.ToString(),
+                                    SprintId = Guid.Parse(addIssuesByExeleRequest.SelectedSprintId)
+                                });
+                            }
+                            List<Issue> res= await _boardService.AddIssues(issues);
+                            if(res!=null)
+                            {
+                                return RedirectToAction("BacklogPage", "Board", new { projectId = projectId, boardId = addIssuesByExeleRequest.BoardId });
+                                
+                            }
+                        }
+
+                    }
+                }
+            }
+
+            return View();
         }
 
     }

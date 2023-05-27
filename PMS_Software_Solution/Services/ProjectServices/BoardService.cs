@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using ServiceContracts;
 using ServiceContracts.DTO.BoardDTO;
+using ServiceContracts.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -48,6 +49,7 @@ namespace Services.ProjectServices
 
         public async Task AddIssueAtSprint(Guid sprintId,Issue issue)
         {
+            issue.State = IssueStateOptions.ToDo.ToString();
             var sprint = await _pMS_DBContext.Sprints
                         .Include(sp => sp.Issues)
                         .FirstOrDefaultAsync(sp => sp.Id == sprintId);
@@ -120,6 +122,26 @@ namespace Services.ProjectServices
             return issue;
         }
 
-        
+        public async Task<ICollection<TempIssue>> GetTempIssuesByBoardId(Guid boardId)
+        {
+            var tempIssues =await  _pMS_DBContext.TempIssues
+                .Where(i => i.BoardId == boardId)
+                .ToListAsync();
+            return tempIssues;
+        }
+
+        public async Task<List<Issue>> AddIssues(List<Issue> issues)
+        {
+            await _pMS_DBContext.Issues.AddRangeAsync(issues);
+            await _pMS_DBContext.SaveChangesAsync();
+            return issues;
+        }
+
+        public async Task<List<TempIssue>> AddtempIssues(List<TempIssue> tempIssues)
+        {
+            await _pMS_DBContext.TempIssues.AddRangeAsync(tempIssues);
+            await _pMS_DBContext.SaveChangesAsync();
+            return tempIssues;
+        }
     }
 }

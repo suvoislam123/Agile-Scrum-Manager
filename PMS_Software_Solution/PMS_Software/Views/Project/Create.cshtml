@@ -26,6 +26,7 @@
                     </select>
                     <span asp-validation-for="Catagory"></span>
                 </div>
+
                 <div class="form-group">
                     <label asp-for="DefaultAssignee">Defaul Assignee</label>
                     <select asp-for="DefaultAssignee" asp-items="new SelectList(Enum.GetValues(typeof(ServiceContracts.Enums.ProjectDefaultAssignee)))" class="form-control form-control-user p-2" style="border-radius: 0%;">
@@ -34,8 +35,23 @@
                     <span asp-validation-for="DefaultAssignee"></span>
                 </div>
                 <div class="form-group">
+                    <label asp-for="ProjectLead">Project Lead</label>
+                    <input asp-for="ProjectLead" class="form-control form-control-user p-2" style="border-radius: 0%;" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="">
+                    <span asp-validation-for="ProjectLead" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label>Select Team</label>
+                    <select class="form-control form-control-user p-2" style="border-radius: 0%;">
+                        <option>team1 </option>
+                        <option>team2</option>
+                        <option>team3</option>
+                    </select>
+                    <span></span>
+                </div>
+                <div class="form-group">
                     <input type="submit" value="Create" class="btn btn-primary btn-user btn-block" />
                 </div>
+                
                     
             </form>
             <hr>
@@ -43,3 +59,6 @@
         </div>
     </div>
 </div>
+@section scripts{
+
+}

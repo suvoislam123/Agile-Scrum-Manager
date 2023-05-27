@@ -36,6 +36,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxTaWduVXAuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/Shuvo Islam/Desktop/code/BSSE-final-project/PMS_Software_Solution/PMS_Software/Views/Board/AddIssuesFromExcel.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQm9hcmRcQWRkSXNzdWVzRnJvbUV4Y2VsLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/Shuvo Islam/Desktop/code/BSSE-final-project/PMS_Software_Solution/PMS_Software/Views/Board/BacklogPage.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQm9hcmRcQmFja2xvZ1BhZ2UuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
@@ -86,6 +90,14 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/Shuvo Islam/Desktop/code/BSSE-final-project/PMS_Software_Solution/PMS_Software/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Shuvo Islam/Desktop/code/BSSE-final-project/PMS_Software_Solution/PMS_Software/Views/Team/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGVhbVxDcmVhdGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Shuvo Islam/Desktop/code/BSSE-final-project/PMS_Software_Solution/PMS_Software/Views/Team/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGVhbVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/Shuvo Islam/Desktop/code/BSSE-final-project/PMS_Software_Solution/PMS_Software/Views/_ViewImports.cshtml]

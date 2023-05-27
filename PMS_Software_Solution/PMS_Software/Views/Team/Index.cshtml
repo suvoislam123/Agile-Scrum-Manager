@@ -1,0 +1,153 @@
+﻿@using ServiceContracts;
+@inject IUsersService _userService
+@{
+    var currentUser = await _userService.GetUserByUserName(User.Identity.Name);
+    var currentUserTeams = await _userService.GetTeamsByUserId(currentUser.Id);
+}
+<div class="row">
+    <div class="col-8">
+        <div class="card shadow mb-4">
+            <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary">All project</h6>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table align-middle mb-0 bg-white">
+                        <thead class="bg-light">
+                            <tr>
+                                <th>Name</th>
+                                <th>Number of User</th>
+                                <th>Admin</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach(var team in currentUserTeams)
+                            {
+                                <tr>
+                                    <td>
+                                        <div class="d-flex align-items-center">
+                                            <img src="https://i.ibb.co/341SyT0/Fgfe627-Vs-AAJ9n-Q.jpg" alt="" style="width: 45px; height: 45px" class="rounded-circle">
+                                            <div class="">
+                                                <a current-user="@User.Identity.Name" team-admin="@team.AdminUserName" team-id="@team.Id" class="show-team-btn" href="#" style="text-decoration:underline;margin-left:10px;">@team.Name</a>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <p class="fw-normal mb-1">12</p>
+                                    </td>
+                                    <td>
+                                        <p class="fw-normal mb-1">@team.AdminUserName</p>
+                                    </td>
+                                    <td>
+                                        @if(team.AdminUserName==User.Identity.Name)
+                                        {
+                                            <div class="dropdown no-arrow">
+                                                <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                    <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400" aria-hidden="true"></i>
+                                                </a>
+                                                <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink" style="">
+                                                    <a current-user="@User.Identity.Name" team-admin="@team.AdminUserName"  team-id="@team.Id" class="dropdown-item show-team-btn" href="#">Manage Team</a>
+                                                    <a current-user="@User.Identity.Name" team-admin="@team.AdminUserName" team-id="@team.Id" class="dropdown-item delete-team-btn" href="#">Delete Team</a>
+                                                </div>
+                                            </div>
+                                        }
+                                    </td>
+                                </tr>
+
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-4">
+        <div class="card shadow mb-4 d-none" id="users-table-container">
+            <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary">Selected Team Users</h6>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table align-middle mb-0 bg-white">
+                        <thead class="bg-light">
+                            <tr>
+                                <th>Name</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody class="user-rows-container" id="user-rows-container">
+                            
+                            
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section scripts
+{
+    <script>
+        const team_show_btns = document.querySelectorAll(".show-team-btn");
+        const usersTable = document.getElementById('users-table-container');
+        team_show_btns.forEach((btn)=>{
+            btn.addEventListener("click",(e)=>{
+                usersTable.classList.remove('d-none');
+                const currentUser = btn.getAttribute('current-user');
+                const admin = btn.getAttribute('team-admin');
+                const teamId = btn.getAttribute('team-id');
+                fetch('/teams/' + teamId, {
+                    method: 'POST'
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        const userRowsContainer = document.getElementById('user-rows-container');
+                        userRowsContainer.innerHTML='';
+                        data.forEach((user)=>{
+                            const tr = document.createElement('tr');
+                            
+                            if(admin==currentUser)
+                            {
+                                tr.innerHTML = `
+                                        <td>
+                                                <div class="d-flex align-items-center">
+                                                    <img src="https://i.ibb.co/341SyT0/Fgfe627-Vs-AAJ9n-Q.jpg" alt="" style="width: 45px; height: 45px" class="rounded-circle">
+                                                    <div class="">
+                                                        <a href="selected-project.html" style="text-decoration:underline;margin-left:10px;">${user.userName}</a>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <button class="btn btn-danger">Remove</button>
+                                            </td>
+                                    `;
+                            }
+                            else
+                            {
+                                tr.innerHTML = `<td>    
+                                                        <div class="d-flex align-items-center">
+                                                            <img src="https://i.ibb.co/341SyT0/Fgfe627-Vs-AAJ9n-Q.jpg" alt="" style="width: 45px; height: 45px" class="rounded-circle">
+                                                            <div class="">
+                                                                <a href="selected-project.html" style="text-decoration:underline;margin-left:10px;">${user.userName}</a>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                    
+                                            `; 
+                            }
+                            console.log(user);
+                            userRowsContainer.appendChild(tr);
+                        })
+                        console.log(data);
+                    })
+                    .catch(error => {
+                        // Handle any errors
+                        console.error('Error:', error);
+                    });
+
+                
+            })
+        })
+    </script>
+}

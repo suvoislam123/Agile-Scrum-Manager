@@ -24,7 +24,7 @@ namespace ServiceContracts.DTO.ProjectDTO
         public string Catagory { get; set; }
         [Required(ErrorMessage ="Please Enter valid Default Assignee")]
         public string DefaultAssignee { get; set; }
-       
+        public string? ProjectLead { get; set; }
 
         public Project ToProject()
         {
@@ -34,6 +34,7 @@ namespace ServiceContracts.DTO.ProjectDTO
                 ProjectKey= ProjectKey,
                 Catagory= Catagory,
                 DefaultAssignee= DefaultAssignee,
+                ProjectLead= ProjectLead
             };
         }
     }

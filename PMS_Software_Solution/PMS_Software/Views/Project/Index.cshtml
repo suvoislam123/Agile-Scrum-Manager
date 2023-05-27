@@ -1,5 +1,8 @@
-﻿@using PMS_Software.ViewModels;
+﻿@using Entities.TeamEntities;
+@using PMS_Software.ViewModels;
+@using ServiceContracts;
 @model ProjectViewModel
+@inject IProjectService _projectService
 
 @*DELETE MODAL STARTS HERE*@
 <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
@@ -24,7 +27,7 @@
 <!-- all project table start  -->
 <div class="card shadow mb-4">
     <div class="card-header py-3">
-        <h6 class="m-0 font-weight-bold text-primary">All project</h6>
+        <h6 class="m-0 font-weight-bold text-primary">My Project</h6>
     </div>
     <div class="card-body">
         <div class="table-responsive">

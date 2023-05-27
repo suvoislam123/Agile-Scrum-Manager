@@ -17,7 +17,10 @@ namespace ServiceContracts
         ICollection<Sprint> GetSprintsByBoardId(Guid boardId);
         Task AddIssueAtSprint(Guid sprintId, Issue issue);
         Task AddTempIssueAtBoard(Guid boardId, TempIssue tempIssue);
+        Task<ICollection<TempIssue>> GetTempIssuesByBoardId(Guid boardId);
         Task<List<Issue>> GetIssuesBySprintId(Guid sprinId);
         Task<Issue> DeleteIssueByIssueId(Guid Id);
+        Task<List<Issue>> AddIssues(List<Issue> issues);
+        Task<List<TempIssue>> AddtempIssues(List<TempIssue> tempIssues);
     }
 }

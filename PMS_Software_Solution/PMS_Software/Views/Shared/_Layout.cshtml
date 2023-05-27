@@ -1,10 +1,11 @@
 ﻿@using Entities.Account;
 @using Entities.ProjectEntities;
+@using ServiceContracts
 @*services*@
 @inject Microsoft.AspNetCore.Identity.SignInManager<ApplicationUser> _signInManager
+
 @{
     IEnumerable<Board> boards = ViewData["boards"] as IEnumerable<Board>;
-    
 }
 <!DOCTYPE html>
 <html lang="en">
@@ -14,6 +15,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
+    <style>
+        .modal-backdrop{
+            z-index:-1 !important;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: #000;
+        }
+
+    </style>
 
     <title>PMS_Project</title>
 
@@ -27,8 +40,7 @@
     <script src="https://kit.fontawesome.com/0d68b24997.js" crossorigin="anonymous"></script>
 
 </head>
-<body id="page-top">
-    
+<body id="page-top"> 
     <!-- Page Wrapper -->
     <div id="wrapper">
 
@@ -91,20 +103,64 @@
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePeople"
                    aria-expanded="true" aria-controls="collapseUtilities">
-                    <i class="fa-solid fa-people-arrows"></i>
+                    <i class="fa-solid fa-user-secret"></i>
                     <span>People</span>
                 </a>
                 <div id="collapsePeople" class="collapse" aria-labelledby="headingUtilities"
                      data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <a class="collapse-item" href="utilities-color.html"><i class="fa-solid fa-plus"></i>Invite a teammate</a>
-                        <a class="collapse-item" href="utilities-border.html"><i class="fa-solid fa-people-group"></i>Create A Team</a>
-                        <hr>
+                        <p class="collapse-item" type="button" data-toggle="modal" data-target="#create-team-modal">Assign A User</p>
+                        <!-- Modal -->
+                        <div class="modal fade" id="create-team-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Create Team</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form>
+                                            <div class="form-group">
+                                                <label for="recipient-name" class="col-form-label">Team Name:</label>
+                                                <input type="text" class="form-control" id="recipient-name">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="message-text" class="col-form-label">Add Users:</label>
+                                                <textarea class="form-control" id="message-text"></textarea>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                        <button type="button" class="btn btn-primary">Create Team</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                         <a class="collapse-item" href="people-search.html">Search People/Team</a>
                     </div>
                 </div>
             </li>
             <!-- Nav Item - People Collapse Menu -->
+            <!--Nav Item Team -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTeam"
+                   aria-expanded="true" aria-controls="collapseTwo">
+                    <i class="fa-solid fa-people-arrows"></i>
+                    <span>Team</span>
+                </a>
+                <div id="collapseTeam" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a asp-controller="Team" asp-action="Create" class="collapse-item"><i class="fa-solid fa-people-group"></i>Create Team</a>
+                        <a class="collapse-item" asp-action="Index" asp-controller="Team">Show My Teams</a>
+                        
+                    </div>
+                </div>
+            </li>
+            <!--Nav Item Team -->
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseDashboard"
                    aria-expanded="true" aria-controls="collapseDashboard">
@@ -469,6 +525,7 @@
     <!-- Page level custom scripts -->
     <script src="~/js/demo/chart-area-demo.js"></script>
     <script src="~/js/demo/chart-pie-demo.js"></script>
+    @RenderSection("scripts",false);
 
 </body>
 
