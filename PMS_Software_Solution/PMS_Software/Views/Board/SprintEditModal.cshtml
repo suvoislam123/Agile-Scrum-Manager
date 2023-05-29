@@ -1,0 +1,69 @@
+﻿@using ServiceContracts.DTO.SprintDTO;
+@using ServiceContracts;
+@model SprintUpdateRequest
+@inject IBoardService _boardService
+@{
+    var boardId = (Guid)ViewData["boardId"];
+    
+
+}
+<div class="modal fade" id="edit-sprint-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Edit Sprint</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form asp-action="UpdateSprintInfo" asp-controller="Board">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="modal-body">
+
+                    <input type="hidden" asp-for="BoardId" />
+                    <input type="hidden" id="sp-boardId" asp-for="BoardId" />
+                    <div class="form-group">
+                        <input asp-for="Id" type="hidden" id="spId" />
+                        <label for="recipient-name" class="col-form-label">Sprint Name</label>
+                        <input asp-for="Name" id="spName" type="text" class="form-control" />
+                        <span asp-validation-for="Name" class="text-danger"></span>
+
+                    </div>
+                    <div class="form-group">
+                        <label>Active status</label>
+                        <br />
+                        <label>
+                            <input type="radio" asp-for="IsActive" value="true" /> Active
+                        </label>
+                        <label>
+                            <input type="radio" asp-for="IsActive" value="false" /> InActive
+                        </label>
+                    </div>
+                
+                    <div class="form-group">ive
+                        <label for="startingDate" class="col-form-label">Starting Date:</label>
+                        <input asp-for="StartDate" type="date" id="spSD" class="form-control" />
+                        <span asp-validation-for="StartDate" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label for="endingDate" class="col-form-label">Ending Date:</label>
+                        <input asp-for="EndDate" type="date" id="spED" class="form-control" />
+                        <span asp-validation-for="EndDate" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label for="sprintGoal" class="col-form-label">Sprint Goal:</label>
+
+                        <textarea asp-for="SprintGoal" id="spGoal" class="form-control">
+
+                        </textarea>
+                        <span asp-validation-for="SprintGoal" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <input type="submit" class="btn btn-primary" value="Update" />
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

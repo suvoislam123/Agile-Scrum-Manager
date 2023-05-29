@@ -1,5 +1,6 @@
 ﻿using Entities.ProjectEntities;
 using ServiceContracts.DTO.BoardDTO;
+using ServiceContracts.DTO.SprintDTO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,6 +15,8 @@ namespace ServiceContracts
         Task<IEnumerable<Board>> GetBoardsByProjectId(Guid projectId);
         /*Task<Board> AddBoardAsync(BoardAddRequest boardAddRequest, ClaimsPrincipal user);*/
         Task<Board> AddBoardAsync(BoardAddRequest boardAddRequest, ClaimsPrincipal user);
+        Task<Sprint> UpdateSprint(SprintUpdateRequest sprintUpdateRequest);
+        Task<Board>  GetBoardByBoardId(Guid boardId);
         ICollection<Sprint> GetSprintsByBoardId(Guid boardId);
         Task AddIssueAtSprint(Guid sprintId, Issue issue);
         Task AddTempIssueAtBoard(Guid boardId, TempIssue tempIssue);

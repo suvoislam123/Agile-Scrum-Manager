@@ -15,20 +15,31 @@ namespace PMS_Software.Controllers
     {
         private readonly IProjectService _projectService; 
         private readonly IBoardService _boardService;
-       public ProjectController(IProjectService projectService, IBoardService boardService) 
+        private readonly IUsersService _usersService;
+       public ProjectController(IProjectService projectService, IBoardService boardService,IUsersService usersService) 
         {
             _projectService= projectService;
             _boardService= boardService;
+            _usersService=usersService;
+            
         }
 
         [Route("projects/")]
         public async Task<IActionResult> Index()
         {
+            var currentUser =await _usersService.GetUserByUserName(User.Identity.Name);
             List<ProjectResponse> projectsAsWoner = new List<ProjectResponse>();
+            List<ProjectResponse> projectsAsGeneralUser = new List<ProjectResponse>();
+            List<ProjectResponse> projectsAsLead = new List<ProjectResponse>();
             projectsAsWoner = await _projectService.GetProjectsByWoner(User);
+            projectsAsGeneralUser = await _projectService.GetProjectsOfGeneraluser(currentUser.Id, User.Identity.Name);
+            projectsAsLead = await _projectService.GetProjectsOfProjectLead(currentUser.Id,User.Identity.Name);
+            
             var projectViewModel = new ProjectViewModel()
             {
                 ProjectsAsWoner = projectsAsWoner,
+                ProjectsAsGeneralUser=projectsAsGeneralUser,
+                ProjectsAsLead = projectsAsLead
                 
             };
             return View(projectViewModel);
@@ -46,7 +57,7 @@ namespace PMS_Software.Controllers
             {
                 return View();
             }
-            _projectService.AddProjectAsync(projectAddRequest, User);
+           var project = await _projectService.AddProjectAsync(projectAddRequest, User);
             return RedirectToAction("Index", "Projects");
         }
         [HttpGet]

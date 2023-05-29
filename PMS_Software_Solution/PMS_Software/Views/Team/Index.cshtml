@@ -8,7 +8,7 @@
     <div class="col-8">
         <div class="card shadow mb-4">
             <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold text-primary">All project</h6>
+                <h6 class="m-0 font-weight-bold text-primary">My Teams</h6>
             </div>
             <div class="card-body">
                 <div class="table-responsive">
@@ -34,7 +34,7 @@
                                         </div>
                                     </td>
                                     <td>
-                                        <p class="fw-normal mb-1">12</p>
+                                        <p class="fw-normal mb-1">@team.TotalUsers</p>
                                     </td>
                                     <td>
                                         <p class="fw-normal mb-1">@team.AdminUserName</p>
@@ -89,6 +89,33 @@
 @section scripts
 {
     <script>
+        function  userDeleteActionHandler() {
+            const deleteBtns = document.querySelectorAll('.user-delete-btn');
+            deleteBtns.forEach((btn) => {
+                btn.addEventListener('click', (e) => {
+                    console.log("Hello U")
+                    const userId = btn.getAttribute('user-id');
+                    const teamId = btn.getAttribute('team-id');
+                    fetch('/teams/delete/' + teamId + '/' + userId, {
+                        method: 'DELETE'
+                    })
+                        .then(response => {
+                            if(response.ok)
+                            {
+                                window.location.reload();
+                            }
+                            response.json();
+                        })
+                        .then(data => {
+                            
+                        })
+                        .catch(error => {
+                            // Handle any errors
+                            console.error('Error:', error);
+                        });
+                })
+            })
+        }
         const team_show_btns = document.querySelectorAll(".show-team-btn");
         const usersTable = document.getElementById('users-table-container');
         team_show_btns.forEach((btn)=>{
@@ -102,6 +129,7 @@
                 })
                     .then(response => response.json())
                     .then(data => {
+                        console.log(data.Users);
                         const userRowsContainer = document.getElementById('user-rows-container');
                         userRowsContainer.innerHTML='';
                         data.forEach((user)=>{
@@ -119,7 +147,7 @@
                                                 </div>
                                             </td>
                                             <td>
-                                                <button class="btn btn-danger">Remove</button>
+                                                        <button class="user-delete-btn btn btn-danger" team-id="${teamId}" user-id=${user.id}>Remove</button>
                                             </td>
                                     `;
                             }
@@ -136,10 +164,11 @@
                                                     
                                             `; 
                             }
-                            console.log(user);
+                            
                             userRowsContainer.appendChild(tr);
                         })
-                        console.log(data);
+                        userDeleteActionHandler();
+                        
                     })
                     .catch(error => {
                         // Handle any errors
@@ -148,6 +177,6 @@
 
                 
             })
-        })
+        });
     </script>
 }

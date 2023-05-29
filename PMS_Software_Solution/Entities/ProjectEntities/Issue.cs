@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Entities.JoinTables;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -22,6 +23,7 @@ namespace Entities.ProjectEntities
         public ICollection<Comment>? Comments { get; set; }
         public ICollection<AttachedFile>? AttachedFiles { get; set; }
         public ICollection<AttachedLink>? AttachedLinks { get; set; }
+        public ICollection<ApplicationUserIssue>? ApplicationUserIssues { get; set; }   
         
     }
 }

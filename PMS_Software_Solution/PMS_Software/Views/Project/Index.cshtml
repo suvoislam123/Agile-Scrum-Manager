@@ -24,86 +24,215 @@
     </div>
 </div>
 @*DELETE MODAL ENDS HERE*@
-<!-- all project table start  -->
-<div class="card shadow mb-4">
-    <div class="card-header py-3">
-        <h6 class="m-0 font-weight-bold text-primary">My Project</h6>
-    </div>
-    <div class="card-body">
-        <div class="table-responsive">
-            <table class="table align-middle mb-0 bg-white">
-                <thead class="bg-light">
-                    <tr>
-                        <th>Name</th>
-                        <th>Key</th>
-                        <th>Type</th>
-                        <th>Lead</th>
-                        <th></th>
-                    </tr>
-                </thead>
-                <tbody>
-
-                    @foreach(var project in Model.ProjectsAsWoner)
-                    {
+@if(Model.ProjectsAsGeneralUser.Count==0 && Model.ProjectsAsLead.Count==0 && Model.ProjectsAsWoner.Count==0)
+{
+    <h1 style="color:black;text-align:center;margin-top:150px;">You Currently Not Associate with any Project</h1>
+}
+<!-- my won Project starts  project table start  -->
+@if(Model.ProjectsAsWoner.Count!=0)
+{
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">My Project</h6>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table align-middle mb-0 bg-white">
+                    <thead class="bg-light">
                         <tr>
-                            <td>
-                                <div class="d-flex align-items-center">
-                                    <img src="https://i.ibb.co/341SyT0/Fgfe627-Vs-AAJ9n-Q.jpg"
-                                         alt=""
-                                         style="width: 45px; height: 45px"
-                                         class="rounded-circle" />
-                                    <div class="">
-                                        <a href="@Url.Action("LaunchProjectPage","Project",new{projectId=project.Id})" style="text-decoration:underline;margin-left:10px;">@project.ProjectName</a>
-                                    </div>
-                                </div>
-                            </td>
-                            <td>
-                                <p class="fw-normal mb-1">@project.ProjectKey</p>
-                            </td>
-                            <td>
-                                <span class="badge badge-success rounded-pill d-inline">@project.Catagory</span>
-                            </td>
-                            <td>
-                                @if(project.ProjectLead!=null)
-                                {
+                            <th>Name</th>
+                            <th>Key</th>
+                            <th>Type</th>
+                            <th>Lead</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        @foreach (var project in Model.ProjectsAsWoner)
+                        {
+                            <tr>
+                                <td>
                                     <div class="d-flex align-items-center">
-                                        <img src="https://mdbootstrap.com/img/new/avatars/8.jpg"
+                                        <img src="https://i.ibb.co/341SyT0/Fgfe627-Vs-AAJ9n-Q.jpg"
                                              alt=""
                                              style="width: 45px; height: 45px"
                                              class="rounded-circle" />
-                                        <div class="ms-3">
-                                            <p class="fw-bold mb-1">@project.ProjectWoner</p>
-                                            <p class="text-muted mb-0">john.doe@gmail.com</p>
+                                        <div class="">
+                                            <a href="@Url.Action("LaunchProjectPage","Project",new{projectId=project.Id})" style="text-decoration:underline;margin-left:10px;">@project.ProjectName</a>
                                         </div>
                                     </div>
-                                }
-                                else
-                                {
-                                    <p>Me</p>
-                                }
-                            </td>
-                            <td>
-                                <div class="dropdown no-arrow">
-                                    <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-                                    </a>
-                                    <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink" style="">
-                                        <a class="dropdown-item" asp-controller="Project" asp-action="Edit" asp-route-id="@project.Id">Project Setting</a>
-                                        <a class="dropdown-item delete-button" href="#" project-id="@project.Id" data-toggle="modal" data-target="#deleteModal">Move to Trash</a>
+                                </td>
+                                <td>
+                                    <p class="fw-normal mb-1">@project.ProjectKey</p>
+                                </td>
+                                <td>
+                                    <span class="badge badge-success rounded-pill d-inline">@project.Catagory</span>
+                                </td>
+                                <td>
+                                    @if (project.ProjectLead != null)
+                                    {
+                                        <div class="d-flex align-items-center">
+                                            <p>@project.ProjectLead</p>
+                                        </div>
+                                    }
+                                    else
+                                    {
+                                        <p>UnAssign</p>
+                                    }
+                                </td>
+                                <td>
+                                    <div class="dropdown no-arrow">
+                                        <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                                        </a>
+                                        <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink" style="">
+                                            <a class="dropdown-item" asp-controller="Project" asp-action="Edit" asp-route-id="@project.Id">Project Setting</a>
+                                            <a class="dropdown-item delete-button" href="#" project-id="@project.Id" data-toggle="modal" data-target="#deleteModal">Move to Trash</a>
 
+                                        </div>
                                     </div>
-                                </div>
-                            </td>
-                        </tr>
-                    }
+                                </td>
+                            </tr>
+                        }
 
-                </tbody>
-            </table>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
-</div>
-<!-- all project table end  -->
+}
+<!-- my won project table end  -->
+<!--Project That I am In starts Here-->
+@if(Model.ProjectsAsGeneralUser.Count!=0)
+{
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Projects that I am in</h6>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table align-middle mb-0 bg-white">
+                    <thead class="bg-light">
+                        <tr>
+                            <th>Name</th>
+                            <th>Key</th>
+                            <th>Type</th>
+                            <th>Lead</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        @foreach (var project in Model.ProjectsAsGeneralUser)
+                        {
+                            <tr>
+                                <td>
+                                    <div class="d-flex align-items-center">
+                                        <img src="https://i.ibb.co/341SyT0/Fgfe627-Vs-AAJ9n-Q.jpg"
+                                             alt=""
+                                             style="width: 45px; height: 45px"
+                                             class="rounded-circle" />
+                                        <div class="">
+                                            <a href="@Url.Action("LaunchProjectPage","Project",new{projectId=project.Id})" style="text-decoration:underline;margin-left:10px;">@project.ProjectName</a>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <p class="fw-normal mb-1">@project.ProjectKey</p>
+                                </td>
+                                <td>
+                                    <span class="badge badge-success rounded-pill d-inline">@project.Catagory</span>
+                                </td>
+                                <td>
+                                    @if (project.ProjectLead != null)
+                                    {
+                                        <div class="d-flex align-items-center">
+                                            <p>@project.ProjectLead</p>
+                                        </div>
+                                    }
+                                    else
+                                    {
+                                        <p>Not Assign</p>
+                                    }
+                                </td>
+
+                            </tr>
+                        }
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+}
+<!--Projects that I am in ends Here-->
+<!--projects that I am Lead starts Here-->
+@if(Model.ProjectsAsLead.Count!=0)
+{
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Projects that I am Lead</h6>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table align-middle mb-0 bg-white">
+                    <thead class="bg-light">
+                        <tr>
+                            <th>Name</th>
+                            <th>Key</th>
+                            <th>Type</th>
+                            <th>Lead</th>
+                            
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        @foreach (var project in Model.ProjectsAsLead)
+                        {
+                            <tr>
+                                <td>
+                                    <div class="d-flex align-items-center">
+                                        <img src="https://i.ibb.co/341SyT0/Fgfe627-Vs-AAJ9n-Q.jpg"
+                                             alt=""
+                                             style="width: 45px; height: 45px"
+                                             class="rounded-circle" />
+                                        <div class="">
+                                            <a href="@Url.Action("LaunchProjectPage","Project",new{projectId=project.Id})" style="text-decoration:underline;margin-left:10px;">@project.ProjectName</a>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <p class="fw-normal mb-1">@project.ProjectKey</p>
+                                </td>
+                                <td>
+                                    <span class="badge badge-success rounded-pill d-inline">@project.Catagory</span>
+                                </td>
+                                <td>
+                                    @if (project.ProjectLead != null)
+                                    {
+                                        <div class="d-flex align-items-center">
+                                            <p>@project.ProjectLead</p>
+                                        </div>
+                                    }
+                                    else
+                                    {
+                                        <p>UnAssign</p>
+                                    }
+                                </td>
+                                
+                            </tr>
+                        }
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+}
+<!--Projects that I am Lead Ends-->
 @*script for deleting a project*@
+
 <script>
     globalId = 0;
     let buttons = document.querySelectorAll('.delete-button');

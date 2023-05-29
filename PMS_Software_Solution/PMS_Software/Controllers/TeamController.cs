@@ -54,12 +54,15 @@ namespace PMS_Software.Controllers
                 var team = new Team
                 {
                     Name = model.Name,
-                    AdminUserName= model.AdminUserName,
+                    AdminUserName = model.AdminUserName,
                     Users = await _userManager.Users
                         .Where(u => model.SelectedUserIds.Contains(u.Id))
-                        .ToListAsync()
+                        .ToListAsync(),
+                    
                 };
-
+                var admin = await _usersService.GetUserByUserName(model.AdminUserName);
+                team.Users.Add(admin);
+                team.TotalUsers = team.Users.Count;
                 // Save the team to the database
                 _pMS_DBContext.Teams.Add(team);
                 await _pMS_DBContext.SaveChangesAsync();
@@ -80,8 +83,17 @@ namespace PMS_Software.Controllers
         [HttpDelete]
         public async Task<IActionResult> DeleteAnUserFromTeam(int teamId,string userId)
         {
-
-            return View();
+            var team =await _usersService.GetTeamById(teamId);
+            if (team == null)
+                return NotFound();
+            var user =await _usersService.GetApplicationUserById(userId);
+            if (user == null)
+                return NotFound();
+            team.Users.Remove(user);
+            team.TotalUsers = team.Users.Count;
+            await _pMS_DBContext.SaveChangesAsync();
+            
+            return Ok();
         }
 
     }

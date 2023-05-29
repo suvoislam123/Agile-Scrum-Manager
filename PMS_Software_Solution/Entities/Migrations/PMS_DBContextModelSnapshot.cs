@@ -114,6 +114,21 @@ namespace Entities.Migrations
                     b.ToTable("AspNetUsers", (string)null);
                 });
 
+            modelBuilder.Entity("Entities.JoinTables.ApplicationUserIssue", b =>
+                {
+                    b.Property<Guid>("IssueId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("ApplicationUserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("IssueId", "ApplicationUserId");
+
+                    b.HasIndex("ApplicationUserId");
+
+                    b.ToTable("ApplicationUserIssue");
+                });
+
             modelBuilder.Entity("Entities.JoinTables.ApplicationUserProject", b =>
                 {
                     b.Property<Guid>("ProjectId")
@@ -341,6 +356,9 @@ namespace Entities.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("SprintGoal")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<DateTime>("StartDate")
                         .HasColumnType("datetime2");
 
@@ -559,6 +577,25 @@ namespace Entities.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
+            modelBuilder.Entity("Entities.JoinTables.ApplicationUserIssue", b =>
+                {
+                    b.HasOne("Entities.Account.ApplicationUser", "ApplicationUser")
+                        .WithMany("ApplicationUserIssues")
+                        .HasForeignKey("ApplicationUserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Entities.ProjectEntities.Issue", "Issue")
+                        .WithMany("ApplicationUserIssues")
+                        .HasForeignKey("IssueId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("ApplicationUser");
+
+                    b.Navigation("Issue");
+                });
+
             modelBuilder.Entity("Entities.JoinTables.ApplicationUserProject", b =>
                 {
                     b.HasOne("Entities.Account.ApplicationUser", "ApplicationUser")
@@ -742,6 +779,8 @@ namespace Entities.Migrations
 
             modelBuilder.Entity("Entities.Account.ApplicationUser", b =>
                 {
+                    b.Navigation("ApplicationUserIssues");
+
                     b.Navigation("ApplicationUserProjects");
                 });
 
@@ -762,6 +801,8 @@ namespace Entities.Migrations
 
             modelBuilder.Entity("Entities.ProjectEntities.Issue", b =>
                 {
+                    b.Navigation("ApplicationUserIssues");
+
                     b.Navigation("AttachedFiles");
 
                     b.Navigation("AttachedLinks");

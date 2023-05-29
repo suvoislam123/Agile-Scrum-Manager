@@ -22,5 +22,6 @@ namespace Entities.Account
         public string? Organization { get; set; }
         public ICollection<ApplicationUserProject>? ApplicationUserProjects { get; set;}
         public ICollection<Team> Teams { get; set; }
+        public ICollection<ApplicationUserIssue>? ApplicationUserIssues { get;set; } 
     }
 }

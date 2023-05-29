@@ -6,6 +6,7 @@ namespace PMS_Software.ViewModels
     {
         public List<ProjectResponse> ProjectsAsWoner{ get; set; }
         public List<ProjectResponse> ProjectsAsLead { get;set; }
+        public List<ProjectResponse> ProjectsAsGeneralUser { get; set; }
 
     }
 }

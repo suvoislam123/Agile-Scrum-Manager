@@ -1,5 +1,6 @@
 ﻿using Entities;
 using Entities.Account;
+using Entities.JoinTables;
 using Entities.ProjectEntities;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
@@ -20,18 +21,38 @@ namespace Services.ProjectServices
     {
         private readonly PMS_DBContext _db;
         private readonly SignInManager<ApplicationUser> _signInManager;
-        public ProjectService(PMS_DBContext pMS_DBContext, SignInManager<ApplicationUser> signInManager)
+        private readonly IUsersService _userService;
+        public ProjectService(PMS_DBContext pMS_DBContext, SignInManager<ApplicationUser> signInManager, IUsersService userService)
         {
             _db = pMS_DBContext;
             _signInManager = _signInManager;
+            _userService = userService;
         }
 
-        public Project AddProjectAsync(ProjectAddRequest? projectAddRequest, ClaimsPrincipal user)
+        public async Task<Project> AddProjectAsync(ProjectAddRequest? projectAddRequest, ClaimsPrincipal user)
         {
             Project project = projectAddRequest.ToProject();
             var userName = user.Identity.Name;
             project.ProjectWoner = userName;
-            project.Id=Guid.NewGuid();
+            project.Id = Guid.NewGuid();
+            project.ApplicationUserProjects = new List<ApplicationUserProject>();
+            var applicationUsers =await  _userService.GetApplicationUsersByTeamId((int)projectAddRequest.TeamId);
+            var projectLead = await _userService.GetUserByUserName(projectAddRequest.ProjectLead);
+            foreach(var  applicationUser in applicationUsers)
+            {
+                var userProject = new ApplicationUserProject()
+                {
+                    ApplicationUser = applicationUser,
+                    Project = project,
+                };
+                project.ApplicationUserProjects.Add(userProject);
+            }
+            var leadProject = new ApplicationUserProject()
+            {
+                ApplicationUser=projectLead,
+                Project=project,
+            };
+            project.ApplicationUserProjects.Add(leadProject);
             project.LastVisitedTime=DateTime.Now;
             Board board = new Board()
             {
@@ -124,8 +145,36 @@ namespace Services.ProjectServices
             return projectResponse;
         }
 
+        public async Task<List<ProjectResponse>> GetProjectsOfGeneraluser(string userId,string currentUserName)
+        {
+            var projects =await _db.ApplicationUserProjects
+            .Where(up => up.ApplicationUserId == userId )
+            .Select(up => up.Project)
+            .Where(p=>p.ProjectWoner!=currentUserName && p.ProjectLead!=currentUserName)
+            .ToListAsync();
+            List<ProjectResponse> projectResponses = new List<ProjectResponse>();
+            foreach (var project in projects)
+            {
+                projectResponses.Add(project.ToProjectResponse());
+            }
 
+            return projectResponses;
+        }
 
+        public async Task<List<ProjectResponse>> GetProjectsOfProjectLead(string userId, string currentUserName)
+        {
+            var projects = await _db.ApplicationUserProjects
+            .Where(up => up.ApplicationUserId == userId)
+            .Select(up => up.Project)
+            .Where(p =>  p.ProjectLead == currentUserName)
+            .ToListAsync();
+            List<ProjectResponse> projectResponses = new List<ProjectResponse>();
+            foreach (var project in projects)
+            {
+                projectResponses.Add(project.ToProjectResponse());
+            }
 
+            return projectResponses;
+        }
     }
 }

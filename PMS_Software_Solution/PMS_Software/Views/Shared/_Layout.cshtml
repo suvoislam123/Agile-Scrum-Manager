@@ -1,11 +1,18 @@
 ﻿@using Entities.Account;
 @using Entities.ProjectEntities;
 @using ServiceContracts
+@inject IProjectService _projectService;
 @*services*@
 @inject Microsoft.AspNetCore.Identity.SignInManager<ApplicationUser> _signInManager
 
 @{
     IEnumerable<Board> boards = ViewData["boards"] as IEnumerable<Board>;
+    var temp = await _projectService.GetProjectsByWoner(User);
+    List<Project> myWonedProjects= new List<Project>();
+    foreach(var project in temp)
+    {
+        myWonedProjects.Add(project.ToProject());
+    }
 }
 <!DOCTYPE html>
 <html lang="en">
@@ -110,9 +117,9 @@
                      data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <a class="collapse-item" href="utilities-color.html"><i class="fa-solid fa-plus"></i>Invite a teammate</a>
-                        <p class="collapse-item" type="button" data-toggle="modal" data-target="#create-team-modal">Assign A User</p>
+                        <p class="collapse-item" type="button" data-toggle="modal" data-target="#assign-user-modal">Assign A User</p>
                         <!-- Modal -->
-                        <div class="modal fade" id="create-team-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal fade" id="assign-user-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog">
                                 <div class="modal-content">
                                     <div class="modal-header">
@@ -122,10 +129,16 @@
                                         </button>
                                     </div>
                                     <div class="modal-body">
+                                        
                                         <form>
                                             <div class="form-group">
-                                                <label for="recipient-name" class="col-form-label">Team Name:</label>
-                                                <input type="text" class="form-control" id="recipient-name">
+                                                <label for="recipient-name" class="col-form-label">Choose Project:</label>
+                                                <select class="form-control">
+                                                    @foreach(var project in myWonedProjects)
+                                                    {
+                                                        <option>@project.ProjectName</option>
+                                                    }
+                                                </select>
                                             </div>
                                             <div class="form-group">
                                                 <label for="message-text" class="col-form-label">Add Users:</label>

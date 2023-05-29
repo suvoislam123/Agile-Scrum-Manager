@@ -1,15 +1,18 @@
 ﻿using Entities;
 using Entities.ProjectEntities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Build.Evaluation;
 using Microsoft.CodeAnalysis;
 using OfficeOpenXml;
 using ServiceContracts;
 using ServiceContracts.DTO.BoardDTO;
+using ServiceContracts.DTO.SprintDTO;
 using Services.ProjectServices;
 
 namespace PMS_Software.Controllers
 {
+    [Authorize]
     public class BoardController : Controller
     {
         private readonly IBoardService _boardService;
@@ -144,6 +147,22 @@ namespace PMS_Software.Controllers
             }
 
             return View();
+        }
+        [HttpPost]
+        public async Task<IActionResult> UpdateSprintInfo(SprintUpdateRequest sprintUpdateRequest)
+        {
+            ViewData["boardId"] = sprintUpdateRequest.BoardId;
+            if(ModelState.IsValid)
+            {
+                var board = await _boardService.GetBoardByBoardId((Guid)sprintUpdateRequest.BoardId);
+                if (sprintUpdateRequest != null)
+                {
+                    await _boardService.UpdateSprint(sprintUpdateRequest);
+                }
+                return RedirectToAction("BacklogPage", "Board", new { projectId = board.ProjectId, boardId = sprintUpdateRequest.BoardId });
+            }
+            
+            return View("SprintEditModal");
         }
 
     }

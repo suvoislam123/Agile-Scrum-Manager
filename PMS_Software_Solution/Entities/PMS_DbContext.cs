@@ -43,6 +43,17 @@ namespace Entities
                 .HasOne(a => a.ApplicationUser)
                 .WithMany(u => u.ApplicationUserProjects)
                 .HasForeignKey(a => a.ApplicationUserId);
+            //Issue to User many to many relation
+            builder.Entity<ApplicationUserIssue>()
+                .HasKey(cs => new { cs.IssueId, cs.ApplicationUserId });
+            builder.Entity<ApplicationUserIssue>()
+                .HasOne(i => i.Issue)
+                .WithMany(u => u.ApplicationUserIssues)
+                .HasForeignKey(p => p.IssueId);
+            builder.Entity<ApplicationUserIssue>()
+                .HasOne(a => a.ApplicationUser)
+                .WithMany(u => u.ApplicationUserIssues)
+                .HasForeignKey(a => a.ApplicationUserId);
             //User To Team Many to Many realtion
             builder.Entity<Team>()
             .HasMany(t => t.Users)
@@ -106,7 +117,6 @@ namespace Entities
                 .HasOne(i => i.Issue)
                 .WithMany(a => a.AttachedFiles)
                 .HasForeignKey(k => k.IssueId);
-
         }
     }
 }

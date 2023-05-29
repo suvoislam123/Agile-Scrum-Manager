@@ -8,6 +8,9 @@
     var sprints = (ICollection<Sprint>)ViewData["sprints"];
     var tempIssues = await _boardService.GetTempIssuesByBoardId(boardId);
 }
+<!--Edite Sprint Modal starts-->
+@await Html.PartialAsync("SprintEditModal")
+<!--Edite Sprint Modal ends-->
 <div class="w-75 d-none" id="issue-settings-container">
     <div class="issue-item-modal position-fixed bg-white p-3" style="z-index:1000;top: 100px; height: 500px;width: 1100px; ">
         <div class="d-flex justify-content-between">
@@ -84,7 +87,7 @@
                         <h5>Attachment <sup>3</sup></h5>
                         <div>
                             <div class="d-flex">
-
+                                
                                 <div>
                                     <label for="issue-file-input" style="cursor: pointer;"><i class="fa-solid fa-plus"></i></label>
                                     <input id="issue-file-input" type="file" class="d-none">
@@ -270,7 +273,8 @@
                                     <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400" aria-hidden="true"></i>
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink" x-placement="bottom-end" style="position: absolute; transform: translate3d(-135px, 22px, 0px); top: 0px; left: 0px; will-change: transform;">
-                                    <a class="dropdown-item" href="#">Edit Sprint</a>
+                                    <p sprint-id="@sprint.Id" sprint-name="@sprint.Name" start-date="@sprint.StartDate" end-date="@sprint.EndDate" sprint-goal="@sprint.SprintGoal" class="dropdown-item sEditBtn" data-toggle="modal" data-target="#edit-sprint-modal">Edit Sprint</p>
+                                    
                                     <a class="dropdown-item" href="#">Delete Sprint</a>
                                     <a class="dropdown-item" href="#">Generate Report</a>
                                 </div>
@@ -384,6 +388,7 @@
                         </a>
                         <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink" x-placement="bottom-end" style="position: absolute; transform: translate3d(-135px, 22px, 0px); top: 0px; left: 0px; will-change: transform;">
                             <a class="dropdown-item issue-item" issueId="@tempIssue.Id" href="#">Edite issue</a>
+                            <a class="dropdown-item issue-item" issueId="@tempIssue.Id" href="#">Active Sprint</a>
                             <a class="dropdown-item issue-delete-btn" href="#" issue-id="@tempIssue.Id">Delete Issue</a>
 
                         </div>
@@ -439,3 +444,30 @@
     });
 
 </script>
+@section scripts{
+    <script>
+        var spId,spName,spStartDate,spEndDate,spGoal;
+        const spIdE = document.getElementById('spId');
+        const spNameE = document.getElementById('spName');
+        const spSDE = document.getElementById('spSD');
+        const spEDE = document.getElementById('spED');
+        const spGoalE = document.getElementById('spGaol');
+        const sEditBtns = document.querySelectorAll('.sEditBtn');
+        sEditBtns.forEach((btn)=>{
+            btn.addEventListener('click',(e)=>{
+                console.log(btn);
+                spId = btn.getAttribute('sprint-id');
+                spName = btn.getAttribute('sprint-name');
+                spStartDate = btn.getAttribute('start-date');
+                spEndDate = btn.getAttribute('end-date');
+                spGoal=btn.getAttribute('sprint-goal');
+                spIdE.value = spId;
+                spNameE.value = spName;
+                spSDE.value = new Date(spStartDate);
+                console.log(spStartDate);
+                spEDE.value = new Date(spEndDate);
+                //spGoalE.value = '';
+            });
+        })
+    </script>
+}

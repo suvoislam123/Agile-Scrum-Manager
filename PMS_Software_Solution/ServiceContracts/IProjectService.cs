@@ -11,13 +11,16 @@ namespace ServiceContracts
 {
     public interface IProjectService
     {
-        Project AddProjectAsync(ProjectAddRequest? projectAddRequest, ClaimsPrincipal user);
+        Task<Project> AddProjectAsync(ProjectAddRequest? projectAddRequest, ClaimsPrincipal user);
         // List<ProjectResponse> GetAllProjectByOwnerUserName(string UserName);
         Task<List<ProjectResponse>> GetProjectsByWoner(ClaimsPrincipal user);
+        Task<List<ProjectResponse>> GetProjectsOfGeneraluser(string userId, string currentUserName);
+        Task<List<ProjectResponse>> GetProjectsOfProjectLead(string userId, string currentUserName);
         Task<ProjectResponse> DeleteProjectAsync(Guid id);
         Task<ProjectResponse> GetProjectByIdAsync(Guid id);
         Task<ProjectResponse> UpdateProjectByIdAsync(ProjectUpdateRequest projectUpdateRequest);
         Task<Project> LaunchProject(Guid projectId);
+
 
     }
 }

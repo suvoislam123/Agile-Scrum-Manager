@@ -1,7 +1,12 @@
-﻿@model ServiceContracts.DTO.ProjectDTO.ProjectAddRequest;
+﻿@using ServiceContracts;
+@model ServiceContracts.DTO.ProjectDTO.ProjectAddRequest;
+@inject IUsersService _userService
 @{
     ViewData["Title"] = "Create Project";
+    var currentUser = await _userService.GetUserByUserName(User.Identity.Name);
+    var currentUserCreatedTeams = await _userService.GetTeamsCreatedByMe(currentUser);
 }
+
 <div class="project-settings">
     <div class="w-50 mx-auto">
         <div class="p-5">
@@ -40,13 +45,23 @@
                     <span asp-validation-for="ProjectLead" class="text-danger"></span>
                 </div>
                 <div class="form-group">
-                    <label>Select Team</label>
-                    <select class="form-control form-control-user p-2" style="border-radius: 0%;">
-                        <option>team1 </option>
-                        <option>team2</option>
-                        <option>team3</option>
-                    </select>
-                    <span></span>
+                    @if(currentUserCreatedTeams.Count!=0)
+                    {
+                        <label>Select Team</label>
+                        <select asp-for="TeamId" class="form-control form-control-user p-2" style="border-radius: 0%;">
+                            @foreach (var team in currentUserCreatedTeams)
+                            {
+                                <option value="@team.Id">@team.Name</option>
+                            }
+
+                        </select>
+                        <span></span>
+                    }
+                    else
+                    {
+                        <p class="text-danger">Please Create A Team For Creating A Project</p>
+                    }
+                    <span asp-validation-for="TeamId"></span>
                 </div>
                 <div class="form-group">
                     <input type="submit" value="Create" class="btn btn-primary btn-user btn-block" />

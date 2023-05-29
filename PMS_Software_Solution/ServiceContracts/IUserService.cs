@@ -13,6 +13,9 @@ namespace ServiceContracts
         Task<ApplicationUser> GetUserByUserName(string userName);
         Task<List<Team>> GetTeamsByUserId(string userId);
         Task<List<ApplicationUser>> GetApplicationUsersByTeamId(int teamId);
+        Task<ApplicationUser> GetApplicationUserById(string id);
+        Task<Team> GetTeamById(int teamId);
+        Task<List<Team>> GetTeamsCreatedByMe(ApplicationUser applicationUser);
             
     }
 }

@@ -25,7 +25,8 @@ namespace ServiceContracts.DTO.ProjectDTO
         [Required(ErrorMessage ="Please Enter valid Default Assignee")]
         public string DefaultAssignee { get; set; }
         public string? ProjectLead { get; set; }
-
+        [Required(ErrorMessage ="Please Either Create A New Team. Then Create New Project By the Team")]
+        public int TeamId { get; set; }
         public Project ToProject()
         {
             return new Project()

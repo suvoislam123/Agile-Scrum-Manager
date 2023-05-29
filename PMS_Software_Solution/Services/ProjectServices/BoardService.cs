@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using ServiceContracts;
 using ServiceContracts.DTO.BoardDTO;
+using ServiceContracts.DTO.SprintDTO;
 using ServiceContracts.Enums;
 using System;
 using System.Collections.Generic;
@@ -142,6 +143,28 @@ namespace Services.ProjectServices
             await _pMS_DBContext.TempIssues.AddRangeAsync(tempIssues);
             await _pMS_DBContext.SaveChangesAsync();
             return tempIssues;
+        }
+
+        public async Task<Sprint> UpdateSprint(SprintUpdateRequest sprintUpdateRequest)
+        {
+            var sprint = await _pMS_DBContext.Sprints.FirstOrDefaultAsync(s=>s.Id==sprintUpdateRequest.Id);
+            if (sprint != null)
+            {
+                sprint.Name = sprintUpdateRequest.Name;
+                sprint.StartDate =(DateTime) sprintUpdateRequest.StartDate;
+                sprint.EndDate = (DateTime)sprintUpdateRequest.EndDate;
+                sprint.SprintGoal=sprintUpdateRequest.SprintGoal;
+                sprint.IsActive =(bool) sprintUpdateRequest.IsActive;
+                
+            }
+            await _pMS_DBContext.SaveChangesAsync();
+            return sprint;
+        }
+
+        public async Task<Board> GetBoardByBoardId(Guid boardId)
+        {
+            var board =await _pMS_DBContext.Boards.FirstOrDefaultAsync(b=>b.Id==boardId);
+            return board;
         }
     }
 }
