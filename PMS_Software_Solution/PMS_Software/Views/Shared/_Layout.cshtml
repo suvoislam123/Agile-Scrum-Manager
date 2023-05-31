@@ -102,6 +102,79 @@
                             </div>
                         </a>
                         <a class="collapse-item" asp-controller="Project" asp-action="Index">View All Project</a>
+                        <p class="collapse-item" type="button" data-toggle="modal" data-target="#enroll-project-modal"> Enroll Project by Key</p>
+                        <!--Enroll Project Modal-->
+                        <div class="modal fade" id="enroll-project-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Enroll Project</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+
+                                        <form>
+                                            <div class="form-group">
+                                                <label for="message-text" class="col-form-label">Project Key:</label>
+                                                <input id="projectKeyInput" type="text" class="form-control" />
+                                                <span class="text-danger" id="enroll-validation-message"></span>
+                                            </div>
+                                        </form>
+                                        
+
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                        <button id="enroll-btn" type="button" class="btn btn-primary">Enroll</button>
+                                    </div>
+                                    
+                                    <script>
+                                        const enrollValidationField= document.getElementById('enroll-validation-message');
+                                        enrollValidationField.innerText="";
+                                        
+                                        function enroll()
+                                        {
+                                            const projectKey = document.getElementById('projectKeyInput').value;
+                                            if(projectKey=='')
+                                            {
+                                                enrollValidationField.innerText="Please give a project Key to enroll";
+                                                return;
+                                            }
+                                            const userName ="@Html.Raw(User.Identity.Name)";
+                                            fetch(`/enrollProject/${projectKey}/${userName}`, {
+                                                method: "POST"
+                                            })
+                                                .then(response => {
+                                                    console.log(response);
+                                                    if (response.ok) {
+                                                       console.log("Enroll Successfull");
+                                                        window.location = "https://localhost:7049/projects";
+                                                    } else if (response.status === 404) {
+                                                        enrollValidationField.innerText="Project Not Found";
+                                                        
+                                                    } else {
+                                                        console.log("Enrollment failed");
+                                                        enrollValidationField.innerText = "You allready enroll the project";
+                                   
+                                                    }
+                                                })
+                                                
+                                                .catch(error => {
+                                                    console.error("Error:", error);
+                                                });
+                                            
+                                        }
+                                        document.getElementById("enroll-btn").addEventListener('click',(e)=>{
+                                            enroll();
+                                        })
+                                    </script>
+
+                                </div>
+                            </div>
+                        </div>
+                        <!--Enroll Project Modal-->
                         <a class="collapse-item" asp-controller="Project" asp-action="Create"><i class="fa-solid fa-plus"></i>Create Project</a>
                     </div>
                 </div>
@@ -123,7 +196,7 @@
                             <div class="modal-dialog">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabel">Create Team</h5>
+                                        <h5 class="modal-title" id="exampleModalLabel">Assign User</h5>
                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                             <span aria-hidden="true">&times;</span>
                                         </button>
@@ -148,7 +221,7 @@
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                        <button type="button" class="btn btn-primary">Create Team</button>
+                                        <button type="button" class="btn btn-primary">Assign</button>
                                     </div>
                                 </div>
                             </div>
@@ -236,7 +309,7 @@
 
             <!-- Nav Item - Tables -->
             <li class="nav-item">
-                <a class="nav-link" href="selected-project.html">
+                <a asp-action="ActiveSprints" asp-controller="Board" class="nav-link" >
                     <i class="fa-solid fa-grip"></i>
                     <span>Active Sprint</span>
                 </a>

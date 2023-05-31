@@ -313,7 +313,7 @@
                                     <i class="fa-solid fa-code-compare"></i>
                                 }
                             </div>
-                            <p class="issue-item" id="story-description" title="@issue.Description" style="width: 60%;">@issue.Description</p>
+                            <a  asp-action="Index" asp-controller="Issue" asp-route-issueId="@issue.Id" class="issue-item" id="story-description" style="width: 60%;">@issue.Description</a>
                             <script>
                                 var element = document.getElementById("story-description");
                                 element.style.whiteSpace = "nowrap";

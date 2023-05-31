@@ -116,5 +116,17 @@ namespace PMS_Software.Controllers
             await _pMS_DBContext.SaveChangesAsync();
             return Ok();
         }
+        [HttpPost]
+        [Route("/enrollProject/{projectKey}/{userName}")]
+        public async Task<IActionResult> EnrollProject(string projectKey,string userName)
+        {
+            var projectResponseback = await _userService.EnrollProjectByProjectKey(projectKey, userName);
+            if (projectResponseback != null)
+            {
+                var redirectUrl = "/projects/"+projectResponseback.Id + "/board";
+                return Ok(redirectUrl);
+            }
+            return NotFound();
+        }
     }
 }

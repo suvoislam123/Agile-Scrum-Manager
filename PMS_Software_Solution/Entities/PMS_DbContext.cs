@@ -25,6 +25,8 @@ namespace Entities
         //public DbSet<Backlog> Backlogs { get; set; }
         public DbSet<Sprint> Sprints { get; set; }
         public DbSet<Issue> Issues { get; set; }
+        public DbSet<ApplicationUserIssue> ApplicationUserIssues { get; set; }
+        public DbSet<ApplicationUserComment> ApplicationUserComments { get; set; }
         public DbSet<Comment> Comments { get; set; }
         public DbSet<AttachedFile> AttachedFiles { get; set; }
         public DbSet<AttachedLink> AttachedLinks { get; set; }
@@ -54,6 +56,17 @@ namespace Entities
                 .HasOne(a => a.ApplicationUser)
                 .WithMany(u => u.ApplicationUserIssues)
                 .HasForeignKey(a => a.ApplicationUserId);
+            //Comment to User Many to many relation
+            builder.Entity<ApplicationUserComment>()
+                .HasKey(cs => new { cs.CommentId, cs.ApplicationUserId });
+            builder.Entity<ApplicationUserComment>()
+                .HasOne(i => i.Comment)
+                .WithMany(u => u.ApplicationUserComments)
+                .HasForeignKey(c => c.CommentId);
+            builder.Entity<ApplicationUserComment>()
+                .HasOne(a => a.ApplicationUser)
+                .WithMany(u => u.ApplicationUserComments)
+                .HasForeignKey(c => c.ApplicationUserId);
             //User To Team Many to Many realtion
             builder.Entity<Team>()
             .HasMany(t => t.Users)

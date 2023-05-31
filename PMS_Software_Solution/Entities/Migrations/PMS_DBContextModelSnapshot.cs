@@ -114,6 +114,21 @@ namespace Entities.Migrations
                     b.ToTable("AspNetUsers", (string)null);
                 });
 
+            modelBuilder.Entity("Entities.JoinTables.ApplicationUserComment", b =>
+                {
+                    b.Property<Guid>("CommentId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("ApplicationUserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("CommentId", "ApplicationUserId");
+
+                    b.HasIndex("ApplicationUserId");
+
+                    b.ToTable("ApplicationUserComments");
+                });
+
             modelBuilder.Entity("Entities.JoinTables.ApplicationUserIssue", b =>
                 {
                     b.Property<Guid>("IssueId")
@@ -126,7 +141,7 @@ namespace Entities.Migrations
 
                     b.HasIndex("ApplicationUserId");
 
-                    b.ToTable("ApplicationUserIssue");
+                    b.ToTable("ApplicationUserIssues");
                 });
 
             modelBuilder.Entity("Entities.JoinTables.ApplicationUserProject", b =>
@@ -220,11 +235,11 @@ namespace Entities.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid>("ProjectId")
+                    b.Property<Guid?>("ProjectId")
+                        .IsRequired()
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("ProjectLead")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
@@ -240,15 +255,11 @@ namespace Entities.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("CommentedBy")
-                        .IsRequired()
+                    b.Property<string>("CommentText")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime?>("CreatedDate")
                         .HasColumnType("datetime2");
-
-                    b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<Guid>("IssueId")
                         .HasColumnType("uniqueidentifier");
@@ -275,10 +286,22 @@ namespace Entities.Migrations
                     b.Property<string>("IssueTye")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Label")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int?>("Point")
+                        .HasColumnType("int");
+
                     b.Property<string>("Priority")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid?>("ProjectId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("ProjectLead")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<Guid>("SprintId")
@@ -286,12 +309,6 @@ namespace Entities.Migrations
 
                     b.Property<string>("State")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<byte[]>("Timestamp")
-                        .IsConcurrencyToken()
-                        .IsRequired()
-                        .ValueGeneratedOnAddOrUpdate()
-                        .HasColumnType("rowversion");
 
                     b.HasKey("Id");
 
@@ -354,6 +371,12 @@ namespace Entities.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid?>("ProjectId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("ProjectLead")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("SprintGoal")
@@ -577,6 +600,25 @@ namespace Entities.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
+            modelBuilder.Entity("Entities.JoinTables.ApplicationUserComment", b =>
+                {
+                    b.HasOne("Entities.Account.ApplicationUser", "ApplicationUser")
+                        .WithMany("ApplicationUserComments")
+                        .HasForeignKey("ApplicationUserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Entities.ProjectEntities.Comment", "Comment")
+                        .WithMany("ApplicationUserComments")
+                        .HasForeignKey("CommentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("ApplicationUser");
+
+                    b.Navigation("Comment");
+                });
+
             modelBuilder.Entity("Entities.JoinTables.ApplicationUserIssue", b =>
                 {
                     b.HasOne("Entities.Account.ApplicationUser", "ApplicationUser")
@@ -779,6 +821,8 @@ namespace Entities.Migrations
 
             modelBuilder.Entity("Entities.Account.ApplicationUser", b =>
                 {
+                    b.Navigation("ApplicationUserComments");
+
                     b.Navigation("ApplicationUserIssues");
 
                     b.Navigation("ApplicationUserProjects");
@@ -797,6 +841,11 @@ namespace Entities.Migrations
                     b.Navigation("Sprints");
 
                     b.Navigation("TempIssues");
+                });
+
+            modelBuilder.Entity("Entities.ProjectEntities.Comment", b =>
+                {
+                    b.Navigation("ApplicationUserComments");
                 });
 
             modelBuilder.Entity("Entities.ProjectEntities.Issue", b =>

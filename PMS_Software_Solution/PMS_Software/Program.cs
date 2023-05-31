@@ -17,6 +17,8 @@ builder.Services.AddScoped<IUsersService, UserService>();
 builder.Services.AddScoped<IProjectService, ProjectService>();
 builder.Services.AddScoped<IBoardService, BoardService>();
 builder.Services.AddScoped<IUsersService,UserService>();
+builder.Services.AddScoped<IIssueService,IssueService>();
+builder.Services.AddScoped<ICommentService,CommentService>();
 builder.Services.AddDbContext<PMS_DBContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"),b=>b.MigrationsAssembly("Entities"));
@@ -48,12 +50,12 @@ app.UseRouting();
 app.UseAuthentication();
 app.UseCors();
 app.UseAuthorization();
-app.UseStatusCodePagesWithRedirects("/NotFound");
+/*app.UseStatusCodePagesWithRedirects("/NotFound");
 app.MapControllerRoute(
     name: "NotFound",
     pattern: "/NotFound",
     defaults: new { controller = "Error", action = "NotFound" }
-);
+);*/
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");

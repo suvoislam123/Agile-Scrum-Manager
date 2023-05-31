@@ -27,6 +27,10 @@ namespace PMS_Software.Controllers
         {
             return View();
         }
+        public IActionResult ActiveSprints()
+        {
+            return View();
+        }
         [HttpGet]
         [Route("/projects/{projectId}/board/create")]
             

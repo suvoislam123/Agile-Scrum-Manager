@@ -6,6 +6,9 @@ using Microsoft.AspNetCore.Identity;
 using Entities.Account;
 using Microsoft.EntityFrameworkCore;
 using Entities.TeamEntities;
+using ServiceContracts.DTO.ProjectDTO;
+using Entities.ProjectEntities;
+using Entities.JoinTables;
 
 namespace Services
 {
@@ -15,11 +18,14 @@ namespace Services
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly PMS_DBContext _pMS_DBcontext;
+        
+        
         public UserService(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager,PMS_DBContext pMS_DBcontext) 
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _pMS_DBcontext = pMS_DBcontext;
+            
         }
         public async Task<IdentityResult> CreateUserAsync(User user)
         {
@@ -36,6 +42,28 @@ namespace Services
             };
             var result = await _userManager.CreateAsync(newUser, user.Password);
             return result;
+        }
+
+        public async Task<Project> EnrollProjectByProjectKey(string projectKey,string userName)
+        {
+            var user = await _pMS_DBcontext.ApplicationUsers.FirstOrDefaultAsync(user => user.UserName == userName);
+            Project project =await  _pMS_DBcontext.Projects
+                .Include(p=>p.ApplicationUserProjects)
+                .Include(b=>b.Boards)
+                .FirstOrDefaultAsync(p => p.ProjectKey == projectKey);
+            if(project!= null)
+            {
+                var userProject = new ApplicationUserProject()
+                {
+                    ApplicationUser = user,
+                    Project = project
+                };
+                if(project.ApplicationUserProjects!=null)
+                    if(!_pMS_DBcontext.ApplicationUserProjects.Contains(userProject))
+                        _pMS_DBcontext.ApplicationUserProjects.Add(userProject);
+                await _pMS_DBcontext.SaveChangesAsync();
+            }
+            return project;
         }
 
         public async Task<ApplicationUser> GetApplicationUserById(string id)

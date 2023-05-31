@@ -31,6 +31,7 @@ namespace ServiceContracts.DTO.ProjectDTO
         {
             return new Project()
             {
+                Id=Guid.NewGuid(),
                 ProjectName= ProjectName,
                 ProjectKey= ProjectKey,
                 Catagory= Catagory,

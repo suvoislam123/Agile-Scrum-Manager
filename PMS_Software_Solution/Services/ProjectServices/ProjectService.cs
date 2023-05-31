@@ -34,7 +34,6 @@ namespace Services.ProjectServices
             Project project = projectAddRequest.ToProject();
             var userName = user.Identity.Name;
             project.ProjectWoner = userName;
-            project.Id = Guid.NewGuid();
             project.ApplicationUserProjects = new List<ApplicationUserProject>();
             var applicationUsers =await  _userService.GetApplicationUsersByTeamId((int)projectAddRequest.TeamId);
             var projectLead = await _userService.GetUserByUserName(projectAddRequest.ProjectLead);
@@ -47,12 +46,16 @@ namespace Services.ProjectServices
                 };
                 project.ApplicationUserProjects.Add(userProject);
             }
-            var leadProject = new ApplicationUserProject()
+            if(!applicationUsers.Contains(projectLead))
             {
-                ApplicationUser=projectLead,
-                Project=project,
-            };
-            project.ApplicationUserProjects.Add(leadProject);
+                var leadProject = new ApplicationUserProject()
+                {
+                    ApplicationUser = projectLead,
+                    Project = project,
+                };
+                project.ApplicationUserProjects.Add(leadProject);
+
+            }
             project.LastVisitedTime=DateTime.Now;
             Board board = new Board()
             {
