@@ -10,7 +10,7 @@ namespace ServiceContracts.DTO.BoardDTO
 {
     public class BacklogAddRequest
     {
-        public Guid? Id { get; set; }
+        public Guid Id { get; set; }
         public string? Name { get; set; }
         [Required(ErrorMessage ="Please describe the issue. What is need to be done")]
         public string? Description { get; set; }
@@ -19,7 +19,7 @@ namespace ServiceContracts.DTO.BoardDTO
         public string? IssueType { get;set; }
         public Guid? SprintId { get; set; }
         public Sprint? Sprint { get; set; }
-        public Guid? ProjectId { get; set; }
+        public Guid ProjectId { get; set; }
         public Guid? BoardId { get; set; }
         public ICollection<Comment>? Comments { get; set; }
         public ICollection<AttachedFile>? AttachedFiles { get; set; }
